@@ -1,0 +1,1 @@
+web: gunicorn donegal-explorers.wsgi
