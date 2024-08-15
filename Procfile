@@ -1,1 +1,1 @@
-web: gunicorn donegal-explorers.wsgi
+web: gunicorn donegalexplorers.wsgi
