@@ -30,7 +30,7 @@ SECRET_KEY = 'django-insecure-2+g7s76a2gs*k(71tb&slht8c#_c-e*q)@!j2+0=el*+ek(j)z
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    '8000-sophiemcgee-donegalexpl-22t6lll6wh5.ws-eu115.gitpod.io',
+    '8000-sophiemcgee-donegalexpl-n9fuq72qmwq.ws.codeinstitute-ide.net',
     'donegal-explorers.herokuapp.com', 'localhost'
 ]
 
@@ -93,7 +93,7 @@ WSGI_APPLICATION = 'my_project.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
 DATABASES = {
-    'default': dj_database_url.parse(os.environ.get("DATABASE_URL")"")
+    'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
 }
 
 AUTH_PASSWORD_VALIDATORS = [
