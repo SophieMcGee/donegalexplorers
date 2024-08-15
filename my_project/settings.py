@@ -31,7 +31,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     '8000-sophiemcgee-donegalexpl-n9fuq72qmwq.ws.codeinstitute-ide.net',
-    'donegal-explorers.herokuapp.com', 'localhost'
+    'https://donegal-explorers-22a6c2ed48a2.herokuapp.com/', 'localhost'
 ]
 
 
