@@ -31,9 +31,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     '8080-sophiemcgee-donegalexpl-n9fuq72qmwq.ws.codeinstitute-ide.net',
-    '.herokuapp.com',
+    'donegal-explorers.herokuapp.com',
     'localhost',
-    '127.0.0.1'
 ]
 
 # Application definition
