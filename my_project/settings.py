@@ -30,7 +30,7 @@ SECRET_KEY = 'django-insecure-2+g7s76a2gs*k(71tb&slht8c#_c-e*q)@!j2+0=el*+ek(j)z
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    '8080-sophiemcgee-donegalexpl-n9fuq72qmwq.ws.codeinstitute-ide.net',
+    '8000-sophiemcgee-donegalexpl-n9fuq72qmwq.ws.codeinstitute-ide.net',
     'donegal-explorers.herokuapp.com',
     'localhost',
 ]
