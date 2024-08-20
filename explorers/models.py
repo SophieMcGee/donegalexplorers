@@ -9,7 +9,7 @@ class Event(models.Model):
     description = models.TextField()
     location = models.CharField(max_length=255)
     date = models.DateTimeField()
-    time = models.CharField(max_length=30)
+    time = models.TimeField(auto_now_add=True)
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
     image = CloudinaryField('image', default='placeholder-image')
