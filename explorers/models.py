@@ -23,6 +23,7 @@ class Comment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_comments')
     content = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
+    approved = models.BooleanField(default=False)  # Field to check if comment is approved
 
     def __str__(self):
         return f'Comment by {self.user.username} on {self.event.title}'
