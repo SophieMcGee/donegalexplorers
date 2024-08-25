@@ -44,3 +44,8 @@ class EventDetail(View):
 
         return render(request, 'event_detail.html', {'event': event, "comments": comments,})
 
+# View to browse events
+class BrowseEventsView(View):
+    def get(self, request, *args, **kwargs):
+        events = Event.objects.all()
+        return render(request, 'browse_events.html', {'events': events})
