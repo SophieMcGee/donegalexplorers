@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Event, Comment, Calendar
+from .models import Event, Comment, Calendar, Rating
 from django_summernote.admin import SummernoteModelAdmin
 
 # Register the Event model
