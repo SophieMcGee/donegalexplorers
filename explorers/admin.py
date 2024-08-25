@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Event, Comment
+from .models import Event, Comment, Calendar
 from django_summernote.admin import SummernoteModelAdmin
 
 # Register the Event model
@@ -24,3 +24,11 @@ class CommentAdmin(admin.ModelAdmin):
         queryset.update(approved=True)
 
     approve_comments.short_description = "Mark selected comments as approved"
+
+# Register the Admin model
+@admin.register(Calendar)
+class CalendarAdmin(admin.ModelAdmin):
+    list_display = ('user', 'event', 'date')  
+    list_filter = ('user', 'date')  
+    search_fields = ('user__username', 'event__title')  
+    date_hierarchy = 'date'  
