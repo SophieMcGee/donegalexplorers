@@ -1,11 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ event.title }}</title>
-</head>
-<body>
+{% extends "base.html" %}
+
+{% block content %}
     <h1>{{ event.title }}</h1>
     <p>Location: {{ event.location }}</p>
     <p>Date: {{ event.date }}</p>
@@ -17,5 +12,4 @@
     <a href="{% url 'rate_event' event.id %}">Rate this Event</a>
 
     <!-- Other event details -->
-</body>
-</html>
+{% endblock content %}

@@ -1,43 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Events</title>
-</head>
-<body>
-    <h1>Events</h1>
-    <ul>
-        {% for event in object_list %}
-            <li>
-                <h2><a href="{% url 'view_event' event.id %}">{{ event.title }}</a></h2>
-                <p>{{ event.description }}</p>
-                <p>{{ event.date }} at {{ event.time }}</p>
-                <p>Location: {{ event.location }}</p>
-                <p>Created on: {{ event.created_on }}</p>
-            </li>
-        {% empty %}
-            <li>No events available.</li>
-        {% endfor %}
-    </ul>
+{% extends "base.html" %}
 
-    <!-- Pagination controls -->
-    <div class="pagination">
-        <span class="step-links">
-            {% if page_obj.has_previous %}
-                <a href="?page=1">&laquo; first</a>
-                <a href="?page={{ page_obj.previous_page_number }}">previous</a>
-            {% endif %}
+{% block content %}
+<h1>Events</h1>
+<ul>
+    {% for event in object_list %}
+        <li>
+            <h2><a href="{% url 'view_event' event.id %}">{{ event.title }}</a></h2>
+            <p>{{ event.description }}</p>
+            <p>{{ event.date }} at {{ event.time }}</p>
+            <p>Location: {{ event.location }}</p>
+            <p>Created on: {{ event.created_on }}</p>
+        </li>
+    {% empty %}
+        <li>No events available.</li>
+    {% endfor %}
+</ul>
 
-            <span class="current">
-                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-            </span>
+<!-- Pagination controls -->
+<div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
 
-            {% if page_obj.has_next %}
-                <a href="?page={{ page_obj.next_page_number }}">next</a>
-                <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
-            {% endif %}
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
         </span>
-    </div>
-</body>
-</html>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+{% endblock content %}
