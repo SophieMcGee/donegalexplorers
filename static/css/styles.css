@@ -1,0 +1,61 @@
+/* Custom Styles */
+body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: #FDF4DF;
+    color: #000000;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Open Sans Extra Bold', sans-serif;
+}
+
+/* Navbar Styles */
+.navbar-custom {
+    background-color: #FDF4EF;
+    padding: 15px 20px;
+}
+
+.navbar-custom .navbar-brand {
+    font-family: 'Montserrat Extra Bold', sans-serif;
+    font-size: 1.5rem;
+    color: #2F6146;
+}
+
+.navbar-custom .nav-link {
+    color: #000000;
+    font-weight: 600;
+}
+
+.navbar-custom .nav-link:hover {
+    color: #2F6146;
+}
+
+/* Button Styles */
+.btn-custom {
+    background-color: #CEA64A;
+    color: #FFFFFF;
+    border-radius: 5px;
+    font-family: 'Montserrat Extra Bold', sans-serif;
+    border: none;
+}
+
+.btn-custom:hover, .btn-custom:active {
+    background-color: #CDC2A9;
+    color: #FFFFFF;
+}
+
+/* Footer Styles */
+footer.footer-custom {
+    background-color: #2F6146;
+    color: #FFFFFF;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 50px;
+}
+
+/* Container Styles */
+.container-custom {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
