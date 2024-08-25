@@ -31,4 +31,11 @@ class CalendarAdmin(admin.ModelAdmin):
     list_display = ('user', 'event', 'date')  
     list_filter = ('user', 'date')  
     search_fields = ('user__username', 'event__title')  
-    date_hierarchy = 'date'  
+    date_hierarchy = 'date'
+
+# Register the Rating model
+@admin.register(Rating)
+class RatingAdmin(admin.ModelAdmin):
+    list_display = ('user', 'event', 'rating')
+    search_fields = ('event__title', 'user__username')
+    list_filter = ('rating',) 
