@@ -40,5 +40,7 @@ def rate_event(request, event_id):
 class EventDetail(View):
     def get(self, request, event_id, *args, **kwargs):
         event = get_object_or_404(Event, id=event_id)
-        return render(request, 'event_detail.html', {'event': event})
+        comments = event.comments.filter(approved=True).order_by('created_on')
+
+        return render(request, 'event_detail.html', {'event': event, "comments": comments,})
 
