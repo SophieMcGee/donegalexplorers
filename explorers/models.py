@@ -39,7 +39,7 @@ class Calendar(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='calendars')
     event = models.ForeignKey(Event, on_delete=models.CASCADE, related_name='calendar_events')
     date = models.DateTimeField()
-    saved_on = models.DateTimeField(auto_now_add=True)  # The date the event was saved to the calendar
+    saved_on = models.Date  # The date the event was saved to the calendar
 
     def __str__(self):
         return f'Calendar for {self.user.username} - {self.event.title} on {self.date}'
