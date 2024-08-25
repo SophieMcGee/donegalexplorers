@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
-from django.views import generic
+from django.views import View, generic
 from .models import Event, Calendar, Rating
 
 # View to list events with filters (homepage)
@@ -37,7 +37,8 @@ def rate_event(request, event_id):
     return render(request, 'rate_event.html', {'event': event})
 
 # View to display event details
-def event_detail(request, event_id):
-    event = get_object_or_404(Event, id=event_id)
-    return render(request, 'event_detail.html', {'event': event})
+class EventDetail(View):
+    def get(self, request, event_id, *args, **kwargs):
+        event = get_object_or_404(Event, id=event_id)
+        return render(request, 'event_detail.html', {'event': event})
 
