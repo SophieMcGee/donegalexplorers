@@ -11,71 +11,13 @@
     <title>{% block title %}Donegal Explorers{% endblock %}</title>
     <!-- Bootstrap 5 CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        /* Custom Styles */
-        body {
-            font-family: 'Open Sans', sans-serif;
-            background-color: #FDF4DF;
-            color: #000000;
-        }
-
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Open Sans Extra Bold', sans-serif;
-        }
-
-        .navbar-custom {
-            background-color: #FDF4EF;
-            padding: 15px 20px;
-        }
-
-        .navbar-custom .navbar-brand {
-            font-family: 'Montserrat Extra Bold', sans-serif;
-            font-size: 1.5rem;
-            color: #2F6146;
-        }
-
-        .navbar-custom .nav-link {
-            color: #000000;
-            font-weight: 600;
-        }
-
-        .navbar-custom .nav-link:hover {
-            color: #2F6146;
-        }
-
-        .btn-custom {
-            background-color: #CEA64A;
-            color: #FFFFFF;
-            border-radius: 5px;
-            font-family: 'Montserrat Extra Bold', sans-serif;
-            border: none;
-        }
-
-        .btn-custom:hover, .btn-custom:active {
-            background-color: #CDC2A9;
-            color: #FFFFFF;
-        }
-
-        .footer-custom {
-            background-color: #2F6146;
-            color: #FFFFFF;
-            text-align: center;
-            padding: 20px 0;
-            margin-top: 50px;
-        }
-
-        .container-custom {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-    </style>
+    <!-- Stylesheet-->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
 
     <!-- Navigation -->
-    <nav class="navbar navbar-custom navbar-expand-lg">
+    <nav class="navbar navbar-expand-sm bg-primary navbar-light">
         <div class="container-fluid">
             <a class="navbar-brand" href="{% url 'home' %}">Donegal Explorers</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -87,7 +29,7 @@
                         <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Browse Events</a>
+                        <a class="nav-link" href="{% url 'browse_events' %}">Browse Events</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">My Account</a>
