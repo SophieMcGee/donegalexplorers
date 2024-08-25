@@ -44,6 +44,51 @@ h1, h2, h3, h4, h5, h6 {
     color: #FFFFFF;
 }
 
+.btn-outline-custom {
+    background-color: transparent;
+    color: #CEA64A;
+    border: 2px solid #CEA64A;
+    border-radius: 5px;
+    font-family: 'Montserrat Extra Bold', sans-serif;
+}
+
+.btn-outline-custom:hover, .btn-outline-custom:active {
+    background-color: #CEA64A;
+    color: #FFFFFF;
+}
+
+/* Text Styles */
+
+.text-link {
+    color: #2F6146;
+    text-decoration: underline;
+}
+
+.text-link:hover {
+    color: #CEA64A;
+}
+
+/* Form Styles */
+.form-custom input[type="text"], 
+.form-custom input[type="password"], 
+.form-custom input[type="email"], 
+.form-custom input[type="number"], 
+.form-custom select, 
+.form-custom textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+.form-custom input:focus, 
+.form-custom select:focus, 
+.form-custom textarea:focus {
+    border-color: #CEA64A;
+    outline: none;
+}
+
 /* Footer Styles */
 footer.footer-custom {
     background-color: #2F6146;
