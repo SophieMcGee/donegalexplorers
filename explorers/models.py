@@ -17,6 +17,9 @@ class Event(models.Model):
     def __str__(self):
         return self.title
 
+    class Meta:
+        ordering = ['-created_on'] # Orders by 'created_on' descending by default
+
 class Comment(models.Model):
     comment_id = models.AutoField(primary_key=True)
     event = models.ForeignKey(Event, on_delete=models.CASCADE, related_name='comments')
@@ -27,6 +30,9 @@ class Comment(models.Model):
 
     def __str__(self):
         return f'Comment by {self.user.username} on {self.event.title}'
+
+    class Meta:
+        ordering = ['created_on']  # Orders by 'created_on' ascending by default
 
 class Calendar(models.Model):
     calendar_id = models.AutoField(primary_key=True)
