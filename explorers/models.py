@@ -14,6 +14,9 @@ class Event(models.Model):
     updated_on = models.DateTimeField(auto_now=True)
     image = CloudinaryField('image', default='placeholder-image')
 
+    def average_rating(self) -> float:
+        return Rating.objects.filter(event=self).aggregate(Avg("rating"))["rating__avg"] or 0
+
     def __str__(self):
         return self.title
 
@@ -43,3 +46,11 @@ class Calendar(models.Model):
 
     def __str__(self):
         return f'Calendar for {self.user.username} - {self.event.title} on {self.date}'
+
+class Rating(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    event = models.ForeignKey(Event, on_delete=models.CASCADE)
+    rating = models.IntegerField(default=0)
+
+    def __str__(self):
+        return f"{self.event.title}: {self.rating}"

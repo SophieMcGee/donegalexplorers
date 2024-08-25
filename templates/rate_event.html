@@ -1,0 +1,7 @@
+<h2>Rate {{ event.title }}</h2>
+<form method="post">
+    {% csrf_token %}
+    <label for="rating">Your Rating:</label>
+    <input type="number" name="rating" id="rating" min="1" max="5" required>
+    <button type="submit">Submit Rating</button>
+</form>
