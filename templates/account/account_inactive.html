@@ -1,0 +1,15 @@
+{% extends "account/base.html" %}
+{% load i18n %}
+
+{% block title %}
+    Account Inactive
+{% endblock %}
+
+{% block content %}
+<div class="container-custom mt-5">
+    <h1 class="display-4">Account Inactive</h1>
+    <p class="lead">Sorry, but your account is currently inactive.</p>
+    <p>Please check your email for activation instructions or contact support if you believe this is an error.</p>
+    <a href="{% url 'account_login' %}" class="btn btn-custom">Go to Login</a>
+</div>
+{% endblock %}
