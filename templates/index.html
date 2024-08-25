@@ -1,0 +1,11 @@
+{% extends "base_layout.html" %}
+
+{% block content %}
+<div>
+    <p class="author">Author: {{ event.author }}</p>
+</div>
+<a href="{% url 'event_detail' event.slug %}">
+    <h2>{{ event.title }}</h2>
+    <p>{{ event.description }}</p>
+</a>
+{% endblock content %}

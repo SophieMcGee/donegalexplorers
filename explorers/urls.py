@@ -3,7 +3,7 @@ from . import views
 
 urlpatterns = [
     path('', views.EventList.as_view(), name='home'),
-    path('<slug:slug>/', views.event_detail, name='event_detail'),
+    path('event/<slug:slug>/', views.EventDetail.as_view(), name='event_detail'),
     path('summernote/', include('django_summernote.urls')),
     path('save-event/<int:event_id>/', views.save_event_to_calendar, name='save_event_to_calendar'),
     path('saved-events/', views.view_saved_events, name='view_saved_events'),
