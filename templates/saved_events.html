@@ -1,0 +1,6 @@
+<h2>Your Saved Events</h2>
+<ul>
+    {% for entry in saved_events %}
+        <li>{{ entry.event.title }} - Event Date: {{ entry.date }} - Saved on: {{ entry.saved_on }}</li>
+    {% endfor %}
+</ul>
