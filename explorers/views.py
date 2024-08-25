@@ -36,3 +36,10 @@ def rate_event(request, event_id):
 def event_detail(request, event_id):
     event = get_object_or_404(Event, id=event_id)
     return render(request, 'event_detail.html', {'event': event})
+
+# View to list events with filters
+class EventList(generic.ListView):
+    model = Event
+    queryset = Event.objects.all().order_by('-created_on')
+    template_name = 'event_list.html'
+    paginate_by = 6
