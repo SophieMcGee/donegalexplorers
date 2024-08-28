@@ -29,7 +29,12 @@ class Comment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_comments')
     content = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
-    approved = models.BooleanField(default=False)  # Field to check if comment is approved
+    approved = models.BooleanField(default=False)
+
+    def save(self, *args, **kwargs):
+        if self.user.is_authenticated:  # Auto-approve if the user is authenticated
+            self.approved = True
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return f'Comment by {self.user.username} on {self.event.title}'
