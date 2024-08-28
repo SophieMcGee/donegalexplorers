@@ -6,7 +6,7 @@ from django_summernote.admin import SummernoteModelAdmin
 @admin.register(Event)
 class EventAdmin(SummernoteModelAdmin):
     list_display = ('title', 'author', 'location', 'date', 'time', 'created_on')
-    search_fields = ('title', 'description', 'location')
+    search_fields = ('title', 'description', 'location', 'slug')
     list_filter = ('date', 'author')
     ordering = ('-date',)
     summernote_fields = ('description',)  # Enable Summernote for the description field
