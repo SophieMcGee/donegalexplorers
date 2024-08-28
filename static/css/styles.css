@@ -104,3 +104,68 @@ footer.footer-custom {
     margin: 0 auto;
     padding: 20px;
 }
+
+/* Card Styles */
+.card-custom {
+    border: 1px solid #ddd; 
+    border-radius: 10px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    background-color: #FDF4EF; 
+    margin-bottom: 20px; 
+}
+
+.card-custom .card-title {
+    font-family: 'Montserrat Extra Bold', sans-serif; 
+    color: #2F6146; 
+    font-size: 1.25rem;
+    margin-bottom: 15px;
+}
+
+.card-custom .card-body {
+    padding: 20px;
+}
+
+/* Form within the Card */
+.card-custom .form-custom input[type="text"], 
+.card-custom .form-custom input[type="password"], 
+.card-custom .form-custom input[type="email"], 
+.card-custom .form-custom input[type="number"], 
+.card-custom .form-custom select, 
+.card-custom .form-custom textarea {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+.card-custom .form-custom input:focus, 
+.card-custom .form-custom select:focus, 
+.card-custom .form-custom textarea:focus {
+    border-color: #CEA64A;
+    outline: none;
+}
+
+/* Buttons */
+.card-custom .btn-primary {
+    background-color: #CEA64A;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 5px;
+    font-family: 'Montserrat Extra Bold', sans-serif;
+}
+
+.card-custom .btn-primary:hover {
+    background-color: #CDC2A9;
+    color: #FFFFFF;
+}
+
+/* Alerts */
+.alert-custom {
+    background-color: #FDF4EF;
+    color: #000000;
+    border: 1px solid #CEA64A;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 20px;
+    text-align: center;
+}
