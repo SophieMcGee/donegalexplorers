@@ -22,13 +22,14 @@
             {% csrf_token %}
             <div class="form-group mb-3">
                 {% element fields form=form unlabeled=True %}
+                {% endelement %}
             </div>
             {{ redirect_field }}
             <button type="submit" class="btn btn-custom mt-3">
                 {% trans "Sign Up" %}
             </button>
         </form>
-    {% endif %}
+    {% endif %} 
     {% if SOCIALACCOUNT_ENABLED %}
         {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
     {% endif %}

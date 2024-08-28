@@ -27,7 +27,7 @@
                         <a class="nav-link" href="{% url 'browse_events' %}">Browse Events</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">My Account</a>
+                        <a class="nav-link" href="{% url 'saved_events' %}">My Calendar</a>
                     </li>
                     {% if user.is_authenticated %}
                     <li class="nav-item">
