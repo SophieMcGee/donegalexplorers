@@ -1,8 +1,8 @@
-from django.shortcuts import render, get_object_or_404, redirect,
+from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
-from django.views import View
+from django.views import View, generic
 from django.views.generic import ListView, CreateView
 from .models import Event, Calendar, Rating
 from .forms import EventForm
