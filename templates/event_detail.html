@@ -7,9 +7,27 @@
     <p>Time: {{ event.time }}</p>
     <p>Description: {{ event.description }}</p>
     
-    <!-- Add the rating section here -->
+    <!-- Rating section -->
     <h2>Average Rating: {{ event.average_rating }}</h2>
     <a href="{% url 'rate_event' event.id %}">Rate this Event</a>
 
-    <!-- Other event details -->
+    <!-- Comments Section -->
+    <h2>Comments</h2>
+    {% for comment in comments %}
+        <p><strong>{{ comment.user.username }}</strong>: {{ comment.content }}</p>
+    {% empty %}
+        <p>No comments yet. Be the first to comment!</p>
+    {% endfor %}
+
+    <!-- Comment Form -->
+    {% if user.is_authenticated %}
+        <h3>Leave a Comment</h3>
+        <form method="post">
+            {% csrf_token %}
+            {{ comment_form.as_p }}
+            <button type="submit" class="btn btn-primary">Submit Comment</button>
+        </form>
+    {% else %}
+        <p><a href="{% url 'account_login' %}">Log in</a> to leave a comment.</p>
+    {% endif %}
 {% endblock content %}
