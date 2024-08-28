@@ -6,6 +6,7 @@ class Event(models.Model):
     event_id = models.AutoField(primary_key=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='events')
     title = models.CharField(max_length=255)
+    slug = AutoSlugField(populate_from='title', unique=True)
     description = models.TextField()
     location = models.CharField(max_length=255)
     date = models.DateTimeField()
