@@ -1,6 +1,13 @@
 {% extends "base_layout.html" %}
+{% load crispy_forms_tags %}
 
 {% block content %}
+    <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'browse_events' %}">Browse Events</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{ event.title }}</li>
+    </ol>
+    </nav>
     <h1>{{ event.title }}</h1>
     <p>Location: {{ event.location }}</p>
     <p>Date: {{ event.date }}</p>
@@ -8,26 +15,36 @@
     <p>Description: {{ event.description }}</p>
     
     <!-- Rating section -->
-    <h2>Average Rating: {{ event.average_rating }}</h2>
-    <a href="{% url 'rate_event' event.id %}">Rate this Event</a>
+    <div class="mb-4">
+        <h2>Average Rating: {{ event.average_rating }}</h2>
+        {% if user.is_authenticated %}
+            <a href="{% url 'rate_event' event.id %}">Rate this Event</a>
+        {% else %}
+            <p><a href="{% url 'account_login' %}">Log in</a> to rate this event.</p>
+        {% endif %}
+    </div>
 
     <!-- Comments Section -->
-    <h2>Comments</h2>
-    {% for comment in comments %}
-        <p><strong>{{ comment.user.username }}</strong>: {{ comment.content }}</p>
-    {% empty %}
-        <p>No comments yet. Be the first to comment!</p>
-    {% endfor %}
+    <div class="mb-4">
+        <h2>Comments</h2>
+        {% for comment in comments %}
+            <p><strong>{{ comment.user.username }}</strong>: {{ comment.content }}</p>
+        {% empty %}
+            <p>No comments yet. Be the first to comment!</p>
+        {% endfor %}
+    </div>
 
     <!-- Comment Form -->
-    {% if user.is_authenticated %}
-        <h3>Leave a Comment</h3>
-        <form method="post">
-            {% csrf_token %}
-            {{ comment_form.as_p }}
-            <button type="submit" class="btn btn-primary">Submit Comment</button>
-        </form>
-    {% else %}
-        <p><a href="{% url 'account_login' %}">Log in</a> to leave a comment.</p>
-    {% endif %}
+    <div class="mb-4">
+        {% if user.is_authenticated %}
+            <h3>Leave a Comment</h3>
+            <form method="post">
+                {% csrf_token %}
+                {{ comment_form|crispy }}
+                <button type="submit" class="btn btn-primary">Submit Comment</button>
+            </form>
+        {% else %}
+            <p><a href="{% url 'account_login' %}">Log in</a> to leave a comment.</p>
+        {% endif %}
+    </div>
 {% endblock content %}
