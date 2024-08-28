@@ -13,4 +13,5 @@ urlpatterns = [
     path('browse-events/', views.BrowseEventsView.as_view(), name='browse_events'),
     path('add-event/', EventCreateView.as_view(), name='add_event'),
     path('my-calendar/', views.view_saved_events, name='view_saved_events'),
+    path('event/<int:pk>/edit/', EventUpdateView.as_view(), name='edit_event'),
 ]
