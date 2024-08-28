@@ -55,6 +55,8 @@ INSTALLED_APPS = [
     'cloudinary',
     'django_summernote',
     'bootstrap5',
+    'crispy_forms',
+    'crispy_bootstrap5',
 ]
 
 SITE_ID = 1
