@@ -82,6 +82,15 @@ AUTHENTICATION_BACKENDS = (
 LOGIN_REDIRECT_URL = '/'  # Redirect after successful login
 ACCOUNT_LOGOUT_REDIRECT_URL = '/'  # Redirect after logout
 
+CRISPY_TEMPLATE_PACK = 'bootstrap5'
+
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = '/saved-events/'
+ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = '/'
+
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
