@@ -1,9 +1,9 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseForbidden
 from django.contrib.auth.decorators import login_required
 from django.views import View, generic
-from django.views.generic import ListView, CreateView
+from django.views.generic import ListView, CreateView, UpdateView
 from .models import Event, Calendar, Rating, Comment
 from .forms import EventForm, CommentForm
 
@@ -86,3 +86,20 @@ class EventCreateView(CreateView):
     def form_valid(self, form):
         form.instance.user = self.request.user  # Assign the logged-in user to the event
         return super().form_valid(form)  # Call the original form_valid method
+
+# View to update an event
+class EventUpdateView(UpdateView):
+    model = Event
+    form_class = EventForm
+    template_name = 'edit_event.html'
+    success_url = reverse_lazy('home')
+
+    def get_object(self, queryset=None):
+        event = super().get_object(queryset)
+        
+        # Check if the user is the author or an admin
+        if not self.request.user.is_superuser and event.author != self.request.user:
+            # Return a forbidden response if the user is not authorized
+            raise HttpResponseForbidden("You are not allowed to edit this event.")
+        
+        return event
