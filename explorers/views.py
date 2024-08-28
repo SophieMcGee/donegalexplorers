@@ -1,8 +1,11 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect,
+from django.urls import reverse_lazy
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
-from django.views import View, generic
+from django.views import View
+from django.views.generic import ListView, CreateView
 from .models import Event, Calendar, Rating
+from .forms import EventForm
 
 # View to list events with filters (homepage)
 class EventList(generic.ListView):
@@ -49,3 +52,10 @@ class BrowseEventsView(View):
     def get(self, request, *args, **kwargs):
         events = Event.objects.all()
         return render(request, 'browse_events.html', {'events': events})
+
+# View to add an event
+class EventCreateView(CreateView):
+    model = Event
+    form_class = EventForm
+    template_name = 'add_event.html'
+    success_url = reverse_lazy('home')
