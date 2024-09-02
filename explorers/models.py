@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
 from django.db import models
+from django.urls import reverse
 from autoslug import AutoSlugField
 
 class Event(models.Model):
@@ -21,6 +22,9 @@ class Event(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse('event_detail', kwargs={'slug': self.slug})
 
     class Meta:
         ordering = ['-created_on'] # Orders by 'created_on' descending by default
