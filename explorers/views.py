@@ -19,7 +19,7 @@ class EventList(generic.ListView):
 def save_event_to_calendar(request, event_id):
     event = get_object_or_404(Event, id=event_id)
     Calendar.objects.get_or_create(user=request.user, event=event, date=event.date)
-    return redirect('view_event', event_id=event.id)  # Redirect to the event view or wherever you want
+    return redirect('event_detail', slug=event.slug)
 
 # View to display the user's saved events
 @login_required
@@ -36,24 +36,25 @@ def rate_event(request, event_id):
         rating, created = Rating.objects.get_or_create(user=request.user, event=event)
         rating.rating = rating_value
         rating.save()
-        return redirect('view_event', event_id=event_id)
+        return redirect('event_detail', slug=event.slug)
     return render(request, 'rate_event.html', {'event': event})
 
 # View to display event details
 class EventDetail(View):
-    def get(self, request, event_id, *args, **kwargs):
-        event = get_object_or_404(Event, id=event_id)
+    def get(self, request, slug, *args, **kwargs):
+        event = get_object_or_404(Event, slug=slug)
         comments = event.comments.filter(approved=True).order_by('created_on')
+        comment_form = CommentForm()
 
         return render(request, 'event_detail.html', {
             'event': event,
             'comments': comments,
             'comment_form': comment_form,
         })
-        
+
     @login_required
-    def post(self, request, event_id, *args, **kwargs):
-        event = get_object_or_404(Event, id=event_id)
+    def post(self, request, slug, *args, **kwargs):
+        event = get_object_or_404(Event, slug=slug)
         comments = event.comments.filter(approved=True).order_by('created_on')
         comment_form = CommentForm(data=request.POST)
 
@@ -62,7 +63,7 @@ class EventDetail(View):
             comment.event = event
             comment.user = request.user
             comment.save()
-            return redirect('event_detail', event_id=event.id)
+            return redirect('event_detail', slug=event.slug)
         
         return render(request, 'event_detail.html', {
             'event': event,
@@ -98,8 +99,8 @@ class EventUpdateView(UpdateView):
         event = super().get_object(queryset)
         
         # Check if the user is the author or an admin
-        if not self.request.user.is_superuser and event.author != self.request.user:
-            # Return a forbidden response if the user is not authorized
+        if not self.request.user.is_superuser and event.user != self.request.user:
+            # Return a forbidden response if the user is not authorised
             raise HttpResponseForbidden("You are not allowed to edit this event.")
         
         return event
