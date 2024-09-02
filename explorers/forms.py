@@ -9,6 +9,12 @@ class EventForm(forms.ModelForm):
             'date': forms.DateInput(attrs={'type': 'date'}),
             'time': forms.TimeInput(attrs={'type': 'time'}),
         }
+    
+    def __init__(self, *args, **kwargs):
+        super(EventForm, self).__init__(*args, **kwargs)
+    
+        self.fields['title'].widget.attrs.update({'placeholder': 'Event Title'})
+        self.fields['description'].widget.attrs.update({'placeholder': 'Event Description'})
 
 class CommentForm(forms.ModelForm):
     class Meta:
