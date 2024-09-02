@@ -3,7 +3,7 @@ from django.urls import reverse_lazy
 from django.http import HttpResponse, HttpResponseForbidden
 from django.contrib.auth.decorators import login_required
 from django.views import View, generic
-from django.views.generic import ListView, CreateView, UpdateView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Event, Calendar, Rating, Comment
 from .forms import EventForm, CommentForm
@@ -106,5 +106,22 @@ class EventUpdateView(UpdateView):
         if not self.request.user.is_superuser and event.user != self.request.user:
             # Return a forbidden response if the user is not authorised
             raise HttpResponseForbidden("You are not allowed to edit this event.")
+        
+        return event
+
+# View to delete an event
+
+class EventDeleteView(LoginRequiredMixin, DeleteView):
+    model = Event
+    template_name = 'confirm_delete.html'
+    success_url = reverse_lazy('home')
+
+    def get_object(self, queryset=None):
+        event = super().get_object(queryset)
+        
+        # Check if the user is the author or an admin
+        if not self.request.user.is_superuser and event.author != self.request.user:
+            # Return a forbidden response if the user is not authorised
+            raise HttpResponseForbidden("You are not allowed to delete this event.")
         
         return event
