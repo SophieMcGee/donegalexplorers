@@ -13,6 +13,11 @@
     <p>Date: {{ event.date }}</p>
     <p>Time: {{ event.time }}</p>
     <p>Description: {{ event.description }}</p>
+
+     <!-- Edit Event Link -->
+     {% if user.is_authenticated and (user.is_superuser or event.user == user) %}
+     <a href="{% url 'edit_event' event.id %}" class="btn btn-primary">Edit Event</a>
+    {% endif %}
     
     <!-- Rating section -->
     <div class="mb-4">
