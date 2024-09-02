@@ -1,6 +1,6 @@
 from django.urls import path, include
 from . import views
-from .views import EventCreateView, EventUpdateView
+from .views import EventCreateView, EventUpdateView, SavedEventsView
 
 urlpatterns = [
     path('', views.EventList.as_view(), name='home'),
