@@ -4,6 +4,7 @@ from django.http import HttpResponse, HttpResponseForbidden
 from django.contrib.auth.decorators import login_required
 from django.views import View, generic
 from django.views.generic import ListView, CreateView, UpdateView
+from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Event, Calendar, Rating, Comment
 from .forms import EventForm, CommentForm
 
@@ -22,10 +23,13 @@ def save_event_to_calendar(request, event_id):
     return redirect('event_detail', slug=event.slug)
 
 # View to display the user's saved events
-@login_required
-def view_saved_events(request):
-    saved_events = Calendar.objects.filter(user=request.user).order_by('-saved_on')
-    return render(request, 'saved_events.html', {'saved_events': saved_events})
+class SavedEventsView(LoginRequiredMixin, ListView):
+    model = Calendar
+    template_name = 'saved_events.html'
+    context_object_name = 'saved_events'
+    
+    def get_queryset(self):
+        return Calendar.objects.filter(user=self.request.user).order_by('-saved_on')
 
 # View to display the rating submission
 @login_required
