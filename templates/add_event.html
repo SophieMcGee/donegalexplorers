@@ -9,8 +9,8 @@
         <div class="card-custom">
             <div class="card-body">
                 {% if user.is_authenticated %}
-                    <h3 class="card-title">Event Details</h3>
-                    <p class="text-muted">Posting as: {{ user.username }}</p>
+                    <h3 class="card-title">Add the Event Details:</h3>
+                    <p class="text-muted">Adding post as: {{ user.username }}</p>
                     <form method="post" enctype="multipart/form-data" class="form-custom" style="margin-top: 1.3em;">
                         {% csrf_token %}
                         {{ form|crispy }}
