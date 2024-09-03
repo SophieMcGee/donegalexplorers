@@ -111,20 +111,14 @@ class EventUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
 # View to delete an event
 
-class EventDeleteView(LoginRequiredMixin, DeleteView):
+class EventDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Event
     template_name = 'confirm_delete.html'
     success_url = reverse_lazy('home')
 
-    def get_object(self, queryset=None):
-        event = super().get_object(queryset)
-        
-        # Check if the user is the author or an admin
-        if not self.request.user.is_superuser and event.author != self.request.user:
-            # Return a forbidden response if the user is not authorised
-            raise HttpResponseForbidden("You are not allowed to delete this event.")
-        
-        return event
+    def test_func(self):
+        event = self.get_object()
+        return event.author == self.request.user or self.request.user.is_superuser
 
 # View to display the events created by the logged-in user
 class MyEventsView(LoginRequiredMixin, ListView):
