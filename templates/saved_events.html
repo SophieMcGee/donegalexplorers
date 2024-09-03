@@ -1,10 +1,21 @@
 {% extends "base_layout.html" %}
 
 {% block content %}
+<div class="container">
     <h2>Your Saved Events</h2>
-    <ul>
-        {% for entry in saved_events %}
-            <li>{{ entry.event.title }} - Event Date: {{ entry.date }} - Saved on: {{ entry.saved_on }}</li>
-        {% endfor %}
-    </ul>
+    {% if saved_events %}
+        <ul class="list-group">
+            {% for entry in saved_events %}
+                <li class="list-group-item">
+                    <h5>{{ entry.event.title }}</h5>
+                    <p>Event Date: {{ entry.date|date:"M d, Y" }} - Saved on: {{ entry.saved_on|date:"M d, Y" }}</p>
+                    <a href="{% url 'event_detail' entry.event.slug %}" class="btn btn-primary btn-sm">View Event</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>You have not saved any events yet.</p>
+    {% endif %}
+</div>
+{% endblock content %}
 {% endblock content %}
