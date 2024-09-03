@@ -125,3 +125,13 @@ class EventDeleteView(LoginRequiredMixin, DeleteView):
             raise HttpResponseForbidden("You are not allowed to delete this event.")
         
         return event
+
+# View to display the events created by the logged-in user
+class MyEventsView(LoginRequiredMixin, ListView):
+    model = Event
+    template_name = 'my_events.html'
+    context_object_name = 'events'
+
+    def get_queryset(self):
+        return Event.objects.filter(author=self.request.user).order_by('-created_on')
+
