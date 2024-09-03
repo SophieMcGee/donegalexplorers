@@ -11,9 +11,11 @@ from .forms import EventForm, CommentForm
 # View to list events with filters (homepage)
 class EventList(generic.ListView):
     model = Event
-    queryset = Event.objects.all().order_by('-created_on')
     template_name = 'event_list.html'
     paginate_by = 6
+
+    def get_queryset(self):
+        return Event.objects.filter(status='published').order_by('-created_on')
 
 # View to save an event to the user's calendar
 @login_required

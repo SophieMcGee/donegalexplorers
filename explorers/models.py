@@ -3,8 +3,16 @@ from cloudinary.models import CloudinaryField
 from django.db import models
 from django.urls import reverse
 from autoslug import AutoSlugField
+from django.db.models import Avg
 
 class Event(models.Model):
+
+    EVENT_STATUS_CHOICES = [
+        ('draft', 'Draft'),
+        ('published', 'Published'),
+        ('archived', 'Archived'),
+    ]
+
     event_id = models.AutoField(primary_key=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='events')
     title = models.CharField(max_length=255)
@@ -16,6 +24,7 @@ class Event(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
     image = CloudinaryField('image', default='placeholder-image')
+    status = models.CharField(max_length=10, choices=EVENT_STATUS_CHOICES, default='draft')
 
     def average_rating(self) -> float:
         return Rating.objects.filter(event=self).aggregate(Avg("rating"))["rating__avg"] or 0
