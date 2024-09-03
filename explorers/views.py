@@ -24,7 +24,7 @@ def save_event_to_calendar(request, event_id):
     Calendar.objects.get_or_create(user=request.user, event=event, date=event.date)
     return redirect('event_detail', slug=event.slug)
 
-# View to display the user's saved events
+# View to display the user's saved events in their calendar
 class SavedEventsView(LoginRequiredMixin, ListView):
     model = Calendar
     template_name = 'saved_events.html'
@@ -32,6 +32,13 @@ class SavedEventsView(LoginRequiredMixin, ListView):
     
     def get_queryset(self):
         return Calendar.objects.filter(user=self.request.user).order_by('-saved_on')
+
+# View to remove an event from users calendar
+@login_required
+def remove_event_from_calendar(request, event_id):
+    event = get_object_or_404(Event, id=event_id)
+    Calendar.objects.filter(user=request.user, event=event).delete()
+    return redirect('event_detail', slug=event.slug)
 
 # View to display the rating submission
 @login_required
@@ -51,12 +58,48 @@ class EventDetail(View):
         event = get_object_or_404(Event, slug=slug)
         comments = event.comments.filter(approved=True).order_by('created_on')
         comment_form = CommentForm()
+        saved_to_calendar = False
 
-        return render(request, 'event_detail.html', {
-            'event': event,
-            'comments': comments,
-            'comment_form': comment_form,
-        })
+        if request.user.is_authenticated:
+            saved_to_calendar = Calendar.objects.filter(user=request.user, event=event).exists()
+
+        return render(
+            request,
+            'event_detail.html',
+            {
+                'event': event,
+                'comments': comments,
+                'comment_form': comment_form,
+                'saved_to_calendar': saved_to_calendar
+            },
+        )
+
+    def post(self, request, slug, *args, **kwargs):
+        event = get_object_or_404(Event, slug=slug)
+        comments = event.comments.filter(approved=True).order_by('created_on')
+        comment_form = CommentForm(data=request.POST)
+        saved_to_calendar = False
+
+        if request.user.is_authenticated:
+            saved_to_calendar = Calendar.objects.filter(user=request.user, event=event).exists()
+
+        if comment_form.is_valid():
+            comment_form.instance.user = request.user
+            comment = comment_form.save(commit=False)
+            comment.event = event
+            comment.save()
+            return redirect('event_detail', slug=event.slug)
+
+        return render(
+            request,
+            'event_detail.html',
+            {
+                'event': event,
+                'comments': comments,
+                'comment_form': comment_form,
+                'saved_to_calendar': saved_to_calendar
+            },
+        )
 
     @login_required
     def post(self, request, slug, *args, **kwargs):
