@@ -9,7 +9,7 @@
     <div class="col-md-6 mx-auto mt-3">
         <div class="card card-custom shadow-sm">
             <div class="card-body">
-                {% if user.is_authenticated %}
+                {% if user.is_authenticated and (event.author == user or user.is_superuser) %}
                     <h3 class="card-title">Edit Event Details</h3>
                     <p class="text-muted">Editing as: {{ user.username }}</p>
                     <form method="post" enctype="multipart/form-data" style="margin-top: 1.3em;">
@@ -19,7 +19,7 @@
                     </form>
                 {% else %}
                     <div class="alert alert-warning mt-4">
-                        You need to <a href="{% url 'account_login' %}">log in</a> to edit an event.
+                        You need to <a href="{% url 'account_login' %}">log in</a> to edit an event that you created.
                     </div>
                 {% endif %}
             </div>
