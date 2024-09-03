@@ -4,7 +4,7 @@ from django.http import HttpResponse, HttpResponseForbidden
 from django.contrib.auth.decorators import login_required
 from django.views import View, generic
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .models import Event, Calendar, Rating, Comment
 from .forms import EventForm, CommentForm
 
@@ -95,21 +95,19 @@ class EventCreateView(CreateView):
         return super().form_valid(form)  # Call the original form_valid method
 
 # View to update an event
-class EventUpdateView(UpdateView):
+class EventUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Event
     form_class = EventForm
     template_name = 'edit_event.html'
     success_url = reverse_lazy('home')
 
-    def get_object(self, queryset=None):
-        event = super().get_object(queryset)
-        
-        # Check if the user is the author or an admin
-        if not self.request.user.is_superuser and event.user != self.request.user:
-            # Return a forbidden response if the user is not authorised
-            raise HttpResponseForbidden("You are not allowed to edit this event.")
-        
-        return event
+    def form_valid(self, form):
+        form.instance.user = self.request.user  # Ensure the author is set
+        return super().form_valid(form)
+
+    def test_func(self):
+        event = self.get_object()
+        return self.request.user.is_superuser or event.user == self.request.user
 
 # View to delete an event
 
