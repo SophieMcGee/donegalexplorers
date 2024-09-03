@@ -8,6 +8,12 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .models import Event, Calendar, Rating, Comment
 from .forms import EventForm, CommentForm
 
+# View for homepage
+
+class Home(View):
+    def get(self, request):
+        return render(request, 'index.html')
+
 # View to list events with filters (homepage)
 class EventList(generic.ListView):
     model = Event
