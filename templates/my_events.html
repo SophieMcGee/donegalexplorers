@@ -11,8 +11,8 @@
                         <small>Date: {{ event.date|date:"M d, Y" }}</small>
                     </a>
                     <div class="mt-2">
-                        <a href="{% url 'edit_event' event.id %}" class="btn btn-primary btn-sm">Edit</a>
-                        <a href="{% url 'delete_event' event.id %}" class="btn btn-danger btn-sm">Delete</a>
+                        <a href="{% url 'edit_event' event.pk %}" class="btn btn-primary btn-sm">Edit</a>
+                        <a href="{% url 'delete_event' event.event_id %}" class="btn btn-danger btn-sm">Delete</a>
                     </div>
                     <hr>
                 {% endfor %}

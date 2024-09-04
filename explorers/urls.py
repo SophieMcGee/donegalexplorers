@@ -1,5 +1,6 @@
 from django.urls import path, include
-from .views import Home, EventCreateView, EventConfirmationView, EventUpdateView, SavedEventsView, EventList, EventDetail, save_event_to_calendar, rate_event, BrowseEventsView, EventDeleteView, MyEventsView, remove_event_from_calendar
+from .views import Home, EventCreateView, EventUpdateView, SavedEventsView, EventList, EventDetail, save_event_to_calendar, rate_event, BrowseEventsView, EventDeleteView, MyEventsView, remove_event_from_calendar
+from django.views.generic import TemplateView
 
 urlpatterns = [
     path('', Home.as_view(), name='home'),
