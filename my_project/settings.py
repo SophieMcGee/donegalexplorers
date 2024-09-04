@@ -79,7 +79,7 @@ AUTHENTICATION_BACKENDS = (
     'allauth.account.auth_backends.AuthenticationBackend',  # For AllAuth
 )
 
-LOGIN_REDIRECT_URL = '/saved-events/'  # Redirect after successful login
+LOGIN_REDIRECT_URL = '/browse-events/'  # Redirect after successful login
 ACCOUNT_LOGOUT_REDIRECT_URL = '/'  # Redirect after logout
 
 CRISPY_TEMPLATE_PACK = 'bootstrap5'
