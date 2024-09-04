@@ -1,6 +1,14 @@
 {% extends "account/base.html" %}
+
 {% block title %}Email Verification Required{% endblock title %}
+
 {% block content %}
     <h1>Email Verification Required</h1>
-    <p>You need to verify your email address before you can access this section. Please check your email for the verification link.</p>
+    <p>
+        You need to verify your email address before you can access this section. 
+        Please check your email for the verification link.
+    </p>
+    <p>
+        Didn't receive the email? <a href="{% url 'account_email_verification_sent' %}">Resend Verification Email</a>.
+    </p>
 {% endblock content %}

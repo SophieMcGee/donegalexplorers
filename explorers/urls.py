@@ -3,6 +3,7 @@ from .views import Home, EventCreateView, EventUpdateView, SavedEventsView, Even
 
 urlpatterns = [
     path('', Home.as_view(), name='home'),
+    path('accounts/', include('allauth.urls')),
     path('browse-events/', BrowseEventsView.as_view(), name='browse_events'),
     path('event/<slug:slug>/', EventDetail.as_view(), name='event_detail'),
     path('summernote/', include('django_summernote.urls')),

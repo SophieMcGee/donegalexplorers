@@ -1,6 +1,14 @@
 {% extends "account/base.html" %}
+
 {% block title %}Verification Email Sent{% endblock title %}
+
 {% block content %}
     <h1>Verification Email Sent</h1>
-    <p>A verification email has been sent to your email address. Please check your email and follow the instructions to complete the signup process.</p>
+    <p>
+        A verification email has been sent to your email address. Please check your inbox (and spam folder) 
+        and follow the instructions to complete the signup process.
+    </p>
+    <p>
+        If you didn't receive the email, you can <a href="{% url 'account_email_verification_sent' %}">resend the email</a>.
+    </p>
 {% endblock content %}

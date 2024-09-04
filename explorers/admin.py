@@ -11,13 +11,19 @@ class EventAdmin(SummernoteModelAdmin):
     ordering = ('-date',)
     summernote_fields = ('description',)  # Enable Summernote for the description field
 
+    actions = ['publish_events']
+
+    def publish_events(self, request, queryset):
+        queryset.update(status='published')
+    publish_events.short_description = "Mark selected events as published"
+
 # Register the Comment model
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
     list_display = ['user', 'event', 'created_on', 'approved']
     search_fields = ('content', 'user__username', 'event__title')
-    list_filter = ('created_on', 'user')
-    ordering = ('-created_on',)
+    list_filter = ('created_on', 'user', 'approved')
+    ordering = ('-approved','-created_on',)
     actions = ['approve_comments']
 
     def approve_comments(self, request, queryset):
