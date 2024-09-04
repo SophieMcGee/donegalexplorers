@@ -137,10 +137,10 @@ class EventCreateView(CreateView):
     model = Event
     form_class = EventForm
     template_name = 'add_event.html'
-    success_url = reverse_lazy('home')
+    success_url = reverse_lazy('event_confirmation')
 
     def form_valid(self, form):
-        form.instance.user = self.request.user  # Assign the logged-in user to the event
+        form.instance.author = self.request.user  # Assign the logged-in user to the event
         return super().form_valid(form)  # Call the original form_valid method
 
 # View to update an event

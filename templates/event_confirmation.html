@@ -1,0 +1,9 @@
+{% extends 'base_layout.html' %}
+
+{% block content %}
+    <div class="container mt-5">
+        <h1>Event Created Successfully!</h1>
+        <p>Your event has been created successfully. You can view your events by clicking the link below:</p>
+        <a href="{% url 'my_events' %}" class="btn btn-primary">View My Events</a>
+    </div>
+{% endblock %}
