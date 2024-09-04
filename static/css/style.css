@@ -118,6 +118,33 @@ h1, h2, h3, h4, h5, h6 {
     z-index: 1; 
 }
 
+/* Card Styles */
+.card-custom {
+    border: 1px solid #ddd; 
+    border-radius: 10px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    background-color: #FDF4EF; 
+    margin-bottom: 20px; 
+}
+
+.card-custom .card-title {
+    font-family: 'Montserrat Extra Bold', sans-serif; 
+    color: #2F6146; 
+    font-size: 1.25rem;
+    margin-bottom: 15px;
+}
+
+.card-custom .card-body {
+    padding: 20px;
+}
+
+.card-img-top {
+    height: 15vw;  
+    object-fit: cover;  
+    min-height: 200px;  
+}
+
+
 /* Footer Styles */
 footer.footer-custom {
     background-color: #2F6146;
@@ -149,25 +176,6 @@ footer.footer-custom {
     padding: 20px;
 }
 
-/* Card Styles */
-.card-custom {
-    border: 1px solid #ddd; 
-    border-radius: 10px; 
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
-    background-color: #FDF4EF; 
-    margin-bottom: 20px; 
-}
-
-.card-custom .card-title {
-    font-family: 'Montserrat Extra Bold', sans-serif; 
-    color: #2F6146; 
-    font-size: 1.25rem;
-    margin-bottom: 15px;
-}
-
-.card-custom .card-body {
-    padding: 20px;
-}
 
 /* Form within the Card */
 .card-custom .form-custom input[type="text"], 
