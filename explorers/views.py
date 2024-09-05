@@ -130,7 +130,23 @@ class EventDetail(View):
 # View to browse events
 class BrowseEventsView(View):
     def get(self, request, *args, **kwargs):
+        search_query = request.GET.get('search', '')
+        sort_by = request.GET.get('sort_by', 'date')
+        
         events = Event.objects.all()
+
+        # Apply search filter
+        if search_query:
+            events = events.filter(title__icontains=search_query) | events.filter(description__icontains=search_query)
+
+        # Apply sorting
+        if sort_by == 'location':
+            events = events.order_by('location')
+        elif sort_by == 'title':
+            events = events.order_by('title')
+        else:
+            events = events.order_by('date')
+
         return render(request, 'browse_events.html', {'events': events})
 
 # View to add an event
