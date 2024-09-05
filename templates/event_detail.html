@@ -15,7 +15,7 @@
     <p>Description: {{ event.description }}</p>
 
     <!-- Save/Remove Event from Calendar -->
-    {% if user.is_authenticated %}
+    {% if user.is_authenticated and event.id %}
         <form class="d-inline" action="{% if saved_to_calendar %}{% url 'remove_event_from_calendar' event.id %}{% else %}{% url 'save_event_to_calendar' event.id %}{% endif %}" method="POST">
             {% csrf_token %}
             {% if saved_to_calendar %}
@@ -29,20 +29,24 @@
     {% endif %}
 
     <!-- Edit Event Link -->
-    {% if user.is_authenticated and (user.is_superuser or event.author == user) %}
-        <a href="{% url 'edit_event' event.id %}" class="btn btn-primary"><i class="fas fa-edit"></i> Edit Event</a>
+    {% if user.is_authenticated %}
+        {% if user.is_superuser or event.author == user %}
+            <a href="{% url 'edit_event' event.pk %}" class="btn btn-primary"><i class="fas fa-edit"></i> Edit Event</a>
+        {% endif %}
     {% endif %}
-    
-     <!-- Delete Event Link -->
-    {% if user.is_authenticated and (user.is_superuser or event.author == user) %}
-        <a href="{% url 'delete_event' event.id %}" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Delete Event</a>
+
+    <!-- Delete Event Link -->
+    {% if user.is_authenticated %}
+        {% if user.is_superuser or event.author == user %}
+            <a href="{% url 'delete_event' event.pk %}" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Delete Event</a>
+        {% endif %}
     {% endif %}
      
     <!-- Rating section -->
     <div class="mb-4">
         <h2>Average Rating: {{ event.average_rating }}</h2>
         {% if user.is_authenticated %}
-            <a href="{% url 'rate_event' event.id %}" class="btn btn-warning"><i class="fas fa-star"></i> Rate this Event</a>
+            <a href="{% url 'rate_event' event.pk %}" class="btn btn-warning"><i class="fas fa-star"></i> Rate this Event</a>
         {% else %}
             <p><a href="{% url 'account_login' %}">Log in</a> to rate this event.</p>
         {% endif %}

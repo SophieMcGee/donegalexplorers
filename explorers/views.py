@@ -76,7 +76,8 @@ class EventDetail(View):
                 'event': event,
                 'comments': comments,
                 'comment_form': comment_form,
-                'saved_to_calendar': saved_to_calendar
+                'saved_to_calendar': saved_to_calendar,
+                'user': request.user
             },
         )
 
