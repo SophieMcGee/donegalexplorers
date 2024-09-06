@@ -104,7 +104,7 @@ DEFAULT_FROM_EMAIL = 'Donegal Explorers <' + os.getenv('DEFAULT_FROM_EMAIL') + '
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'DIRS': [MY_TEMPLATES_DIR],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
