@@ -123,7 +123,7 @@ h1, h2, h3, h4, h5, h6 {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 50px 20px;
+    padding: 80px 20px;
     background-color: #FDF4EF;
     position: relative;
 }
@@ -134,16 +134,68 @@ h1, h2, h3, h4, h5, h6 {
     z-index: 10;
 }
 
+/* Style for Hero Content Box */
+.hero-content-box {
+    background-color: #FFFFFF;  
+    padding: 30px;              
+    border-radius: 10px;        
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
+    max-width: 600px;           
+    margin-left: 0;             
+    margin-bottom: 50px;
+    z-index: 2;      
+}
+
+.hero-content h1 {
+    font-size: 2.5rem; 
+    font-weight: 600;
+    margin-bottom: 20px;
+    text-align: left;  
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    text-align: left; 
+}
+
+
 .hero-image {
     flex: 1;
     background-image: url('/static/css/images/hero-image.webp');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    height: 400px;
-    width: 400px; 
     border-radius: 10px;
+    height: auto; 
+    max-height: 100%; 
+    min-height: 300px; 
+    margin-left: 20px; 
     z-index: 1; 
+}
+
+/* Sign-Up Button */
+.hero-content .btn-custom {
+    font-size: 1.2rem;
+    padding: 15px 30px;
+    background-color: #CEA64A;
+    color: #FFFFFF;
+    border-radius: 8px;
+}
+
+.hero-content .btn-custom:hover {
+    background-color: #B08A41;
+    color: #FFFFFF;
+    text-align: left;
+}
+
+/* Welcome Section */
+.welcome-section {
+    background-color: #2F6146;
+    color: #FFFFFF;
+    padding: 50px 20px;
+    margin-top: 40px;
+    border-radius: 15px;
 }
 
 /* Card Styles */
@@ -210,19 +262,13 @@ footer.footer-custom {
 .footer-custom .social-icons a {
     margin: 0 10px;
     color: #FFFFFF;
-    font-size: 24px;
+    font-size: 1.5rem;
 }
 
 .footer-custom .social-icons a:hover {
     color: #CEA64A;
 }
 
-/* Container Styles */
-.container-custom {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-}
 
 /* Form within the Card */
 .card-custom .form-custom input[type="text"], 
@@ -270,23 +316,33 @@ footer.footer-custom {
 }
 
 /* Custom Feature Section */
+
+.features-section {
+    background-color: #FDF4EF;
+    padding: 50px 20px;
+}
+
 .unique-feature {
     text-align: center;
     padding: 30px 20px;
-    background-color: #FFFFFF;
+    background-color: #FDF4EF;
     border: 1px solid #ddd;
-    border-radius: 10px;
+    border-radius: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
 }
 
 .unique-feature h2 {
     font-family: 'Montserrat Extra Bold', sans-serif;
-    color: #2F6146;
+}
+
+.unique-feature h3 {
+    font-size: 1.6rem;
 }
 
 .unique-feature p {
     font-family: 'Open Sans', sans-serif;
+    font-size: 1rem;
     color: #000000;
 }
 
