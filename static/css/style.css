@@ -338,27 +338,40 @@ footer.footer-custom {
 }
 
 .unique-feature {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     text-align: center;
-    padding: 30px 20px;
     background-color: #FDF4EF;
     border: 1px solid #ddd;
     border-radius: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
+    padding: 30px 20px;
+    height: 100%;
 }
 
-.unique-feature h2 {
-    font-family: 'Montserrat Extra Bold', sans-serif;
+.unique-feature img {
+    max-width: 160px;  
+    height: 160px;
+    object-fit: contain;
+    margin: 0 auto 20px;
+    align-self: center;
 }
 
 .unique-feature h3 {
+    font-family: 'Montserrat Extra Bold', sans-serif;
     font-size: 1.6rem;
+    margin-bottom: 15px;
+    min-height: 60px;
+    flex-shrink: 0;
 }
 
 .unique-feature p {
     font-family: 'Open Sans', sans-serif;
     font-size: 1rem;
     color: #333333;
+    flex-grow: 1;
+    margin-top: auto;
 }
 
 /* Media query for larger screens */
