@@ -7,6 +7,7 @@ from .views import (
 from django.views.generic import TemplateView
 from allauth.account.views import email_verification_sent
 
+
 urlpatterns = [
     path('', Home.as_view(), name='home'),
     path('accounts/', include('allauth.urls')),
