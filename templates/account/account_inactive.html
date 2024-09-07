@@ -6,10 +6,12 @@
 {% endblock %}
 
 {% block content %}
-<div class="container-custom mt-5">
-    <h1 class="display-4">Account Inactive</h1>
+<div class="signup-content-box">
+    <h1 class="my-4">
+        {% trans "Account Inactive" %}
+    </h1>
     <p class="lead">Sorry, but your account is currently inactive.</p>
-    <p>Please check your email for activation instructions or contact support if you believe this is an error.</p>
-    <a href="{% url 'account_login' %}" class="btn btn-custom">Go to Login</a>
+    <p>Please check your email for activation instructions or contact support through our social media links if you think this is an error.</p>
+    <a href="{% url 'account_login' %}" class="btn btn-custom mt-3">Go to Login</a>
 </div>
-{% endblock %}
+{% endblock content %}
