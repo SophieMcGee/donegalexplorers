@@ -1,3 +1,4 @@
+{% extends "base_layout.html" %}
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -16,12 +17,12 @@
     <link rel="icon" type="image/png" sizes="512x512" href="https://res.cloudinary.com/dsojbqe7b/image/upload/v1725286225/media-library/android-chrome-512x512.png">
     <link rel="apple-touch-icon" sizes="180x180" href="https://res.cloudinary.com/dsojbqe7b/image/upload/v1725286225/media-library/apple-touch-icon.png">
 
-     <!-- Font Awesome -->
-     <script src="https://kit.fontawesome.com/c39eddf05d.js" crossorigin="anonymous"></script>
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/c39eddf05d.js" crossorigin="anonymous"></script>
 </head>
 <body>
 
-    <div class="flex-container">
+    <div class="flex-container d-flex flex-column min-vh-100">
         {% block navbar %}
         <!-- Navigation -->
         <nav class="navbar navbar-custom navbar-expand-sm">
@@ -42,8 +43,14 @@
                             <a class="nav-link" href="{% url 'my_calendar' %}">My Calendar</a>
                         </li>
                         {% if user.is_authenticated %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="accountDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                My Account
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="accountDropdown">
+                                <li><a class="dropdown-item" href="{% url 'account_change_password' %}">Change Password</a></li>
+                                <li><a class="dropdown-item" href="{% url 'account_logout' %}">Logout</a></li>
+                            </ul>
                         </li>
                         {% else %}
                         <li class="nav-item">
@@ -59,25 +66,25 @@
         </nav>
         {% endblock navbar %}
 
-        <main class="container-custom mt-5">
+        <main class="container-custom mt-5 flex-grow-1">
             {% block content %}
-            <!-- Content Goes Here -->
+            <!-- Account-specific content goes here -->
             {% endblock content %}
         </main>
 
         <!-- Footer -->
-        <footer class="footer-custom">
+        <footer class="footer-custom mt-auto py-3">
             <!-- Social Media Section -->
-        <section class="container text-center mt-5">
-            <h3>Follow Us</h3>
-            <div class="social-icons">
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-facebook"></i></a>
-                <a href="#"><i class="fab fa-linkedin"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-            </div>
-        </section>
-        <br>
+            <section class="container text-center mt-5">
+                <h3>Follow Us</h3>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </section>
+            <br>
             <p>&copy; 2024 Donegal Explorers. All Rights Reserved.</p>
         </footer>
     </div>

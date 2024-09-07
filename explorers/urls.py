@@ -10,7 +10,7 @@ from allauth.account.views import email_verification_sent
 urlpatterns = [
     path('', Home.as_view(), name='home'),
     path('accounts/', include('allauth.urls')),
-    path('accounts/email-verification-sent/', TemplateView.as_view(template_name='account/email_verification_sent.html'), name='account_email_verification_sent'), 
+    path('accounts/email-verification-sent/', TemplateView.as_view(template_name='account/email_verification_sent.html'), name='account_email_verification_sent'),
     path('browse-events/', BrowseEventsView.as_view(), name='browse_events'),
     path('event/<slug:slug>/', EventDetail.as_view(), name='event_detail'),
     path('summernote/', include('django_summernote.urls')),
