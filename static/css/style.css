@@ -4,7 +4,7 @@
 body {
     font-family: 'Open Sans', sans-serif;
     background-color: #FDF4EF;
-    color: #000000;
+    color: #333333;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -22,16 +22,16 @@ h1, h2, h3, h4, h5, h6 {
 .navbar-custom .navbar-brand {
     font-family: 'Montserrat Extra Bold', sans-serif;
     font-size: 1.5rem;
-    color: #2F6146;
+    color: #B2BFA8;
 }
 
 .navbar-custom .nav-link {
-    color: #000000;
+    color: #333333;
     font-weight: 600;
 }
 
 .navbar-custom .nav-link:hover {
-    color: #2F6146;
+    color: #B2BFA8;
 }
 
 /* Button Styles */
@@ -89,7 +89,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Text Styles */
 .text-link {
-    color: #2F6146;
+    color: #B2BFA8;
     text-decoration: underline;
 }
 
@@ -202,8 +202,8 @@ section {
 
 /* Welcome Section */
 .welcome-section {
-    background-color: #2F6146;
-    color: #FFFFFF;
+    background-color: #B2BFA8;
+    color: #333333;
     padding: 50px 20px;
     margin-top: 40px;
     border-radius: 15px;
@@ -223,7 +223,7 @@ section {
 
 .card-custom .card-title {
     font-family: 'Montserrat Extra Bold', sans-serif; 
-    color: #2F6146; 
+    color: #B2BFA8;
     font-size: 1.25rem;
     margin-bottom: 15px;
 }
@@ -261,8 +261,8 @@ section {
 
 /* Footer Styles */
 footer.footer-custom {
-    background-color: #2F6146;
-    color: #FFFFFF;
+    background-color: #B2BFA8;
+    color: #333333;
     text-align: center;
     padding: 20px 0;
     margin-top: 50px;
@@ -274,7 +274,7 @@ footer.footer-custom {
 
 .footer-custom .social-icons a {
     margin: 0 10px;
-    color: #FFFFFF;
+    color: #333333;
     font-size: 1.5rem;
 }
 
@@ -320,7 +320,7 @@ footer.footer-custom {
 /* Alerts */
 .alert-custom {
     background-color: #FDF4EF;
-    color: #000000;
+    color: #333333;
     border: 1px solid #CEA64A;
     border-radius: 5px;
     padding: 15px;
@@ -358,7 +358,7 @@ footer.footer-custom {
 .unique-feature p {
     font-family: 'Open Sans', sans-serif;
     font-size: 1rem;
-    color: #000000;
+    color: #333333;
 }
 
 /* Media query for larger screens */
