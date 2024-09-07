@@ -1,10 +1,16 @@
 from django.urls import path, include
-from .views import Home, EventCreateView, EventUpdateView, SavedEventsView, EventList, EventDetail, save_event_to_calendar, rate_event, BrowseEventsView, EventDeleteView, MyEventsView, remove_event_from_calendar
+from .views import (
+    Home, EventCreateView, EventUpdateView, SavedEventsView, EventList, EventDetail,
+    save_event_to_calendar, rate_event, BrowseEventsView, EventDeleteView, MyEventsView, 
+    remove_event_from_calendar
+)
 from django.views.generic import TemplateView
+from allauth.account.views import email_verification_sent
 
 urlpatterns = [
     path('', Home.as_view(), name='home'),
     path('accounts/', include('allauth.urls')),
+    path('accounts/email-verification-sent/', TemplateView.as_view(template_name='account/email_verification_sent.html'), name='account_email_verification_sent'), 
     path('browse-events/', BrowseEventsView.as_view(), name='browse_events'),
     path('event/<slug:slug>/', EventDetail.as_view(), name='event_detail'),
     path('summernote/', include('django_summernote.urls')),

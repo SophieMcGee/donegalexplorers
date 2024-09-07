@@ -108,25 +108,6 @@ class EventDetail(View):
             },
         )
 
-    @login_required
-    def post(self, request, slug, *args, **kwargs):
-        event = get_object_or_404(Event, slug=slug)
-        comments = event.comments.filter(approved=True).order_by('created_on')
-        comment_form = CommentForm(data=request.POST)
-
-        if comment_form.is_valid():
-            comment = comment_form.save(commit=False)
-            comment.event = event
-            comment.user = request.user
-            comment.save()
-            return redirect('event_detail', slug=event.slug)
-        
-        return render(request, 'event_detail.html', {
-            'event': event,
-            'comments': comments,
-            'comment_form': comment_form,
-        })
-
 # View to browse events
 class BrowseEventsView(View):
     def get(self, request, *args, **kwargs):

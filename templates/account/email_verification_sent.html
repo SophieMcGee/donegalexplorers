@@ -6,8 +6,10 @@
 {% block title %}Verification Email Sent{% endblock title %}
 
 {% block content %}
-<div class="container-custom">
-    <h1>Verification Email Sent</h1>
+<div class="signup-content-box">
+    <h1 class="my-4">Verification Email Sent</h1>
+
+    <!-- Display messages if available -->
     {% if messages %}
         {% for message in messages %}
             {% if "verification" in message.message %}
@@ -18,13 +20,18 @@
         {% endfor %}
     {% endif %}
 
+    <!-- Main text explaining the verification process -->
     <p>
         A verification email has been sent to your email address. Please check your inbox (and spam folder) 
         and follow the instructions to complete the signup process.
     </p>
+
+    <!-- Option to resend email -->
     <p>
-        If you didn't receive the email, you can <a href="{% url 'account_email_verification_sent' %}">resend the email</a>.
+        If you didn't receive the email, you can <a href="{% url 'account_email_verification_sent' %}" class="text-link">resend the email</a>.
     </p>
+
+    <!-- Back to home button -->
     <p>
         <a href="{% url 'home' %}" class="btn btn-outline-custom mt-4">Back to Home</a>
     </p>
