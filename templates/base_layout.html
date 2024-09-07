@@ -23,7 +23,7 @@
      <!-- Font Awesome -->
      <script src="https://kit.fontawesome.com/c39eddf05d.js" crossorigin="anonymous"></script>
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
 
     <!-- Navigation -->
     <nav class="navbar navbar-expand-sm navbar-custom">
@@ -66,14 +66,14 @@
         </div>
     </nav>
 
-    <main class="container-custom mt-5">
+    <main class="container-custom mt-5 flex-grow-1">
         {% block content %}
         <!-- Content Goes Here -->
         {% endblock content %}
     </main>
 
     <!-- Footer -->
-    <footer class="footer-custom">
+    <footer class="footer-custom mt-auto py-3">
          <!-- Social Media Section -->
     <section class="container text-center mt-5">
         <h3>Follow Us</h3>
