@@ -1,0 +1,482 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,700;1,900&family=Open+Sans:wght@400;700&display=swap');
+
+/* Custom Styles */
+body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: #FDF4EF;
+    color: #333333;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+.flex-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Open Sans Extra Bold', sans-serif;
+    text-align: center;
+    font-size: 1.8rem; 
+}
+
+/* Navbar Styles */
+.navbar-custom {
+    background-color: #FDF4EF;
+    padding: 15px 20px;
+}
+
+.navbar-custom .navbar-brand {
+    font-family: 'Montserrat Extra Bold', sans-serif;
+    font-size: 1.5rem;
+    color: #B2BFA8;
+}
+
+.navbar-custom .nav-link {
+    color: #333333;
+    font-weight: 600;
+}
+
+.navbar-custom .nav-link:hover {
+    color: #B2BFA8;
+}
+
+/* Button Styles */
+.btn-custom {
+    background-color: #CEA64A;
+    color: #FFFFFF;
+    border-radius: 5px;
+    font-family: 'Montserrat Extra Bold', sans-serif;
+    border: none;
+    padding: 10px 20px;
+}
+
+.btn-custom:hover, .btn-custom:active {
+    background-color: #CDC2A9;
+    color: #FFFFFF;
+}
+
+.btn-outline-custom {
+    background-color: transparent;
+    color: #CEA64A;
+    border: 2px solid #CEA64A;
+    border-radius: 5px;
+    font-family: 'Montserrat Extra Bold', sans-serif;
+    padding: 10px 20px;
+}
+
+.btn-outline-custom:hover, .btn-outline-custom:active {
+    background-color: #CEA64A;
+    color: #FFFFFF;
+}
+
+.btn-delete-custom {
+    background-color: #FF6B6B;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+}
+
+.btn-delete-custom:hover {
+    background-color: #FF4040;
+}
+
+.btn-rate-custom {
+    background-color: #CEA64A;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+}
+
+.btn-rate-custom:hover {
+    background-color: #CDC2A9;
+}
+
+/* Text Styles */
+.text-link {
+    color: #B2BFA8;
+    text-decoration: underline;
+}
+
+.text-link:hover {
+    color: #CEA64A;
+}
+
+/* Form Styles */
+.form-custom input[type="text"], 
+.form-custom input[type="password"], 
+.form-custom input[type="email"], 
+.form-custom input[type="number"], 
+.form-custom select, 
+.form-custom textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+.form-custom input:focus, 
+.form-custom select:focus, 
+.form-custom textarea:focus {
+    border-color: #CEA64A;
+    outline: none;
+}
+
+/* General Sections */
+section {
+    max-width: 1200px; 
+    margin: 0 auto;
+}
+
+/* Hero Section */
+.hero-section {
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    padding: 80px 20px;
+    background-color: #FDF4EF;
+    position: relative;
+    max-width: 1200px; 
+    margin: 0 auto;
+}
+
+.hero-content {
+    flex: 1;
+    padding-right: 20px;
+    z-index: 10;
+}
+
+/* Style for Hero Content Box */
+.hero-content-box {
+    background-color: #FFFFFF;  
+    padding: 30px;              
+    border-radius: 10px;        
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
+    max-width: 600px;           
+    margin-left: 0;             
+    margin-bottom: 50px;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 400px; 
+}
+
+.hero-content h1 {
+    font-size: 2.5rem; 
+    font-weight: 600;
+    margin-bottom: 20px;
+    text-align: left;  
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    text-align: left; 
+}
+
+
+.hero-image {
+    flex: 1;
+    background-image: url('/static/css/images/hero-image.webp');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px !important;
+    height: 400px;
+    width: 400px;
+    margin-left: 20px;
+    z-index: 1;
+}
+
+/* Sign-Up Button */
+.hero-content .btn-custom {
+    font-size: 1.2rem;
+    padding: 15px 30px;
+    background-color: #CEA64A;
+    color: #FFFFFF;
+    border-radius: 8px;
+}
+
+.hero-content .btn-custom:hover {
+    background-color: #B08A41;
+    color: #FFFFFF;
+    text-align: left;
+}
+
+/* Welcome Section */
+.welcome-section {
+    background-color: #B2BFA8;
+    color: #333333;
+    padding: 50px 20px;
+    margin-top: 40px;
+    border-radius: 15px;
+    max-width: 1200px; 
+    margin: 0px auto;
+}
+
+/* Card Styles */
+.card-custom {
+    border: 1px solid #ddd; 
+    border-radius: 10px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    background-color: #FDF4EF; 
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.card-custom .card-title {
+    font-family: 'Montserrat Extra Bold', sans-serif; 
+    color: #B2BFA8;
+    font-size: 1.25rem;
+    margin-bottom: 15px;
+}
+
+.card-custom .card-body {
+    padding: 20px;
+}
+
+.card-img-top {
+    height: 15vw;  
+    object-fit: cover;  
+    min-height: 200px;  
+}
+
+/* Updated Event Detail Styling */
+
+/* Align event image and text in the first card */
+.event-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.event-header .event-image {
+    flex: 1;
+    max-width: 40%;  
+    margin-right: 20px; 
+    height: auto;  
+}
+
+.event-header .event-details {
+    flex: 2;
+    text-align: left;  
+}
+
+/* Signup page styles */
+
+.signup-content-box {
+    background-color: #FFFFFF;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 50px auto;
+}
+
+.signup-content-box h2 {
+    font-size: 2rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.signup-content-box p {
+    font-size: 1rem;
+    text-align: center;
+}
+
+.signup-content-box .form-group {
+    text-align: left;
+}
+
+.signup-content-box .btn-custom {
+    width: 100%;
+    padding: 15px;
+}
+
+.form-custom input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+.text-link {
+    color: #CEA64A;
+    text-decoration: underline;
+}
+
+/* Footer Styles */
+footer.footer-custom {
+    background-color: #B2BFA8;
+    color: #333333;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: auto;
+}
+
+.footer-custom .social-icons {
+    margin-top: 10px;
+}
+
+.footer-custom .social-icons a {
+    margin: 0 10px;
+    color: #333333;
+    font-size: 1.5rem;
+}
+
+.footer-custom .social-icons a:hover {
+    color: #CEA64A;
+}
+
+
+/* Form within the Card */
+.card-custom .form-custom input[type="text"], 
+.card-custom .form-custom input[type="password"], 
+.card-custom .form-custom input[type="email"], 
+.card-custom .form-custom input[type="number"], 
+.card-custom select, 
+.card-custom textarea {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+.card-custom .form-custom input:focus, 
+.card-custom select:focus, 
+.card-custom textarea:focus {
+    border-color: #CEA64A;
+    outline: none;
+}
+
+/* Buttons */
+.card-custom .btn-primary {
+    background-color: #CEA64A;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 5px;
+    font-family: 'Montserrat Extra Bold', sans-serif;
+}
+
+.card-custom .btn-primary:hover {
+    background-color: #CDC2A9;
+    color: #FFFFFF;
+}
+
+.btn-custom {
+    background-color: #CEA64A;
+    color: #FFFFFF;
+    border-radius: 5px;
+    padding: 10px 20px;
+    border: none;
+}
+
+/* Alerts */
+.alert-custom {
+    background-color: #FDF4EF;
+    color: #333333;
+    border: 1px solid #CEA64A;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Custom Feature Section */
+
+.features-section {
+    background-color: #FDF4EF;
+    padding: 50px 20px;
+    max-width: 1200px; 
+    margin: 0 auto;
+}
+
+.unique-feature {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+    background-color: #FDF4EF;
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 30px 20px;
+    height: 100%;
+}
+
+.unique-feature img {
+    max-width: 160px;  
+    height: 160px;
+    object-fit: contain;
+    margin: 0 auto 20px;
+    align-self: center;
+}
+
+.unique-feature h3 {
+    font-family: 'Montserrat Extra Bold', sans-serif;
+    font-size: 1.6rem;
+    margin-bottom: 15px;
+    min-height: 60px;
+    flex-shrink: 0;
+}
+
+.unique-feature p {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1rem;
+    color: #333333;
+    flex-grow: 1;
+    margin-top: auto;
+}
+
+/* Media query for larger screens */
+@media (min-width: 992px) {
+    .hero-section,
+    .welcome-section,
+    .features-section {
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+}
+
+
+/* Mobile screens with widths of less than 768px */
+@media (max-width: 768px) {
+    .hero-section {
+        flex-direction: column;
+        text-align: center;
+        max-width: 95%;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .hero-image {
+        width: 100%;
+        height: 300px;
+        margin-top: 20px;
+    }
+
+    .hero-content {
+        padding-right: 0;
+        margin-bottom: 20px;       
+    }
+
+    /* Stack the features vertically */
+    .unique-feature {
+        margin-bottom: 20px;
+    }
+
+    .footer-custom .social-icons {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 10px;
+    }
+}
