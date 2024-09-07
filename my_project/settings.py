@@ -30,7 +30,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
     '8000-sophiemcgee-donegalexpl-n9fuq72qmwq.ws.codeinstitute-ide.net',
@@ -81,8 +81,9 @@ AUTHENTICATION_BACKENDS = (
 
 LOGIN_REDIRECT_URL = '/browse-events/'  # Redirect after successful login
 ACCOUNT_LOGOUT_REDIRECT_URL = '/'  # Redirect after logout
-ACCOUNT_LOGIN_ATTEMPTS_LIMIT = 5  # Maximum number of failed attempts
-ACCOUNT_LOGIN_ATTEMPTS_TIMEOUT = 300  # Timeout period in seconds (5 minutes)
+ACCOUNT_RATE_LIMITS = {
+    "login_failed": "5/300"  # 5 attempts per 5 minutes
+}
 
 CRISPY_TEMPLATE_PACK = 'bootstrap5'
 
@@ -100,7 +101,7 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
-DEFAULT_FROM_EMAIL = 'Donegal Explorers <' + os.getenv('DEFAULT_FROM_EMAIL') + '>'
+DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL', 'sophiebmcgee@gmail.com')
 
 
 TEMPLATES = [
