@@ -118,14 +118,22 @@ h1, h2, h3, h4, h5, h6 {
     outline: none;
 }
 
+/* General Sections */
+section {
+    max-width: 1200px; 
+    margin: 0 auto;
+}
+
 /* Hero Section */
 .hero-section {
     display: flex;
-    align-items: center;
+    align-items: stretch;
     justify-content: space-between;
     padding: 80px 20px;
     background-color: #FDF4EF;
     position: relative;
+    max-width: 1200px; 
+    margin: 0 auto;
 }
 
 .hero-content {
@@ -143,7 +151,11 @@ h1, h2, h3, h4, h5, h6 {
     max-width: 600px;           
     margin-left: 0;             
     margin-bottom: 50px;
-    z-index: 2;      
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 400px; 
 }
 
 .hero-content h1 {
@@ -166,12 +178,11 @@ h1, h2, h3, h4, h5, h6 {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    border-radius: 10px;
-    height: auto; 
-    max-height: 100%; 
-    min-height: 300px; 
-    margin-left: 20px; 
-    z-index: 1; 
+    border-radius: 10px !important;
+    height: 400px;
+    width: 400px;
+    margin-left: 20px;
+    z-index: 1;
 }
 
 /* Sign-Up Button */
@@ -196,6 +207,8 @@ h1, h2, h3, h4, h5, h6 {
     padding: 50px 20px;
     margin-top: 40px;
     border-radius: 15px;
+    max-width: 1200px; 
+    margin: 0px auto;
 }
 
 /* Card Styles */
@@ -320,6 +333,8 @@ footer.footer-custom {
 .features-section {
     background-color: #FDF4EF;
     padding: 50px 20px;
+    max-width: 1200px; 
+    margin: 0 auto;
 }
 
 .unique-feature {
@@ -346,11 +361,25 @@ footer.footer-custom {
     color: #000000;
 }
 
+/* Media query for larger screens */
+@media (min-width: 992px) {
+    .hero-section,
+    .welcome-section,
+    .features-section {
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+}
+
+
 /* Mobile screens with widths of less than 768px */
 @media (max-width: 768px) {
     .hero-section {
         flex-direction: column;
         text-align: center;
+        max-width: 95%;
+        padding-left: 20px;
+        padding-right: 20px;
     }
 
     .hero-image {
