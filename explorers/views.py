@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.views import View, generic
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from allauth.account.views import LoginView
 from django.contrib import messages
 from .models import Event, Calendar, Rating, Comment
 from .forms import EventForm, CommentForm
@@ -181,4 +182,14 @@ class MyEventsView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         return Event.objects.filter(author=self.request.user).order_by('-created_on')
+
+# View to display message for too many login attempts
+
+class CustomLoginView(LoginView):
+    def form_invalid(self, form):
+        # Check if throttling is triggered
+        if self.request.session.get('login_attempts') > ACCOUNT_LOGIN_ATTEMPTS_LIMIT:
+            messages.error(self.request, "Too many login attempts. Try again later.")
+            return render(self.request, 'account/login_attempt.html')
+        return super().form_invalid(form)
 

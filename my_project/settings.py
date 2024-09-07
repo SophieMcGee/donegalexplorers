@@ -81,6 +81,8 @@ AUTHENTICATION_BACKENDS = (
 
 LOGIN_REDIRECT_URL = '/browse-events/'  # Redirect after successful login
 ACCOUNT_LOGOUT_REDIRECT_URL = '/'  # Redirect after logout
+ACCOUNT_LOGIN_ATTEMPTS_LIMIT = 5  # Maximum number of failed attempts
+ACCOUNT_LOGIN_ATTEMPTS_TIMEOUT = 300  # Timeout period in seconds (5 minutes)
 
 CRISPY_TEMPLATE_PACK = 'bootstrap5'
 
