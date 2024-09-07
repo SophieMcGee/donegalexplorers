@@ -4,6 +4,7 @@
     {% trans "Sign Up" %}
 {% endblock title %}
 {% block content %}
+<div class="signup-content-box">
     <h1 class="my-4">
         {% trans "Sign Up" %}
     </h1>
@@ -29,8 +30,9 @@
                 {% trans "Sign Up" %}
             </button>
         </form>
-    {% endif %} 
+    {% endif %}
     {% if SOCIALACCOUNT_ENABLED %}
         {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
     {% endif %}
+</div>
 {% endblock content %}

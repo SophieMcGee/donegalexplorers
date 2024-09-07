@@ -259,6 +259,32 @@ section {
     text-align: left;  
 }
 
+/* Signup page styles */
+
+.signup-content-box {
+    background-color: #FFFFFF;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 50px auto;
+}
+
+.signup-content-box h1 {
+    font-size: 2rem;
+    font-weight: 600;
+    text-align: left;
+}
+
+.signup-content-box p {
+    font-size: 1rem;
+    text-align: left;
+}
+
+.signup-content-box .form-group {
+    text-align: left;
+}
+
 /* Footer Styles */
 footer.footer-custom {
     background-color: #B2BFA8;
