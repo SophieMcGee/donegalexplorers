@@ -5,18 +5,21 @@
 {% block title %}Sign In{% endblock title %}
 
 {% block content %}
-<div class="container-custom">
+<div class="signup-content-box">
     <h2 class="text-center">Sign In</h2>
-
-        <form method="post" action="{% url 'account_login' %}" class="form-custom">
-            {% csrf_token %}
-            {{ form.as_p }}
-            {{ redirect_field }}
-            <div class="text-center">
-                <button type="submit" class="btn btn-custom">Sign In</button>
-            </div>
-        </form>
-    {% endif %}
+    
+    <p class="text-center">
+        {% blocktranslate %}If you haven't created an account yet, please <a href="{{ signup_url }}" class="text-link">sign up</a> first.{% endblocktranslate %}
+    </p>
+    
+    <form method="post" action="{% url 'account_login' %}" class="form-custom">
+        {% csrf_token %}
+        {{ form.as_p }}
+        {{ redirect_field }}
+        <div class="text-center">
+            <button type="submit" class="btn btn-custom">Sign In</button>
+        </div>
+    </form>
     
     {% if LOGIN_BY_CODE_ENABLED or PASSKEY_LOGIN_ENABLED %}
         <hr>

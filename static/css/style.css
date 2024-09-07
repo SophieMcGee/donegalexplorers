@@ -270,19 +270,37 @@ section {
     margin: 50px auto;
 }
 
-.signup-content-box h1 {
+.signup-content-box h2 {
     font-size: 2rem;
     font-weight: 600;
-    text-align: left;
+    text-align: center;
 }
 
 .signup-content-box p {
     font-size: 1rem;
-    text-align: left;
+    text-align: center;
 }
 
 .signup-content-box .form-group {
     text-align: left;
+}
+
+.signup-content-box .btn-custom {
+    width: 100%;
+    padding: 15px;
+}
+
+.form-custom input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+.text-link {
+    color: #CEA64A;
+    text-decoration: underline;
 }
 
 /* Footer Styles */
@@ -341,6 +359,14 @@ footer.footer-custom {
 .card-custom .btn-primary:hover {
     background-color: #CDC2A9;
     color: #FFFFFF;
+}
+
+.btn-custom {
+    background-color: #CEA64A;
+    color: #FFFFFF;
+    border-radius: 5px;
+    padding: 10px 20px;
+    border: none;
 }
 
 /* Alerts */
