@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.views import View, generic
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib import messages
 from .models import Event, Calendar, Rating, Comment
 from .forms import EventForm, CommentForm
 
@@ -146,11 +147,16 @@ class EventUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Event
     form_class = EventForm
     template_name = 'edit_event.html'
-    success_url = reverse_lazy('home')
+    
 
     def form_valid(self, form):
         form.instance.user = self.request.user  # Ensure the author is set
+        messages.success(self.request, "Your event has been updated successfully!")
         return super().form_valid(form)
+
+    def get_success_url(self):
+        # Redirect to the event detail page after a successful update
+        return reverse_lazy('event_detail', kwargs={'slug': self.object.slug})
 
     def test_func(self):
         event = self.get_object()
