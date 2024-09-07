@@ -6,15 +6,11 @@
 
 {% block content %}
 <div class="container-custom">
-    <h2 class="text-center">Sign In</h2> <!-- Custom heading style -->
-    {% if not SOCIALACCOUNT_ONLY %}
-        <p class="text-center">
-            {% blocktranslate %}If you haven't created an account yet, please <a href="{{ signup_url }}" class="text-link">sign up</a> first.{% endblocktranslate %}
-        </p>
-        
+    <h2 class="text-center">Sign In</h2>
+
         <form method="post" action="{% url 'account_login' %}" class="form-custom">
             {% csrf_token %}
-            {{ form.as_p }} <!-- Displaying form fields -->
+            {{ form.as_p }}
             {{ redirect_field }}
             <div class="text-center">
                 <button type="submit" class="btn btn-custom">Sign In</button>
@@ -31,12 +27,6 @@
             {% if LOGIN_BY_CODE_ENABLED %}
                 <a href="{{ request_login_code_url }}" class="btn btn-outline-custom">Mail me a sign-in code</a>
             {% endif %}
-        </div>
-    {% endif %}
-
-    {% if SOCIALACCOUNT_ENABLED %}
-        <div class="social-login">
-            {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
         </div>
     {% endif %}
 </div>

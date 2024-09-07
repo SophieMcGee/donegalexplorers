@@ -17,22 +17,17 @@
     <p class="mb-4">
         {% blocktranslate %}Already have an account? Then please {{ link }}sign in{{ end_link }}.{% endblocktranslate %}
     </p>
-    {% if not SOCIALACCOUNT_ONLY %}
-        {% url 'account_signup' as action_url %}
-        <form method="post" action="{{ action_url }}">
-            {% csrf_token %}
-            <div class="form-group mb-3">
-                {% element fields form=form unlabeled=True %}
-                {% endelement %}
-            </div>
-            {{ redirect_field }}
-            <button type="submit" class="btn btn-custom mt-3">
-                {% trans "Sign Up" %}
-            </button>
-        </form>
-    {% endif %}
-    {% if SOCIALACCOUNT_ENABLED %}
-        {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
-    {% endif %}
+    {% url 'account_signup' as action_url %}
+    <form method="post" action="{{ action_url }}">
+        {% csrf_token %}
+        <div class="form-group mb-3">
+            {% element fields form=form unlabeled=True %}
+            {% endelement %}
+        </div>
+        {{ redirect_field }}
+        <button type="submit" class="btn btn-custom mt-3">
+            {% trans "Sign Up" %}
+        </button>
+    </form>
 </div>
 {% endblock content %}
