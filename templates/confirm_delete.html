@@ -2,20 +2,30 @@
 
 {% block content %}
 <div class="container">
-    <h1>Confirm Delete</h1>
-    <p>Are you sure you want to delete the event: {{ object.title }}?</p>
-    
-    <!-- Adding an extra note to inform the user about their role -->
-    {% if user.is_authenticated and (user.is_superuser or object.author == user) %}
-        <p class="text-warning">Note: Only the event author or an administrator can delete this event.</p>
-        <form method="post">
-            {% csrf_token %}
-            <button type="submit" class="btn btn-danger">Confirm Deletion</button>
-            <a href="{% url 'event_detail' object.slug %}" class="btn btn-secondary">Cancel</a>
-        </form>
-    {% else %}
-        <p class="text-danger">You do not have permission to delete this event.</p>
-        <a href="{% url 'home' %}" class="btn btn-primary">Go Back Home</a>
-    {% endif %}
+    <div class="col-md-6 mx-auto mt-3">
+        <div class="card card-custom shadow-sm">
+            <div class="card-body">
+                <h1 class="card-title text-center">Confirm Delete</h1>
+                <p class="text-center">Are you sure you want to delete the event: <strong>{{ object.title }}</strong>?</p>
+                
+                <!-- Adding an extra note to inform the user about their role -->
+                {% if user.is_authenticated and user.is_superuser or object.author == user %}
+                    <p class="text-warning text-center">Note: Only the event author or an administrator can delete this event.</p>
+                    <div class="text-center">
+                        <form method="post">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger">Confirm Deletion</button>
+                            <a href="{% url 'event_detail' object.slug %}" class="btn btn-secondary">Cancel</a>
+                        </form>
+                    </div>
+                {% else %}
+                    <p class="text-danger text-center">You do not have permission to delete this event.</p>
+                    <div class="text-center">
+                        <a href="{% url 'home' %}" class="btn btn-primary">Go Back Home</a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
 </div>
-{% endblock %}
+{% endblock content %}
