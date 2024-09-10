@@ -84,7 +84,7 @@ AUTHENTICATION_BACKENDS = (
 LOGIN_REDIRECT_URL = '/browse-events/'  # Redirect after successful login
 ACCOUNT_LOGOUT_REDIRECT_URL = '/'  # Redirect after logout
 ACCOUNT_RATE_LIMITS = {
-    "login_failed": "5/300"  # 5 attempts per 5 minutes
+    "login_failed": "5/m"  # 5 attempts per minute
 }
 
 CRISPY_TEMPLATE_PACK = 'bootstrap5'
