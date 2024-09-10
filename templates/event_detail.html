@@ -2,88 +2,102 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-<div class="container-custom">
-    
+<div class="container">
     <!-- Event Header -->
-    <div class="card-custom mb-4">
-        <div class="card-body">
-            <div class="event-header">
-                <img src="{{ event.image.url }}" alt="{{ event.title }}" class="event-image">
-                <div class="event-details">
-                    <h1>{{ event.title }}</h1>
-                    <p>Location: {{ event.location }}</p>
-                    <p>Date: {{ event.date }}</p>
-                    <p>Time: {{ event.time }}</p>
+    <div class="col-md-8 mx-auto mt-4">
+        <div class="card card-custom shadow-sm">
+            <div class="card-body">
+                <div class="row">
+                    <!-- Left column: Image -->
+                    <div class="col-md-6 text-center">
+                        <img src="{{ event.image.url }}" alt="{{ event.title }}" class="img-fluid mb-3 rounded" style="max-height: 300px; object-fit: cover;">
+                    </div>
+                    
+                    <!-- Right column: Event Details -->
+                    <div class="col-md-6">
+                        <h1 class="card-title">{{ event.title }}</h1>
+                        <p><strong>Location:</strong> {{ event.location }}</p>
+                        <p><strong>Date:</strong> {{ event.date }}</p>
+                        <p><strong>Time:</strong> {{ event.time }}</p>
+                    </div>
+                </div>
+                
+                <!-- Buttons for Save, Edit, Delete -->
+                <div class="text-center mt-4">
+                    {% if user.is_authenticated %}
+                        <form class="d-inline" action="{% if saved_to_calendar %}{% url 'remove_event_from_calendar' event.pk %}{% else %}{% url 'save_event_to_calendar' event.pk %}{% endif %}" method="POST">
+                            {% csrf_token %}
+                            {% if saved_to_calendar %}
+                                <button type="submit" class="btn btn-outline-custom"><i class="fas fa-calendar-times"></i> Remove from Calendar</button>
+                            {% else %}
+                                <button type="submit" class="btn btn-custom"><i class="fas fa-calendar-plus"></i> Save to Calendar</button>
+                            {% endif %}
+                        </form>
+
+                        {% if user.is_superuser or event.author == user %}
+                            <a href="{% url 'edit_event' event.pk %}" class="btn btn-outline-custom"><i class="fas fa-edit"></i> Edit Event</a>
+                            <a href="{% url 'delete_event' event.pk %}" class="btn btn-delete-custom"><i class="fas fa-trash-alt"></i> Delete Event</a>
+                        {% endif %}
+                    {% endif %}
                 </div>
             </div>
-            
-            <!-- Buttons for Save, Edit, Delete -->
-            <div class="button-group mt-4">
-                {% if user.is_authenticated %}
-                    <form class="d-inline" action="{% if saved_to_calendar %}{% url 'remove_event_from_calendar' event.pk %}{% else %}{% url 'save_event_to_calendar' event.pk %}{% endif %}" method="POST">
-                        {% csrf_token %}
-                        {% if saved_to_calendar %}
-                            <button type="submit" class="btn btn-outline-custom"><i class="fas fa-calendar-times"></i> Remove from Calendar</button>
-                        {% else %}
-                            <button type="submit" class="btn btn-custom"><i class="fas fa-calendar-plus"></i> Save to Calendar</button>
-                        {% endif %}
-                    </form>
+        </div>
+    </div>
 
-                    {% if user.is_superuser or event.author == user %}
-                        <a href="{% url 'edit_event' event.pk %}" class="btn btn-outline-custom"><i class="fas fa-edit"></i> Edit Event</a>
-                        <a href="{% url 'delete_event' event.pk %}" class="btn btn-delete-custom"><i class="fas fa-trash-alt"></i> Delete Event</a>
-                    {% endif %}
+    <!-- Description Section -->
+    <div class="col-md-8 mx-auto mt-4">
+        <div class="card card-custom shadow-sm">
+            <div class="card-body">
+                <h2 class="card-title">Description</h2>
+                <p>{{ event.description }}</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Rating Section -->
+    <div class="col-md-8 mx-auto mt-4">
+        <div class="card card-custom shadow-sm">
+            <div class="card-body">
+                <h2 class="card-title">Average Rating: {{ event.average_rating }}</h2>
+                {% if user.is_authenticated %}
+                    <a href="{% url 'rate_event' event.pk %}" class="btn btn-rate-custom"><i class="fas fa-star"></i> Rate this Event</a>
+                {% else %}
+                    <p><a href="{% url 'account_login' %}">Log in</a> to rate this event.</p>
                 {% endif %}
             </div>
         </div>
     </div>
-    
-    <!-- Description Section -->
-    <div class="card-custom mb-4">
-        <div class="card-body">
-            <h2 class="card-title">Description</h2>
-            <p>{{ event.description }}</p>
-        </div>
-    </div>
 
-    <!-- Rating and Comment Section -->
-    <div class="card-custom mb-4">
-        <div class="card-body">
-            <h2 class="card-title">Average Rating: {{ event.average_rating }}</h2>
-            {% if user.is_authenticated %}
-                <a href="{% url 'rate_event' event.pk %}" class="btn btn-rate-custom"><i class="fas fa-star"></i> Rate this Event</a>
-            {% else %}
-                <p><a href="{% url 'account_login' %}">Log in</a> to rate this event.</p>
-            {% endif %}
-        </div>
-    </div>
-    
     <!-- Comments Section -->
-    <div class="card-custom mb-4">
-        <div class="card-body">
-            <h2 class="card-title">Comments</h2>
-            {% for comment in comments %}
-                <p><strong>{{ comment.user.username }}</strong>: {{ comment.content }}</p>
-            {% empty %}
-                <p>No comments yet. Be the first to comment!</p>
-            {% endfor %}
+    <div class="col-md-8 mx-auto mt-4">
+        <div class="card card-custom shadow-sm">
+            <div class="card-body">
+                <h2 class="card-title">Comments</h2>
+                {% for comment in comments %}
+                    <p><strong>{{ comment.user.username }}</strong>: {{ comment.content }}</p>
+                {% empty %}
+                    <p>No comments yet. Be the first to comment!</p>
+                {% endfor %}
+            </div>
         </div>
     </div>
 
     <!-- Comment Form -->
-    <div class="card-custom mb-4">
-        <div class="card-body">
-            {% if user.is_authenticated %}
-                <h3>Leave a Comment</h3>
-                <form method="post">
-                    {% csrf_token %}
-                    {{ comment_form.non_field_errors }}
-                    {{ comment_form.content|as_crispy_field }}
-                    <button type="submit" class="btn btn-custom">Submit Comment</button>
-                </form>
-            {% else %}
-                <p><a href="{% url 'account_login' %}">Log in</a> to leave a comment.</p>
-            {% endif %}
+    <div class="col-md-8 mx-auto mt-4">
+        <div class="card card-custom shadow-sm">
+            <div class="card-body">
+                {% if user.is_authenticated %}
+                    <h3>Leave a Comment</h3>
+                    <form method="post">
+                        {% csrf_token %}
+                        {{ comment_form.non_field_errors }}
+                        {{ comment_form.content|as_crispy_field }}
+                        <button type="submit" class="btn btn-custom">Submit Comment</button>
+                    </form>
+                {% else %}
+                    <p><a href="{% url 'account_login' %}">Log in</a> to leave a comment.</p>
+                {% endif %}
+            </div>
         </div>
     </div>
 
