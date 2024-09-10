@@ -193,3 +193,7 @@ class CustomLoginView(LoginView):
             return render(self.request, 'account/login_attempt.html')
         return super().form_invalid(form)
 
+# View to test signup closed page
+
+def signup_closed(request):
+    return render(request, 'account/signup_closed.html')
