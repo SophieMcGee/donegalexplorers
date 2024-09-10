@@ -51,7 +51,7 @@ def remove_event_from_calendar(request, event_id):
 # View to display the rating submission
 @login_required
 def rate_event(request, event_id):
-    event = get_object_or_404(Event, id=event_id)
+    event = get_object_or_404(Event, event_id=event_id)
     if request.method == 'POST':
         rating_value = int(request.POST.get('rating'))
         rating, created = Rating.objects.get_or_create(user=request.user, event=event)
