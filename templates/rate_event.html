@@ -1,11 +1,44 @@
 {% extends "base_layout.html" %}
+{% load crispy_forms_tags %}
 
 {% block content %}
-    <h2>Rate {{ event.title }}</h2>
-    <form method="post">
-        {% csrf_token %}
-        <label for="rating">Your Rating:</label>
-        <input type="number" name="rating" id="rating" min="1" max="5" required>
-        <button type="submit">Submit Rating</button>
-    </form>
+<div class="container-custom col-md-8 mx-auto mt-4">
+
+    <!-- Card for Event Rating -->
+    <div class="card card-custom shadow-sm">
+        <div class="card-body">
+            <h1 class="card-title text-center">{{ event.title }}</h1>
+            <p class="text-center">Please rate this event:</p>
+            
+            <form method="post" class="text-center">
+                {% csrf_token %}
+                <div class="rating-options">
+                    <!-- Add radio buttons for the rating, allowing a 1-5 rating scale -->
+                    <label>
+                        <input type="radio" name="rating" value="1"> 1
+                    </label>
+                    <label>
+                        <input type="radio" name="rating" value="2"> 2
+                    </label>
+                    <label>
+                        <input type="radio" name="rating" value="3"> 3
+                    </label>
+                    <label>
+                        <input type="radio" name="rating" value="4"> 4
+                    </label>
+                    <label>
+                        <input type="radio" name="rating" value="5"> 5
+                    </label>
+                </div>
+                
+                <div class="text-center mt-4">
+                    <button type="submit" class="btn btn-custom">Submit Rating</button>
+                </div>
+            </form>
+
+            <a href="{% url 'event_detail' event.slug %}" class="btn btn-secondary mt-3 d-inline-block">Back to Event</a>
+        </div>
+    </div>
+
+</div>
 {% endblock content %}
