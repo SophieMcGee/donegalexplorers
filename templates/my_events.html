@@ -8,7 +8,8 @@
                     <a href="{% url 'event_detail' event.slug %}" class="list-group-item list-group-item-action">
                         <h5 class="mb-1">{{ event.title }}</h5>
                         <p class="mb-1">{{ event.location }}</p>
-                        <small>Date: {{ event.date|date:"M d, Y" }}</small>
+                        <small>From: {{ event.start_date|date:"M d, Y" }} at {{ event.start_time|time:"g:i A" }}</small><br>
+                        <small>To: {{ event.end_date|date:"M d, Y" }} at {{ event.end_time|time:"g:i A" }}</small>
                     </a>
                     <div class="mt-2">
                         <a href="{% url 'edit_event' event.pk %}" class="btn btn-primary btn-sm">Edit</a>

@@ -41,7 +41,12 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ event.title }}</h5>
                     <p class="card-text">
-                        <small class="text-muted">{{ event.date|date:"l, F jS" }} - {{ event.time|time:"g:i A" }}</small>
+                        <!-- Display the start and end dates if they are different -->
+                        {% if event.start_date == event.end_date %}
+                            <small class="text-muted">{{ event.start_date|date:"l, F jS" }} - {{ event.start_time|time:"g:i A" }} to {{ event.end_time|time:"g:i A" }}</small>
+                        {% else %}
+                            <small class="text-muted">{{ event.start_date|date:"l, F jS" }} to {{ event.end_date|date:"l, F jS" }}</small>
+                        {% endif %}
                     </p>
                     <a href="{% url 'event_detail' event.slug %}" class="btn btn-custom">View Event</a>
                 </div>

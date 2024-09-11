@@ -1,6 +1,7 @@
+from django.db import models
+from django.core.exceptions import ValidationError
 from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
-from django.db import models
 from django.urls import reverse
 from autoslug import AutoSlugField
 from django.db.models import Avg
@@ -19,7 +20,8 @@ class Event(models.Model):
     slug = AutoSlugField(populate_from='title', unique=True, null=True, blank=True)
     description = models.TextField()
     location = models.CharField(max_length=255)
-    date = models.DateField()
+    start_date = models.DateTimeField()
+    end_date = models.DateTimeField()
     start_time = models.TimeField() 
     end_time = models.TimeField()
     created_on = models.DateTimeField(auto_now_add=True)
@@ -36,8 +38,17 @@ class Event(models.Model):
     def get_absolute_url(self):
         return reverse('event_detail', kwargs={'slug': self.slug})
 
+    def clean(self):
+        # Ensure that end date is not before start date
+        if self.end_date and self.start_date and self.end_date < self.start_date:
+            raise ValidationError("End date must be after the start date.")
+        
+        # Ensure that end time is after start time if the event is on the same day
+        if self.start_date == self.end_date and self.end_time and self.start_time and self.end_time <= self.start_time:
+            raise ValidationError("End time must be after the start time for events on the same day.")
+
     class Meta:
-        ordering = ['-created_on'] # Orders by 'created_on' descending by default
+        ordering = ['-start_date'] # Orders by start_date descending by default
 
 class Comment(models.Model):
     comment_id = models.AutoField(primary_key=True)

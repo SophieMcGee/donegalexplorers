@@ -7,9 +7,10 @@
         <li>
             <h2><a href="{% url 'view_event' event.id %}">{{ event.title }}</a></h2>
             <p>{{ event.description }}</p>
-            <p>{{ event.date }} at {{ event.time }}</p>
+            <p>From: {{ event.start_date|date:"l, F jS" }} at {{ event.start_time|time:"g:i A" }}</p>
+            <p>To: {{ event.end_date|date:"l, F jS" }} at {{ event.end_time|time:"g:i A" }}</p>
             <p>Location: {{ event.location }}</p>
-            <p>Created on: {{ event.created_on }}</p>
+            <p>Created on: {{ event.created_on|date:"l, F jS, Y" }}</p>
         </li>
     {% empty %}
         <li>No events available.</li>

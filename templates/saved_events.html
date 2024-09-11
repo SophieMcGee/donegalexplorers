@@ -8,7 +8,11 @@
             {% for entry in saved_events %}
                 <li class="list-group-item">
                     <h5>{{ entry.event.title }}</h5>
-                    <p>Event Date: {{ entry.date|date:"M d, Y" }} - Saved on: {{ entry.saved_on|date:"M d, Y" }}</p>
+                    <p>
+                        From: {{ entry.event.start_date|date:"M d, Y" }} at {{ entry.event.start_time|time:"g:i A" }}<br>
+                        To: {{ entry.event.end_date|date:"M d, Y" }} at {{ entry.event.end_time|time:"g:i A" }}<br>
+                        Saved on: {{ entry.saved_on|date:"M d, Y" }}
+                    </p>
                     <a href="{% url 'event_detail' entry.event.slug %}" class="btn btn-primary btn-sm">View Event</a>
                 </li>
             {% endfor %}
