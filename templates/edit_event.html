@@ -7,6 +7,7 @@
 <div class="container">
     <h1>Edit Event</h1>
 
+    <!-- Display success messages if any -->
     {% if messages %}
         {% for message in messages %}
             <div class="alert alert-success">
@@ -22,11 +23,39 @@
                     {% if event.author == user or user.is_superuser %}
                         <h3 class="card-title">Edit Event Details</h3>
                         <p class="text-muted">Editing as: {{ user.username }}</p>
+                        
+                        <!-- Event form starts here -->
                         <form method="post" enctype="multipart/form-data" style="margin-top: 1.3em;">
                             {% csrf_token %}
-                            {{ form|crispy }}
+                            
+                            <!-- Title -->
+                            {{ form.title|as_crispy_field }}
+
+                            <!-- Description -->
+                            {{ form.description|as_crispy_field }}
+
+                            <!-- Location -->
+                            {{ form.location|as_crispy_field }}
+
+                            <!-- Date -->
+                            {{ form.date|as_crispy_field }}
+
+                            <!-- Start Time -->
+                            {{ form.start_time|as_crispy_field }}
+
+                            <!-- End Time -->
+                            {{ form.end_time|as_crispy_field }}
+
+                            <!-- Image Upload -->
+                            {{ form.image|as_crispy_field }}
+
+                            <!-- Status -->
+                            {{ form.status|as_crispy_field }}
+
+                            <!-- Update button -->
                             <button type="submit" class="btn btn-primary mt-3">Update Event</button>
                         </form>
+
                     {% else %}
                         <div class="alert alert-warning mt-4">
                             You do not have permission to edit this event.

@@ -5,7 +5,7 @@ from django_summernote.admin import SummernoteModelAdmin
 # Register the Event model
 @admin.register(Event)
 class EventAdmin(SummernoteModelAdmin):
-    list_display = ('title', 'author', 'location', 'date', 'time', 'created_on')
+    list_display = ('title', 'author', 'location', 'date', 'start_time', 'end_time', 'created_on')
     search_fields = ('title', 'description', 'location', 'slug')
     list_filter = ('date', 'author')
     ordering = ('-date',)
