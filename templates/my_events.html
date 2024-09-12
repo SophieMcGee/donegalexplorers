@@ -1,25 +1,32 @@
 {% extends "base_layout.html" %}
+
 {% block content %}
-    <div class="container">
-        <h1>My Events</h1>
-        {% if events %}
-            <div class="list-group">
-                {% for event in events %}
-                    <a href="{% url 'event_detail' event.slug %}" class="list-group-item list-group-item-action">
-                        <h5 class="mb-1">{{ event.title }}</h5>
-                        <p class="mb-1">{{ event.location }}</p>
-                        <small>From: {{ event.start_date|date:"M d, Y" }} at {{ event.start_time|time:"g:i A" }}</small><br>
-                        <small>To: {{ event.end_date|date:"M d, Y" }} at {{ event.end_time|time:"g:i A" }}</small>
-                    </a>
-                    <div class="mt-2">
-                        <a href="{% url 'edit_event' event.pk %}" class="btn btn-primary btn-sm">Edit</a>
-                        <a href="{% url 'delete_event' event.event_id %}" class="btn btn-danger btn-sm">Delete</a>
+<div class="container">
+    <h1>My Events</h1>
+    <br>
+    {% if events %}
+        <div class="row">
+            {% for event in events %}
+                <div class="col-sm-4 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ event.title }}</h5>
+                            <p class="card-text">{{ event.location }}</p>
+                            <p class="card-text">
+                                <strong>From:</strong> {{ event.start_date|date:"M d, Y" }} at {{ event.start_time|time:"g:i A" }}<br>
+                                <strong>To:</strong> {{ event.end_date|date:"M d, Y" }} at {{ event.end_time|time:"g:i A" }}
+                            </p>
+                            <div class="d-flex justify-content-between">
+                                <a href="{% url 'edit_event' event.pk %}" class="btn btn-custom btn-sm">Edit</a>
+                                <a href="{% url 'delete_event' event.event_id %}" class="btn btn-danger btn-sm">Delete</a>
+                            </div>
+                        </div>
                     </div>
-                    <hr>
-                {% endfor %}
-            </div>
-        {% else %}
-            <p>You have not created any events yet.</p>
-        {% endif %}
-    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>You have not created any events yet.</p>
+    {% endif %}
+</div>
 {% endblock content %}
