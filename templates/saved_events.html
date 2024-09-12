@@ -4,19 +4,23 @@
 <div class="container">
     <h2>Your Saved Events</h2>
     {% if saved_events %}
-        <ul class="list-group">
+        <div class="row">
             {% for entry in saved_events %}
-                <li class="list-group-item">
-                    <h5>{{ entry.event.title }}</h5>
-                    <p>
-                        From: {{ entry.event.start_date|date:"M d, Y" }} at {{ entry.event.start_time|time:"g:i A" }}<br>
-                        To: {{ entry.event.end_date|date:"M d, Y" }} at {{ entry.event.end_time|time:"g:i A" }}<br>
-                        Saved on: {{ entry.saved_on|date:"M d, Y" }}
-                    </p>
-                    <a href="{% url 'event_detail' entry.event.slug %}" class="btn btn-primary btn-sm">View Event</a>
-                </li>
+                <div class="col-sm-4 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ entry.event.title }}</h5>
+                            <p class="card-text">
+                                <strong>From:</strong> {{ entry.event.start_date|date:"M d, Y" }} at {{ entry.event.start_time|time:"g:i A" }}<br>
+                                <strong>To:</strong> {{ entry.event.end_date|date:"M d, Y" }} at {{ entry.event.end_time|time:"g:i A" }}<br>
+                                <strong>Saved on:</strong> {{ entry.saved_on|date:"M d, Y" }}
+                            </p>
+                            <a href="{% url 'event_detail' entry.event.slug %}" class="btn btn-custom btn-sm">View Event</a>
+                        </div>
+                    </div>
+                </div>
             {% endfor %}
-        </ul>
+        </div>
     {% else %}
         <p>You have not saved any events yet.</p>
     {% endif %}
