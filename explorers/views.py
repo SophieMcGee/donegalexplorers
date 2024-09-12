@@ -28,8 +28,8 @@ class EventList(generic.ListView):
 # View to save an event to the user's calendar
 @login_required
 def save_event_to_calendar(request, event_id):
-    event = get_object_or_404(Event, id=event_id)
-    Calendar.objects.get_or_create(user=request.user, event=event, date=event.date)
+    event = get_object_or_404(Event, event_id=event_id)
+    Calendar.objects.get_or_create(user=request.user, event=event, date=event.start_date)
     return redirect('event_detail', slug=event.slug)
 
 # View to display the user's saved events in their calendar
