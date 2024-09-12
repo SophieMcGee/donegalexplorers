@@ -114,7 +114,7 @@ class EventDetail(View):
 class BrowseEventsView(View):
     def get(self, request, *args, **kwargs):
         search_query = request.GET.get('search', '')
-        sort_by = request.GET.get('sort_by', 'date')
+        sort_by = request.GET.get('sort_by', 'start_date')
         
         events = Event.objects.all()
 
@@ -128,7 +128,7 @@ class BrowseEventsView(View):
         elif sort_by == 'title':
             events = events.order_by('title')
         else:
-            events = events.order_by('date')
+            events = events.order_by('start_date')
 
         return render(request, 'browse_events.html', {'events': events})
 
