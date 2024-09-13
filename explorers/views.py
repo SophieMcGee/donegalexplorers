@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.views import View, generic
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from allauth.account.views import LoginView
+from allauth.account.views import LoginView, ConfirmEmailView
 from django.contrib import messages
 from .models import Event, Calendar, Rating, Comment
 from .forms import EventForm, CommentForm
@@ -197,3 +197,13 @@ class CustomLoginView(LoginView):
 
 def signup_closed(request):
     return render(request, 'account/signup_closed.html')
+
+# View to display email confirmation
+
+class CustomConfirmEmailView(ConfirmEmailView):
+    def get(self, request, *args, **kwargs):
+        response = super().get(request, *args, **kwargs)
+        if self.object.email_address.verified:
+            messages.success(request, 'Your email address has been successfully confirmed!')
+            return redirect('browse_events')
+        return response

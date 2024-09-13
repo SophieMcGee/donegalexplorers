@@ -2,12 +2,12 @@ from django.urls import path, include
 from .views import (
     Home, EventCreateView, EventUpdateView, SavedEventsView, EventList, EventDetail,
     save_event_to_calendar, rate_event, BrowseEventsView, EventDeleteView, MyEventsView, 
-    remove_event_from_calendar, signup_closed
+    remove_event_from_calendar, signup_closed, CustomConfirmEmailView
 )
 from django.conf import settings
 from django.shortcuts import redirect
 from django.views.generic import TemplateView
-from allauth.account.views import email_verification_sent
+from allauth.account.views import email_verification_sent, confirm_email
 
 def signup_redirect(request):
     if not settings.SIGNUP_ENABLED:
@@ -31,4 +31,5 @@ urlpatterns = [
     path('my-events/', MyEventsView.as_view(), name='my_events'),
     path('remove-event/<int:event_id>/', remove_event_from_calendar, name='remove_event_from_calendar'),
     path('signup-closed/', signup_closed, name='signup_closed'),
+    path('accounts/confirm-email/<str:key>/', CustomConfirmEmailView.as_view(), name='account_confirm_email'),
 ]
