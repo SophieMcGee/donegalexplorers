@@ -59,8 +59,11 @@
         <div class="card card-custom shadow-sm">
             <div class="card-body">
                 <h2 class="card-title">Average Rating: {{ event.average_rating }}</h2>
+                <p>Total Ratings: {{ event.total_ratings }}</p>
                 {% if user.is_authenticated %}
-                    <a href="{% url 'rate_event' event.pk %}" class="btn btn-rate-custom"><i class="fas fa-star"></i> Rate this Event</a>
+                    <a href="{% url 'rate_event' event.pk %}" class="btn btn-rate-custom">
+                        <i class="fas fa-star"></i> Rate this Event
+                    </a>
                 {% else %}
                     <p><a href="{% url 'account_login' %}">Log in</a> to rate this event.</p>
                 {% endif %}

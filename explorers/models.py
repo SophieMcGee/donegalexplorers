@@ -32,6 +32,9 @@ class Event(models.Model):
     def average_rating(self) -> float:
         return Rating.objects.filter(event=self).aggregate(Avg("rating"))["rating__avg"] or 0
 
+    def total_ratings(self) -> int:
+        return Rating.objects.filter(event=self).count()
+
     def __str__(self):
         return self.title
 
