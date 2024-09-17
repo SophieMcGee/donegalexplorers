@@ -52,12 +52,27 @@ def remove_event_from_calendar(request, event_id):
 @login_required
 def rate_event(request, event_id):
     event = get_object_or_404(Event, event_id=event_id)
+    
+    # Check if the user has already rated this event
+    existing_rating = Rating.objects.filter(user=request.user, event=event).first()
+    
+    if existing_rating:
+        # If user has already rated the event, show an error message
+        messages.error(request, "You have already rated this event.")
+        return redirect('event_detail', slug=event.slug)
+    
     if request.method == 'POST':
         rating_value = int(request.POST.get('rating'))
+        
+        # Create the new rating
         rating, created = Rating.objects.get_or_create(user=request.user, event=event)
         rating.rating = rating_value
         rating.save()
+
+        # Show a success message after rating
+        messages.success(request, "Thank you for rating this event!")
         return redirect('event_detail', slug=event.slug)
+    
     return render(request, 'rate_event.html', {'event': event})
 
 # View to display event details

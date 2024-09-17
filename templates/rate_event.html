@@ -4,37 +4,49 @@
 {% block content %}
 <div class="container-custom col-md-8 mx-auto mt-4">
 
+    <!-- Toast container for messages -->
+    <div aria-live="polite" aria-atomic="true" class="position-relative">
+        <!-- Position it -->
+        <div class="toast-container position-fixed top-0 end-0 p-3">
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="toast align-items-center text-bg-{{ message.tags }}" role="alert" aria-live="assertive" aria-atomic="true">
+                        <div class="d-flex">
+                            <div class="toast-body">
+                                {{ message }}
+                            </div>
+                            <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+
     <!-- Card for Event Rating -->
     <div class="card card-custom shadow-sm">
         <div class="card-body">
             <h1 class="card-title text-center">{{ event.title }}</h1>
-            <p class="text-center">Please rate this event:</p>
-            
-            <form method="post" class="text-center">
-                {% csrf_token %}
-                <div class="rating-options">
-                    <!-- Add radio buttons for the rating, allowing a 1-5 rating scale -->
-                    <label>
-                        <input type="radio" name="rating" value="1"> 1
-                    </label>
-                    <label>
-                        <input type="radio" name="rating" value="2"> 2
-                    </label>
-                    <label>
-                        <input type="radio" name="rating" value="3"> 3
-                    </label>
-                    <label>
-                        <input type="radio" name="rating" value="4"> 4
-                    </label>
-                    <label>
-                        <input type="radio" name="rating" value="5"> 5
-                    </label>
-                </div>
+
+            {% if not existing_rating %}
+                <p class="text-center">Please rate this event:</p>
                 
-                <div class="text-center mt-4">
-                    <button type="submit" class="btn btn-custom">Submit Rating</button>
-                </div>
-            </form>
+                <form method="post" class="text-center">
+                    {% csrf_token %}
+                    <div class="rating-options">
+                        <label><input type="radio" name="rating" value="1"> 1</label>
+                        <label><input type="radio" name="rating" value="2"> 2</label>
+                        <label><input type="radio" name="rating" value="3"> 3</label>
+                        <label><input type="radio" name="rating" value="4"> 4</label>
+                        <label><input type="radio" name="rating" value="5"> 5</label>
+                    </div>
+                    <div class="text-center mt-4">
+                        <button type="submit" class="btn btn-custom">Submit Rating</button>
+                    </div>
+                </form>
+            {% else %}
+                <p class="text-center text-muted">You have already rated this event.</p>
+            {% endif %}
 
             <a href="{% url 'event_detail' event.slug %}" class="btn btn-secondary mt-3 d-inline-block">Back to Event</a>
         </div>
@@ -42,3 +54,16 @@
 
 </div>
 {% endblock content %}
+
+{% block extra_js %}
+    <script>
+        // Initialize the Bootstrap toast when messages are present
+        document.addEventListener('DOMContentLoaded', function () {
+            var toastElList = [].slice.call(document.querySelectorAll('.toast'))
+            var toastList = toastElList.map(function (toastEl) {
+                return new bootstrap.Toast(toastEl, { delay: 5000 }) // Auto-dismiss after 5 seconds
+            })
+            toastList.forEach(toast => toast.show())
+        });
+    </script>
+{% endblock extra_js %}
