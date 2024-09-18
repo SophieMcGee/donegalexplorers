@@ -82,17 +82,26 @@
     </nav>
 
     <main class="container-custom mt-5 flex-grow-1">
-        <!-- Message alerts -->
-        {% if messages %}
-            <div class="container mt-3">
-                {% for message in messages %}
-                    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
-                        {{ message }}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                {% endfor %}
+        <!-- Toast container for messages -->
+        <div aria-live="polite" aria-atomic="true" class="position-relative">
+            <!-- Position it -->
+            <div class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index: 1050;">
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="toast align-items-center text-bg-{{ message.tags }} border-0 shadow" role="alert" aria-live="assertive" aria-atomic="true">
+                            <div class="d-flex">
+                                <div class="toast-body">
+                                    {{ message }}
+                                </div>
+                                <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
             </div>
-        {% endif %}
+        </div>
+
+        <!-- Page content -->
         {% block content %}
         <!-- Content Goes Here -->
         {% endblock content %}
@@ -116,5 +125,16 @@
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Toast Initialization Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var toastElList = [].slice.call(document.querySelectorAll('.toast'))
+            var toastList = toastElList.map(function (toastEl) {
+                return new bootstrap.Toast(toastEl, { delay: 5000 })
+            })
+            toastList.forEach(toast => toast.show())
+        });
+    </script>
 </body>
 </html>
