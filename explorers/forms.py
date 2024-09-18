@@ -25,6 +25,17 @@ class EventForm(forms.ModelForm):
         self.fields['end_date'].widget.attrs.update({'placeholder': 'End Date'})
         self.fields['start_time'].widget.attrs.update({'placeholder': 'Start Time'})
         self.fields['end_time'].widget.attrs.update({'placeholder': 'End Time'})
+
+        # Set required attributes explicitly in the form fields
+        self.fields['title'].required = True
+        self.fields['description'].required = True
+        self.fields['location'].required = True
+        self.fields['start_date'].required = True
+        self.fields['end_date'].required = True
+        self.fields['start_time'].required = True
+        self.fields['end_time'].required = True
+        self.fields['image'].required = True
+        self.fields['status'].required = True
     
     def clean(self):
         cleaned_data = super().clean()

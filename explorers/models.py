@@ -16,18 +16,18 @@ class Event(models.Model):
 
     event_id = models.AutoField(primary_key=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='events')
-    title = models.CharField(max_length=255)
+    title = models.CharField(max_length=255, null=False, blank=False)  
     slug = AutoSlugField(populate_from='title', unique=True, null=True, blank=True)
-    description = models.TextField()
-    location = models.CharField(max_length=255)
-    start_date = models.DateTimeField()
-    end_date = models.DateTimeField()
-    start_time = models.TimeField() 
-    end_time = models.TimeField()
+    description = models.TextField(null=False, blank=False)  
+    location = models.CharField(max_length=255, null=False, blank=False)  
+    start_date = models.DateTimeField(null=False, blank=False)  
+    end_date = models.DateTimeField(null=False, blank=False)  
+    start_time = models.TimeField(null=False, blank=False)  
+    end_time = models.TimeField(null=False, blank=False)  
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
-    image = CloudinaryField('image', default='placeholder-image')
-    status = models.CharField(max_length=10, choices=EVENT_STATUS_CHOICES, default='draft')
+    image = CloudinaryField('image', null=False, blank=False, default='placeholder-image')  
+    status = models.CharField(max_length=10, choices=EVENT_STATUS_CHOICES, default='draft', null=False, blank=False)
 
     def average_rating(self) -> float:
         return Rating.objects.filter(event=self).aggregate(Avg("rating"))["rating__avg"] or 0
