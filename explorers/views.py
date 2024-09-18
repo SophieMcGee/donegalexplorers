@@ -44,7 +44,7 @@ class SavedEventsView(LoginRequiredMixin, ListView):
 # View to remove an event from users calendar
 @login_required
 def remove_event_from_calendar(request, event_id):
-    event = get_object_or_404(Event, id=event_id)
+    event = get_object_or_404(Event, event_id=event_id)
     Calendar.objects.filter(user=request.user, event=event).delete()
     return redirect('event_detail', slug=event.slug)
 
