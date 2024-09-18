@@ -34,7 +34,7 @@ class EventForm(forms.ModelForm):
         self.fields['end_date'].required = True
         self.fields['start_time'].required = True
         self.fields['end_time'].required = True
-        self.fields['image'].required = True
+        self.fields['image'].required = False
         self.fields['status'].required = True
     
     def clean(self):

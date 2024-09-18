@@ -26,7 +26,7 @@ class Event(models.Model):
     end_time = models.TimeField(null=False, blank=False)  
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
-    image = CloudinaryField('image', null=False, blank=False, default='placeholder-image')  
+    image = CloudinaryField('image', default='https://res.cloudinary.com/dsojbqe7b/image/upload/v1726670855/bmecfws82yver9zuiq8u.jpg')  
     status = models.CharField(max_length=10, choices=EVENT_STATUS_CHOICES, default='draft', null=False, blank=False)
 
     def average_rating(self) -> float:
