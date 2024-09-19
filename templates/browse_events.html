@@ -10,12 +10,14 @@
         <div class="row">
             <!-- Search bar -->
             <div class="col-md-6">
-                <input type="text" name="search" class="form-control" placeholder="Search events..." value="{{ request.GET.search }}">
+                <label for="search-bar" class="visually-hidden">Search events</label>
+                <input type="text" id="search-bar" name="search" class="form-control" placeholder="Search events..." value="{{ request.GET.search }}" aria-label="Search events">
             </div>
             
             <!-- Sorting Dropdown -->
             <div class="col-md-4">
-                <select name="sort_by" class="form-select">
+                <label for="sort-by" class="visually-hidden">Sort by</label>
+                <select id="sort-by" name="sort_by" class="form-select" aria-label="Sort events by">
                     <option value="start_date" {% if request.GET.sort_by == "start_date" %}selected{% endif %}>Sort by Start Date</option>
                     <option value="location" {% if request.GET.sort_by == "location" %}selected{% endif %}>Sort by Location</option>
                     <option value="title" {% if request.GET.sort_by == "title" %}selected{% endif %}>Sort by Title</option>
@@ -23,10 +25,17 @@
             </div>
             
             <div class="col-md-2">
-                <button type="submit" class="btn btn-custom w-100">Apply</button>
+                <button type="submit" class="btn btn-custom w-100" aria-label="Apply sorting and search">Apply</button>
             </div>
         </div>
     </form>
+
+    <!-- Feedback for no events found -->
+    {% if events.count == 0 %}
+        <div class="alert alert-warning text-center">
+            No events found. Please adjust your search or filter options.
+        </div>
+    {% endif %}
 
     <!-- Events Listing -->
     <div class="row">
@@ -36,7 +45,7 @@
                 {% if event.image %}
                     <img src="{{ event.image.url }}" class="card-img-top card-img" alt="{{ event.title }}">
                 {% else %}
-                    <img src="{% static 'css/images/placeholder-image.jpg' %}" class="card-img-top card-img" alt="{{ event.title }}">
+                    <img src="{% static 'css/images/placeholder-image.jpg' %}" class="card-img-top card-img" alt="Placeholder image for {{ event.title }}">
                 {% endif %}
                 <div class="card-body">
                     <h5 class="card-title">{{ event.title }}</h5>
@@ -48,7 +57,7 @@
                             <small class="text-muted">{{ event.start_date|date:"l, F jS" }} to {{ event.end_date|date:"l, F jS" }}</small>
                         {% endif %}
                     </p>
-                    <a href="{% url 'event_detail' event.slug %}" class="btn btn-custom">View Event</a>
+                    <a href="{% url 'event_detail' event.slug %}" class="btn btn-custom" aria-label="View details of {{ event.title }}">View Event</a>
                 </div>
             </div>
         </div>
