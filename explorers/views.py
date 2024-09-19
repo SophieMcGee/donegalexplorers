@@ -202,10 +202,6 @@ class MyEventsView(LoginRequiredMixin, ListView):
 
 class CustomLoginView(LoginView):
     def form_invalid(self, form):
-        # Check if throttling is triggered
-        if self.request.session.get('login_attempts') > ACCOUNT_LOGIN_ATTEMPTS_LIMIT:
-            messages.error(self.request, "Too many login attempts. Try again later.")
-            return render(self.request, 'account/login_attempt.html')
         return super().form_invalid(form)
 
 # View to test signup closed page
