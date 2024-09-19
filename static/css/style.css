@@ -249,6 +249,20 @@ section {
     min-height: 200px;  
 }
 
+.confirmation-container {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.confirmation-message {
+    background-color: #FDF4EF; 
+    color: #333333; 
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
 /* Updated Event Detail Styling */
 
 /* Align event image and text in the first card */
@@ -388,6 +402,29 @@ footer.footer-custom {
     border-radius: 5px;
     padding: 15px;
     margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Success and Error Alerts */
+.alert-success-custom {
+    background-color: #B2BFA8; 
+    color: #FFFFFF; 
+    border: none;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 20px;
+    font-family: 'Montserrat Extra Bold', sans-serif;
+    text-align: center;
+}
+
+.alert-error-custom {
+    background-color: #FF6B6B;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 20px;
+    font-family: 'Montserrat Extra Bold', sans-serif;
     text-align: center;
 }
 
