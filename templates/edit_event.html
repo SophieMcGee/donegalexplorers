@@ -50,13 +50,20 @@
                             {{ form.end_time|as_crispy_field }}
 
                             <!-- Image Upload -->
-                            {{ form.image|as_crispy_field }}
+                            <div>
+                                <label for="{{ form.image.id_for_label }}">Image:</label>
+                                {{ form.image }}
+                                {% if event.image %}
+                                    <p>Currently:</p>
+                                    <img src="{{ event.image.url }}" alt="{{ event.title }}" width="100" class="img-thumbnail">
+                                {% endif %}
+                            </div>
 
                             <!-- Status -->
                             {{ form.status|as_crispy_field }}
 
                             <!-- Update button -->
-                            <button type="submit" class="btn btn-primary mt-3">Update Event</button>
+                            <button type="submit" class="btn btn-custom mt-3">Update Event</button>
                         </form>
 
                     {% else %}
