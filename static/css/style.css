@@ -45,6 +45,58 @@ h1, h2, h3, h4, h5, h6 {
     color: #B2BFA8;
 }
 
+.navbar-custom .nav-link:focus,
+.navbar-custom .nav-link:active,
+.btn-custom:focus,
+.btn-custom:active {
+    outline: none;
+    box-shadow: none;
+}
+
+/* Customise focus and active states*/
+.navbar-custom .nav-link:focus,
+.navbar-custom .nav-link:active {
+    background-color: #B2BFA8;
+    color: #FFFFFF;
+}
+
+.btn-custom:focus,
+.btn-custom:active {
+    background-color: #CEA64A;
+    color: #FFFFFF;
+    border-color: #B08A41;
+}
+
+/* Remove blue flash (outline) on focus and active states for dropdowns */
+.navbar-custom .dropdown-toggle:focus,
+.navbar-custom .dropdown-toggle:active {
+    outline: none;
+    box-shadow: none;
+}
+
+/* Customsze focus and active states for dropdown */
+.navbar-custom .dropdown-toggle:focus,
+.navbar-custom .dropdown-toggle:active {
+    background-color: #B2BFA8; 
+    color: #FFFFFF;
+}
+
+/* General Styles for Dropdown Items */
+.navbar-custom .dropdown-menu {
+    background-color: #FDF4EF; 
+    border: 1px solid #B2BFA8; 
+}
+
+.navbar-custom .dropdown-item {
+    color: #333333;
+    font-weight: 600;
+}
+
+.navbar-custom .dropdown-item:hover {
+    background-color: #B2BFA8;
+    color: #FFFFFF;
+}
+
 /* Button Styles */
 .btn-custom {
     background-color: #CEA64A;
@@ -182,7 +234,6 @@ section {
     text-align: left; 
 }
 
-
 .hero-image {
     flex: 1;
     background-image: url('/static/css/images/hero-image.webp');
@@ -263,7 +314,7 @@ section {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Updated Event Detail Styling */
+/* Event Detail Styling */
 
 /* Align event image and text in the first card */
 .event-header {
@@ -285,7 +336,6 @@ section {
 }
 
 /* Signup page styles */
-
 .signup-content-box {
     background-color: #FFFFFF;
     padding: 30px;
@@ -350,7 +400,6 @@ footer.footer-custom {
 .footer-custom .social-icons a:hover {
     color: #CEA64A;
 }
-
 
 /* Form within the Card */
 .card-custom .form-custom input[type="text"], 
@@ -429,7 +478,6 @@ footer.footer-custom {
 }
 
 /* Custom Feature Section */
-
 .features-section {
     background-color: #FDF4EF;
     padding: 50px 20px;
@@ -483,7 +531,6 @@ footer.footer-custom {
         padding-right: 40px;
     }
 }
-
 
 /* Mobile screens with widths of less than 768px */
 @media (max-width: 768px) {
