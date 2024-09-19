@@ -1,28 +1,57 @@
 {% extends "base_layout.html" %}
+{% load static %}
 
 {% block content %}
 <div class="container">
-    <h2>Your Saved Events</h2>
+    <h2 class="text-center mb-4">Your Saved Events</h2>
+
+    <!-- Filter by month form -->
+    <form method="GET" class="row mb-4">
+        <div class="col-md-10">
+            <select name="month" class="form-select">
+                {% for month in months %}
+                    {% with month|date:"m-Y" as month_str %}
+                        <option value="{{ month_str }}" {% if month_str == selected_month %}selected{% endif %}>
+                            {{ month|date:"F Y" }}
+                        </option>
+                    {% endwith %}
+                {% endfor %}
+            </select>
+        </div>
+        <div class="col-md-2">
+            <button type="submit" class="btn btn-custom w-100">Apply</button>
+        </div>
+    </form>
+
     {% if saved_events %}
+        <!-- Calendar grid container -->
         <div class="row">
             {% for entry in saved_events %}
-                <div class="col-sm-4 mb-4">
-                    <div class="card h-100 shadow-sm">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ entry.event.title }}</h5>
-                            <p class="card-text">
-                                <strong>From:</strong> {{ entry.event.start_date|date:"M d, Y" }} at {{ entry.event.start_time|time:"g:i A" }}<br>
-                                <strong>To:</strong> {{ entry.event.end_date|date:"M d, Y" }} at {{ entry.event.end_time|time:"g:i A" }}<br>
-                                <strong>Saved on:</strong> {{ entry.saved_on|date:"M d, Y" }}
-                            </p>
-                            <a href="{% url 'event_detail' entry.event.slug %}" class="btn btn-custom btn-sm">View Event</a>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 shadow-sm">
+                    <!-- Card image if exists, else placeholder -->
+                    {% if entry.event.image %}
+                        <img src="{{ entry.event.image.url }}" class="card-img-top" alt="{{ entry.event.title }}" style="max-height: 200px; object-fit: cover;">
+                    {% else %}
+                        <img src="{% static 'css/images/placeholder-image.jpg' %}" class="card-img-top" alt="Event Image Placeholder">
+                    {% endif %}
+                    
+                    <div class="card-body d-flex flex-column justify-content-between">
+                        <h5 class="card-title">{{ entry.event.title }}</h5>
+                        <p class="card-text">
+                            <strong>Date:</strong> {{ entry.event.start_date|date:"M d, Y" }} - {{ entry.event.end_date|date:"M d, Y" }}<br>
+                            <strong>Saved on:</strong> {{ entry.saved_on|date:"M d, Y" }}
+                        </p>
+                        <div class="mt-auto">
+                            <a href="{% url 'event_detail' entry.event.slug %}" class="btn btn-custom btn-sm mt-3">View Event</a>
                         </div>
                     </div>
                 </div>
+            </div>
             {% endfor %}
         </div>
     {% else %}
-        <p>You have not saved any events yet.</p>
+        <p class="text-center">No saved events for this month.</p>
     {% endif %}
 </div>
 {% endblock content %}

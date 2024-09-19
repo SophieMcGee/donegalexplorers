@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.urls import reverse_lazy
-from django.http import HttpResponse, HttpResponseForbidden
+from django.urls import reverse_lazy, reverse
+from django.http import HttpResponse, HttpResponseForbidden, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.views import View, generic
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
@@ -9,6 +9,7 @@ from allauth.account.views import LoginView, ConfirmEmailView
 from django.contrib import messages
 from .models import Event, Calendar, Rating, Comment
 from .forms import EventForm, CommentForm
+from django.utils import timezone
 
 # View for homepage
 
@@ -37,9 +38,36 @@ class SavedEventsView(LoginRequiredMixin, ListView):
     model = Calendar
     template_name = 'saved_events.html'
     context_object_name = 'saved_events'
-    
+
     def get_queryset(self):
-        return Calendar.objects.filter(user=self.request.user).order_by('-saved_on')
+        # Get the filtered month from the query params, default to current month
+        selected_month = self.request.GET.get('month', None)
+        current_month = timezone.now().month
+        current_year = timezone.now().year
+
+        if selected_month:
+            month, year = map(int, selected_month.split('-')) 
+        else:
+            month, year = current_month, current_year  # Default to current month and year
+
+        # Filter events based on the selected or default month and year
+        return Calendar.objects.filter(
+            user=self.request.user,
+            event__start_date__month=month,
+            event__start_date__year=year
+        ).order_by('event__start_date')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        current_month = timezone.now().strftime('%m-%Y')  # Default current month in format 'MM-YYYY'
+
+        # Get the selected month from query params if available
+        selected_month = self.request.GET.get('month', current_month)
+        context['selected_month'] = selected_month
+
+        # Pass months available for filtering
+        context['months'] = Calendar.objects.dates('event__start_date', 'month', order='DESC')
+        return context
 
 # View to remove an event from users calendar
 @login_required
