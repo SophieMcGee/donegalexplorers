@@ -11,41 +11,50 @@
                     <h3 class="card-title">Please complete the form below to add an event:</h3>
                     <p class="text-muted">Adding event as: {{ user.username }}</p>
 
+                    <!-- Show form errors -->
+                    {% if form.non_field_errors %}
+                        <div class="alert alert-danger">
+                            {{ form.non_field_errors }}
+                        </div>
+                    {% endif %}
+                    
                     <!-- Event form starts here -->
                     <form method="post" enctype="multipart/form-data" class="form-custom" style="margin-top: 1.3em;">
                         {% csrf_token %}
-
+                        
                         <!-- Title -->
                         {{ form.title|as_crispy_field }}
-
+                        
                         <!-- Description -->
                         {{ form.description|as_crispy_field }}
-
+                        
                         <!-- Location -->
                         {{ form.location|as_crispy_field }}
-
+                        
                         <!-- Start Date -->
                         {{ form.start_date|as_crispy_field }}
-
+                        
                         <!-- End Date -->
                         {{ form.end_date|as_crispy_field }}
-
+                        
                         <!-- Start Time -->
                         {{ form.start_time|as_crispy_field }}
-
+                        
                         <!-- End Time -->
                         {{ form.end_time|as_crispy_field }}
-
+                        
                         <!-- Image Upload -->
                         {{ form.image|as_crispy_field }}
-
+                        
                         <!-- Status -->
                         {{ form.status|as_crispy_field }}
 
                         <!-- Submit button -->
-                        <button type="submit" class="btn btn-primary mt-3">Submit Event</button>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-custom mt-3">Submit Event</button>
+                        </div>
                     </form>
-
+                    
                 {% else %}
                     <div class="alert-custom mt-4">
                         You need to <a href="{% url 'account_login' %}">log in</a> to add an event.
