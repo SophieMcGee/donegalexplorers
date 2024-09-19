@@ -21,7 +21,7 @@
                 {% endif %}
                 
                 <!-- Conditional delete functionality based on user roles -->
-                {% if user.is_authenticated and (user.is_superuser or object.author == user) %}
+                {% if user.is_authenticated and user.is_superuser or object.author == user %}
                     <p class="text-warning text-center">
                         Note: Only the event author or an administrator can delete this event.
                     </p>
