@@ -1,67 +1,52 @@
-{% extends 'base_layout.html' %}
-{% load static %}
+{% extends "base_layout.html" %}
 
 {% block content %}
-<div class="container mt-5">
-    <h1 class="mb-4">Browse Events</h1>
+<div class="container">
+    <h1>Browse Events</h1>
+    <br>
 
-    <!-- Search Bar and Sorting Dropdown -->
+    <!-- Search bar and sorting -->
     <form method="GET" class="mb-4">
-        <div class="row">
+        <div class="row g-2 align-items-end">
             <!-- Search bar -->
             <div class="col-md-6">
-                <label for="search-bar" class="visually-hidden">Search events</label>
-                <input type="text" id="search-bar" name="search" class="form-control" placeholder="Search events..." value="{{ request.GET.search }}" aria-label="Search events">
+                <input type="text" name="search" class="form-control" placeholder="Search events..." value="{{ request.GET.search }}">
             </div>
-            
-            <!-- Sorting Dropdown -->
+
+            <!-- Sort dropdown -->
             <div class="col-md-4">
-                <label for="sort-by" class="visually-hidden">Sort by</label>
-                <select id="sort-by" name="sort_by" class="form-select" aria-label="Sort events by">
-                    <option value="start_date" {% if request.GET.sort_by == "start_date" %}selected{% endif %}>Sort by Start Date</option>
-                    <option value="location" {% if request.GET.sort_by == "location" %}selected{% endif %}>Sort by Location</option>
-                    <option value="title" {% if request.GET.sort_by == "title" %}selected{% endif %}>Sort by Title</option>
+                <select name="sort_by" class="form-select">
+                    <option value="start_date" {% if request.GET.sort_by == 'start_date' %}selected{% endif %}>Sort by Start Date</option>
+                    <option value="location" {% if request.GET.sort_by == 'location' %}selected{% endif %}>Sort by Location</option>
+                    <option value="title" {% if request.GET.sort_by == 'title' %}selected{% endif %}>Sort by Title</option>
                 </select>
             </div>
-            
+
+            <!-- Apply Button -->
             <div class="col-md-2">
-                <button type="submit" class="btn btn-custom w-100" aria-label="Apply sorting and search">Apply</button>
+                <button type="submit" class="btn btn-custom w-100">Apply</button>
             </div>
         </div>
     </form>
 
-    <!-- Feedback for no events found -->
-    {% if events.count == 0 %}
-        <div class="alert alert-warning text-center">
-            No events found. Please adjust your search or filter options.
-        </div>
-    {% endif %}
-
-    <!-- Events Listing -->
     <div class="row">
         {% for event in events %}
-        <div class="col-sm-4 mb-4">
-            <div class="card h-100 shadow-sm">
-                {% if event.image %}
-                    <img src="{{ event.image.url }}" class="card-img-top card-img" alt="{{ event.title }}">
-                {% else %}
-                    <img src="{% static 'css/images/placeholder-image.jpg' %}" class="card-img-top card-img" alt="Placeholder image for {{ event.title }}">
-                {% endif %}
-                <div class="card-body">
-                    <h5 class="card-title">{{ event.title }}</h5>
-                    <p class="card-text">
-                        <!-- Display the start and end dates if they are different -->
-                        {% if event.start_date == event.end_date %}
-                            <small class="text-muted">{{ event.start_date|date:"l, F jS" }} - {{ event.start_time|time:"g:i A" }} to {{ event.end_time|time:"g:i A" }}</small>
-                        {% else %}
-                            <small class="text-muted">{{ event.start_date|date:"l, F jS" }} to {{ event.end_date|date:"l, F jS" }}</small>
-                        {% endif %}
-                    </p>
-                    <a href="{% url 'event_detail' event.slug %}" class="btn btn-custom" aria-label="View details of {{ event.title }}">View Event</a>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 shadow-sm d-flex flex-column">
+                    <img src="{{ event.image.url }}" class="card-img-top" alt="{{ event.title }}">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">{{ event.title }}</h5>
+                        <p class="card-text">{{ event.location }}</p>
+                        <p class="card-text">
+                            {{ event.start_date|date:"l, F jS" }} - {{ event.end_date|date:"l, F jS" }}
+                        </p>
+                        <div class="mt-auto">
+                            <a href="{% url 'event_detail' event.slug %}" class="btn btn-custom btn-block">View Event</a>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
         {% endfor %}
     </div>
 </div>
-{% endblock %}
+{% endblock content %}

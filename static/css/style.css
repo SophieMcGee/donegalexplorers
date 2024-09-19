@@ -68,7 +68,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .btn-custom:hover, .btn-custom:focus {
-    background-color: #B08A41;/
+    background-color: #B08A41;
     outline: none;
     box-shadow: none;
 }
@@ -80,7 +80,7 @@ h1, h2, h3, h4, h5, h6 {
     box-shadow: none;
 }
 
-/* Customsze focus and active states for dropdown */
+/* Customise focus and active states for dropdown */
 .navbar-custom .dropdown-toggle:focus,
 .navbar-custom .dropdown-toggle:active {
     background-color: #B2BFA8; 
@@ -111,6 +111,7 @@ h1, h2, h3, h4, h5, h6 {
     font-family: 'Montserrat Extra Bold', sans-serif;
     border: none;
     padding: 10px 20px;
+    width: 100%;
 }
 
 .btn-custom:hover, .btn-custom:active {
@@ -154,6 +155,59 @@ h1, h2, h3, h4, h5, h6 {
 
 .btn-rate-custom:hover {
     background-color: #CDC2A9;
+}
+
+/* Dropdown styles */
+
+select.form-select {
+    background-color: #FDF4EF; 
+    border: 1px solid #CEA64A; 
+    color: #333333; 
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    font-size: 1rem;
+    appearance: none;
+}
+
+select.form-select:focus {
+    outline: none;
+    box-shadow: 0 0 0 0.2rem rgba(193, 161, 106, 0.5);
+    border-color: #CEA64A;
+    background-color: #F9EAD8; /* Slight background change on focus */
+}
+
+/* Ensuring dropdown list item hover and active match */
+select.form-select option {
+    background-color: #FDF4EF;
+    color: #333333;
+}
+
+/* Remove default arrow and replace with custom */
+select.form-select::-ms-expand {
+    display: none; 
+}
+
+select.form-select::after {
+    content: "▼"; 
+    padding-left: 1rem;
+    color: #3b3b3b;
+}
+
+/* Hover effect update */
+select.form-select:hover {
+    background-color: #FDF4EF;
+}
+
+button.btn-custom {
+    background-color: #d4b89d; 
+    color: white; 
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+}
+
+button.btn-custom:hover {
+    background-color: #b69376; 
 }
 
 /* Text Styles */
