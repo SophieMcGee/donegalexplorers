@@ -67,6 +67,12 @@ h1, h2, h3, h4, h5, h6 {
     border-color: #B08A41;
 }
 
+.btn-custom:hover, .btn-custom:focus {
+    background-color: #B08A41;/
+    outline: none;
+    box-shadow: none;
+}
+
 /* Remove blue flash (outline) on focus and active states for dropdowns */
 .navbar-custom .dropdown-toggle:focus,
 .navbar-custom .dropdown-toggle:active {
