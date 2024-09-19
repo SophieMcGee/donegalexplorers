@@ -52,10 +52,11 @@
                             <!-- Image Upload -->
                             <div>
                                 <label for="{{ form.image.id_for_label }}">Image:</label>
-                                {{ form.image }}
+                                <input type="file" name="image" id="{{ form.image.id_for_label }}">
                                 {% if event.image %}
-                                    <p>Currently:</p>
-                                    <img src="{{ event.image.url }}" alt="{{ event.title }}" width="100" class="img-thumbnail">
+                                    <div class="mt-3">
+                                        <img src="{{ event.image.url }}" alt="{{ event.title }}" width="100" class="img-thumbnail">
+                                    </div>
                                 {% endif %}
                             </div>
 
