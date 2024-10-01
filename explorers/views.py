@@ -10,6 +10,7 @@ from django.contrib import messages
 from .models import Event, Calendar, Rating, Comment
 from .forms import EventForm, CommentForm
 from django.utils import timezone
+from allauth.account.models import EmailConfirmation, EmailConfirmationHMAC
 
 
 # View for homepage
@@ -246,11 +247,19 @@ def signup_closed(request):
 
 class CustomConfirmEmailView(ConfirmEmailView):
     def get(self, request, *args, **kwargs):
-        response = super().get(request, *args, **kwargs)
-        if self.object.email_address.verified:
+        confirmation_key = kwargs['key']
+        try:
+            confirmation = EmailConfirmationHMAC.from_key(confirmation_key)
+        except EmailConfirmation.DoesNotExist:
+            confirmation = EmailConfirmation.objects.get(key=confirmation_key)
+
+        if confirmation:
+            confirmation.confirm(request)  # This will confirm the email
             messages.success(request, 'Your email address has been successfully confirmed!')
-            return redirect('browse_events')
-        return response
+            return redirect('browse_events')  # Redirect after successful confirmation
+        else:
+            messages.error(request, 'The confirmation link is invalid or has expired.')
+            return redirect('account_login')
 
 # View for editing a comment
 class CommentUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
