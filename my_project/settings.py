@@ -78,11 +78,11 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'my_project.urls'
 
 MESSAGE_TAGS = {
-    message_constants.DEBUG: 'debug',
-    message_constants.INFO: 'info',
-    message_constants.SUCCESS: 'success',
-    message_constants.WARNING: 'warning',
-    message_constants.ERROR: 'danger',
+    message_constants.DEBUG: 'alert-secondary',
+    message_constants.INFO: 'alert-info',
+    message_constants.SUCCESS: 'alert-success',
+    message_constants.WARNING: 'alert-warning',
+    message_constants.ERROR: 'alert-danger',
 }
 
 AUTHENTICATION_BACKENDS = (
