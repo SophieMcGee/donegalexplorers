@@ -25,25 +25,25 @@
     <section class="features-section container mt-5">
         <div class="row">
             <div class="col-md-4 text-center">
-                <div class="unique-feature">
+                <a href="{% url 'browse_events' %}" class="unique-feature">
                     <img src="{% static 'css/images/browse-icon.webp' %}" alt="Browse Icon" class="img-fluid">
                     <h3>Browse</h3>
                     <p>Explore a curated list of local events and activities perfect for the whole family.</p>
-                </div>
+                </a>
             </div>
             <div class="col-md-4 text-center">
-                <div class="unique-feature">
+                <a href="{% url 'add_event' %}" class="unique-feature">
                     <img src="{% static 'css/images/add-save-icon.webp' %}" alt="Add or Save Icon" class="img-fluid">
-                    <h3>Add or Save</h3>
-                    <p>Easily add your own events or save exciting ones to your personal calendar with just a click.</p>
-                </div>
+                    <h3>Add Event</h3>
+                    <p>Easily add your own events to the community with just a click.</p>
+                </a>
             </div>
             <div class="col-md-4 text-center">
-                <div class="unique-feature">
-                    <img src="{% static 'css/images/connect-icon.webp' %}" alt="Connect Icon" class="img-fluid">
-                    <h3>Connect</h3>
-                    <p>Comment on event listings, share your experiences, and connect with other families in the Donegal community.</p>
-                </div>
+                <a href="{% url 'my_calendar' %}" class="unique-feature">
+                    <img src="{% static 'css/images/connect-icon.webp' %}" alt="Calendar Icon" class="img-fluid">
+                    <h3>Calendar</h3>
+                    <p>View and manage all your saved events in one convenient calendar view.</p>
+                </a>
             </div>
         </div>
     </section>
