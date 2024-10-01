@@ -7,20 +7,22 @@
     <br>
 
     <!-- Search bar and sorting -->
-    <form method="GET" class="mb-4">
+    <form method="GET" class="mb-4" aria-label="Search and sort your events">
         <div class="row">
             <!-- Search bar -->
             <div class="col-md-8">
-                <input type="text" name="search" class="form-control" placeholder="Search events..." value="{{ request.GET.search }}">
+                <label for="search-events" class="visually-hidden">Search events</label>
+                <input type="text" id="search-events" name="search" class="form-control" placeholder="Search events..." value="{{ request.GET.search }}" aria-label="Search for events">
             </div>
             <!-- Sort dropdown -->
             <div class="col-md-4">
-                <select name="sort_by" class="form-select">
+                <label for="sort-by" class="visually-hidden">Sort events by</label>
+                <select id="sort-by" name="sort_by" class="form-select" aria-label="Sort events">
                     <option value="start_date" {% if request.GET.sort_by == 'start_date' %}selected{% endif %}>Sort by Start Date</option>
                     <option value="location" {% if request.GET.sort_by == 'location' %}selected{% endif %}>Sort by Location</option>
                     <option value="title" {% if request.GET.sort_by == 'title' %}selected{% endif %}>Sort by Title</option>
                 </select>
-                <button type="submit" class="btn btn-custom mt-2">Apply</button>
+                <button type="submit" class="btn btn-custom mt-2" aria-label="Apply sort and search filters">Apply</button>
             </div>
         </div>
     </form>
@@ -31,9 +33,9 @@
                 <div class="col-md-4 mb-4">
                     <div class="card h-100 shadow-sm d-flex flex-column">
                         {% if event.image %}
-                            <img src="{{ event.image.url }}" class="card-img-top" alt="{{ event.title }}">
+                            <img src="{{ event.image.url }}" class="card-img-top" alt="Image of {{ event.title }}">
                         {% else %}
-                            <img src="{% static 'css/images/placeholder-image.jpg' %}" class="card-img-top" alt="{{ event.title }}">
+                            <img src="{% static 'css/images/placeholder-image.jpg' %}" class="card-img-top" alt="Placeholder image for {{ event.title }}">
                         {% endif %}
                         <div class="card-body d-flex flex-column">
                             <h5 class="card-title">{{ event.title }}</h5>

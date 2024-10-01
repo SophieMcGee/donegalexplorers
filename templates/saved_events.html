@@ -5,10 +5,11 @@
 <div class="container">
     <h2 class="text-center mb-4">Your Saved Events</h2>
 
-    <!-- Filter by month form -->
-    <form method="GET" class="row mb-4">
+    <!-- Filter by month form with accessible form elements -->
+    <form method="GET" class="row mb-4" aria-label="Filter events by month">
         <div class="col-md-10">
-            <select name="month" class="form-select">
+            <label for="month-select" class="visually-hidden">Select Month</label>
+            <select name="month" id="month-select" class="form-select" aria-label="Select a month to filter events">
                 {% for month in months %}
                     {% with month|date:"m-Y" as month_str %}
                         <option value="{{ month_str }}" {% if month_str == selected_month %}selected{% endif %}>
@@ -19,7 +20,7 @@
             </select>
         </div>
         <div class="col-md-2">
-            <button type="submit" class="btn btn-custom w-100">Apply</button>
+            <button type="submit" class="btn btn-custom w-100" aria-label="Apply filter for selected month">Apply</button>
         </div>
     </form>
 
@@ -33,7 +34,7 @@
                     {% if entry.event.image %}
                         <img src="{{ entry.event.image.url }}" class="card-img-top" alt="{{ entry.event.title }}" style="max-height: 200px; object-fit: cover;">
                     {% else %}
-                        <img src="{% static 'css/images/placeholder-image.jpg' %}" class="card-img-top" alt="Event Image Placeholder">
+                        <img src="{% static 'css/images/placeholder-image.jpg' %}" class="card-img-top" alt="Placeholder for {{ entry.event.title }}">
                     {% endif %}
                     
                     <div class="card-body d-flex flex-column justify-content-between">
@@ -43,7 +44,7 @@
                             <strong>Saved on:</strong> {{ entry.saved_on|date:"M d, Y" }}
                         </p>
                         <div class="mt-auto">
-                            <a href="{% url 'event_detail' entry.event.slug %}" class="btn btn-custom btn-sm mt-3">View Event</a>
+                            <a href="{% url 'event_detail' entry.event.slug %}" class="btn btn-custom btn-sm mt-3" aria-label="View event details for {{ entry.event.title }}">View Event</a>
                         </div>
                     </div>
                 </div>

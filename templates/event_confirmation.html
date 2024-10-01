@@ -3,11 +3,11 @@
 {% block content %}
 <div class="confirmation-container mt-5">
     <div class="card shadow-sm p-4 confirmation-message">
-        <h1 class="mb-4">Event Submitted Successfully!</h1>
-        <p class="lead">Your event has been added. You can now view or manage your event.</p>
+        <h1 class="mb-4" role="heading" aria-level="1">Event Submitted Successfully!</h1>
+        <p class="lead" role="status">Your event has been added. You can now view or manage your event.</p>
 
         <!-- Link to view the event -->
-        <a href="{% url 'my_events' %}" class="btn btn-custom btn-lg mt-3" aria-label="Go to My Events">Go to My Events</a>
+        <a href="{% url 'my_events' %}" class="btn btn-custom btn-lg mt-3" aria-label="Go to My Events to view or manage your events">Go to My Events</a>
     </div>
 </div>
 {% endblock %}

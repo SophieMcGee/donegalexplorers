@@ -1,38 +1,33 @@
 {% extends "base_layout.html" %}
 
 {% block content %}
-<h1>Events</h1>
-<ul>
-    {% for event in object_list %}
-        <li>
-            <h2><a href="{% url 'view_event' event.id %}">{{ event.title }}</a></h2>
-            <p>{{ event.description }}</p>
-            <p>From: {{ event.start_date|date:"l, F jS" }} at {{ event.start_time|time:"g:i A" }}</p>
-            <p>To: {{ event.end_date|date:"l, F jS" }} at {{ event.end_time|time:"g:i A" }}</p>
-            <p>Location: {{ event.location }}</p>
-            <p>Created on: {{ event.created_on|date:"l, F jS, Y" }}</p>
-        </li>
-    {% empty %}
-        <li>No events available.</li>
-    {% endfor %}
-</ul>
+<div class="container mt-4">
+    <h1 class="mb-4">Events</h1>
 
-<!-- Pagination controls -->
-<div class="pagination">
-    <span class="step-links">
-        {% if page_obj.has_previous %}
-            <a href="?page=1">&laquo; first</a>
-            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
-        {% endif %}
-
-        <span class="current">
-            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-        </span>
-
-        {% if page_obj.has_next %}
-            <a href="?page={{ page_obj.next_page_number }}">next</a>
-            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
-        {% endif %}
-    </span>
+    <!-- Event List -->
+    <ul>
+        {% for event in object_list %}
+            <li class="mb-4">
+                <h2>
+                    <a href="{% url 'view_event' event.id %}" aria-label="View details of event {{ event.title }}">{{ event.title }}</a>
+                </h2>
+                <p>{{ event.description }}</p>
+                <p>
+                    <strong>From:</strong> {{ event.start_date|date:"l, F jS" }} at {{ event.start_time|time:"g:i A" }}
+                </p>
+                <p>
+                    <strong>To:</strong> {{ event.end_date|date:"l, F jS" }} at {{ event.end_time|time:"g:i A" }}
+                </p>
+                <p>
+                    <strong>Location:</strong> {{ event.location }}
+                </p>
+                <p>
+                    <strong>Created on:</strong> {{ event.created_on|date:"l, F jS, Y" }}
+                </p>
+            </li>
+        {% empty %}
+            <li>No events available.</li>
+        {% endfor %}
+    </ul>
 </div>
 {% endblock content %}

@@ -3,8 +3,6 @@
 
 {% block content %}
 <div class="container-custom col-md-8 mx-auto mt-4">
-
-
     <!-- Card for Event Rating -->
     <div class="card card-custom shadow-sm">
         <div class="card-body">
@@ -13,27 +11,37 @@
             {% if not existing_rating %}
                 <p class="text-center">Please rate this event:</p>
                 
-                <form method="post" class="text-center">
+                <!-- Rating form with accessible radio buttons -->
+                <form method="post" class="text-center" aria-label="Rate the event">
                     {% csrf_token %}
-                    <div class="rating-options">
-                        <label><input type="radio" name="rating" value="1"> 1</label>
-                        <label><input type="radio" name="rating" value="2"> 2</label>
-                        <label><input type="radio" name="rating" value="3"> 3</label>
-                        <label><input type="radio" name="rating" value="4"> 4</label>
-                        <label><input type="radio" name="rating" value="5"> 5</label>
+                    <div class="rating-options" role="radiogroup" aria-label="Rating options from 1 to 5">
+                        <label>
+                            <input type="radio" name="rating" value="1" aria-label="Rate 1"> 1
+                        </label>
+                        <label>
+                            <input type="radio" name="rating" value="2" aria-label="Rate 2"> 2
+                        </label>
+                        <label>
+                            <input type="radio" name="rating" value="3" aria-label="Rate 3"> 3
+                        </label>
+                        <label>
+                            <input type="radio" name="rating" value="4" aria-label="Rate 4"> 4
+                        </label>
+                        <label>
+                            <input type="radio" name="rating" value="5" aria-label="Rate 5"> 5
+                        </label>
                     </div>
                     <div class="text-center mt-4">
-                        <button type="submit" class="btn btn-custom">Submit Rating</button>
+                        <button type="submit" class="btn btn-custom" aria-label="Submit your rating">Submit Rating</button>
                     </div>
                 </form>
             {% else %}
                 <p class="text-center text-muted">You have already rated this event.</p>
             {% endif %}
 
-            <a href="{% url 'event_detail' event.slug %}" class="btn btn-secondary mt-3 d-inline-block">Back to Event</a>
+            <a href="{% url 'event_detail' event.slug %}" class="btn btn-secondary mt-3 d-inline-block" aria-label="Go back to event details">Back to Event</a>
         </div>
     </div>
-
 </div>
 {% endblock content %}
 
