@@ -77,7 +77,19 @@
             <div class="card-body">
                 <h2 class="card-title">Comments</h2>
                 {% for comment in comments %}
-                    <p><strong>{{ comment.user.username }}</strong>: {{ comment.content }}</p>
+                    <div class="comment mb-3">
+                        <p><strong>{{ comment.user.username }}</strong>: {{ comment.content }}</p>
+
+                        <!-- Edit/Delete buttons for the author or superuser -->
+                        {% if user.is_authenticated %}
+                            {% if comment.user == user or user.is_superuser %}
+                                <div class="mt-2">
+                                    <a href="{% url 'edit_comment' comment.pk %}" class="btn btn-custom btn-sm" aria-label="Edit your comment">Edit</a>
+                                    <a href="{% url 'delete_comment' comment.pk %}" class="btn btn-delete-custom btn-sm" aria-label="Delete your comment">Delete</a>
+                                </div>
+                            {% endif %}
+                        {% endif %}
+                    </div>
                 {% empty %}
                     <p>No comments yet. Be the first to comment!</p>
                 {% endfor %}
@@ -103,6 +115,5 @@
             </div>
         </div>
     </div>
-
 </div>
 {% endblock content %}

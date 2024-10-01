@@ -250,3 +250,28 @@ class CustomConfirmEmailView(ConfirmEmailView):
             messages.success(request, 'Your email address has been successfully confirmed!')
             return redirect('browse_events')
         return response
+
+# View for editing a comment
+class CommentUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model = Comment
+    fields = ['content']
+    template_name = 'edit_comment.html'
+
+    def get_success_url(self):
+        return self.object.event.get_absolute_url()
+
+    def test_func(self):
+        comment = self.get_object()
+        return self.request.user == comment.user or self.request.user.is_superuser
+
+# View for deleting a comment
+class CommentDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = Comment
+    template_name = 'delete_comment.html'
+
+    def get_success_url(self):
+        return self.object.event.get_absolute_url()
+
+    def test_func(self):
+        comment = self.get_object()
+        return self.request.user == comment.user or self.request.user.is_superuser
