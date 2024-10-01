@@ -2,7 +2,7 @@ from django.urls import path, include
 from .views import (
     Home, EventCreateView, EventUpdateView, SavedEventsView, EventList, EventDetail,
     save_event_to_calendar, rate_event, BrowseEventsView, EventDeleteView, MyEventsView, 
-    remove_event_from_calendar, signup_closed, CustomConfirmEmailView, CommentUpdateView, CommentDeleteView
+    remove_event_from_calendar, signup_closed, CustomConfirmEmailView, CommentUpdateView, CommentDeleteView, ManageEmailView
 )
 from django.conf import settings
 from django.shortcuts import redirect
@@ -34,4 +34,5 @@ urlpatterns = [
     path('accounts/confirm-email/<str:key>/', CustomConfirmEmailView.as_view(), name='account_confirm_email'),
     path('comment/<int:pk>/edit/', CommentUpdateView.as_view(), name='edit_comment'),
     path('comment/<int:pk>/delete/', CommentDeleteView.as_view(), name='delete_comment'),
+    path('manage-email/', ManageEmailView.as_view(), name='manage_email'),
 ]
