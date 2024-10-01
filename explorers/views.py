@@ -278,15 +278,6 @@ class ManageEmailView(LoginRequiredMixin, TemplateView):
         return context
 
 # View to display notifications on user dashboard
-class DashboardView(LoginRequiredMixin, View):
-    def get(self, request):
-        notifications = Notification.objects.filter(user=request.user, is_read=False)
-        return render(request, 'account/dashboard.html', {'notifications': notifications})
-
-def user_profile(request):
-    
-    notifications = Notification.objects.filter(user=request.user, read=False)  # Only unread notifications
-    return render(request, 'profile.html', {'notifications': notifications})
 
 @login_required
 def notifications_view(request):
