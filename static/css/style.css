@@ -580,6 +580,10 @@ footer.footer-custom {
     align-self: center;
 }
 
+.card-body {
+    padding: 20px;
+}
+
 .unique-feature h3 {
     font-family: 'Montserrat Extra Bold', sans-serif;
     font-size: 1.6rem;

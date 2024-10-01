@@ -15,7 +15,11 @@ from django.utils import timezone
 
 class Home(View):
     def get(self, request):
-        return render(request, 'index.html')
+        upcoming_events = Event.objects.filter(
+            status='published', start_date__gte=timezone.now()
+        ).order_by('start_date')[:3]  # Get next 3 upcoming events
+        
+        return render(request, 'index.html', {'upcoming_events': upcoming_events})
 
 # View to list events with filters (homepage)
 class EventList(generic.ListView):

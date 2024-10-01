@@ -47,5 +47,37 @@
             </div>
         </div>
     </section>
+    <!-- Upcoming Events Section -->
+    <section class="upcoming-events-section container mt-5">
+        <h2 class="text-center mb-4">Upcoming Events</h2>
+        <div class="row">
+            {% if upcoming_events %}
+                {% for event in upcoming_events %}
+                <div class="col-md-4 text-center">
+                    <div class="unique-feature">
+                        <a href="{% url 'event_detail' event.slug %}">
+                            {% if event.image %}
+                                <img src="{{ event.image.url }}" alt="{{ event.title }}" class="img-fluid" style="max-height: 160px; object-fit: cover;">
+                            {% else %}
+                                <img src="{% static 'css/images/placeholder-image.jpg' %}" alt="{{ event.title }}" class="img-fluid" style="max-height: 160px; object-fit: cover;">
+                            {% endif %}
+                        </a>
+                        <div class="card-body">
+                            <h3>{{ event.title }}</h3>
+                            <p class="card-text">
+                                <strong>Date:</strong> {{ event.start_date|date:"M d, Y" }}<br>
+                                <strong>Location:</strong> {{ event.location }}
+                            </p>
+                            <a href="{% url 'event_detail' event.slug %}" class="btn btn-custom btn-sm mt-3">View Event</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <p class="text-center">No upcoming events at this time. Check back later!</p>
+            {% endif %}
+        </div>
+    </section>
+    <br>
 </article>
 {% endblock content %}
