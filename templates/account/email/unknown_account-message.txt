@@ -1,0 +1,12 @@
+{% extends "account/email/base_message.txt" %}
+{% load i18n %}
+{% block content %}
+{% autoescape off %}
+{% blocktrans %}You (or someone else) requested a password reset for an email address that doesn't match our records. We don't have a user account registered with the email: {{ email }}. {% endblocktrans %}
+
+{% blocktrans %}If you’d like to create an account with Donegal Explorers, click the link below:{% endblocktrans %}
+{{ signup_url }}
+
+{% blocktrans %}If this request wasn't made by you, you can safely ignore this email.{% endblocktrans %}
+{% endautoescape %}
+{% endblock %}

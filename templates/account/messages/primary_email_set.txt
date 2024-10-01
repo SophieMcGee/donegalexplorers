@@ -1,0 +1,2 @@
+{% load i18n %}
+{% blocktrans %}Your main email address has been updated successfully. You will receive future notifications on {{email}}.{% endblocktrans %}

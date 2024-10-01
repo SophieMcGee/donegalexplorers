@@ -246,20 +246,17 @@ def signup_closed(request):
 # View to display email confirmation
 
 class CustomConfirmEmailView(ConfirmEmailView):
-    def get(self, request, *args, **kwargs):
-        confirmation_key = kwargs['key']
-        try:
-            confirmation = EmailConfirmationHMAC.from_key(confirmation_key)
-        except EmailConfirmation.DoesNotExist:
-            confirmation = EmailConfirmation.objects.get(key=confirmation_key)
-
+    def post(self, request, *args, **kwargs):
+        key = kwargs['key']
+        confirmation = EmailConfirmationHMAC.from_key(key)
+        
         if confirmation:
-            confirmation.confirm(request)  # This will confirm the email
+            confirmation.confirm(request)
             messages.success(request, 'Your email address has been successfully confirmed!')
-            return redirect('browse_events')  # Redirect after successful confirmation
-        else:
-            messages.error(request, 'The confirmation link is invalid or has expired.')
-            return redirect('account_login')
+            return redirect('home')  # Redirect to the homepage
+        
+        messages.error(request, 'The confirmation link was invalid or expired.')
+        return redirect('account_email_verification_sent')
 
 # View for editing a comment
 class CommentUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):

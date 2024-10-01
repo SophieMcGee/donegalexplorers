@@ -1,0 +1,2 @@
+{% load i18n %}
+{% blocktrans %}You cannot remove your main e-mail address ({{email}}). Please set another email as primary before removing this one.{% endblocktrans %}

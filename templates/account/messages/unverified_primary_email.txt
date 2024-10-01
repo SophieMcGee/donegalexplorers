@@ -1,0 +1,2 @@
+{% load i18n %}
+{% blocktrans %}You must verify your primary email address ({{email}}) to continue using all the features of Donegal Explorers.{% endblocktrans %}
