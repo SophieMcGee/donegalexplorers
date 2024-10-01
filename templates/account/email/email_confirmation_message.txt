@@ -1,0 +1,13 @@
+{% extends "account/email/base_message.txt" %}
+{% load account %}
+{% load i18n %}
+
+{% block content %}
+{% autoescape off %}
+{% user_display user as user_display %}
+{% blocktrans with site_name="Donegal Explorers" site_domain="www.donegalexplorers.com" %}
+You are receiving this email because {{ user_display }} has used your email address to create an account on {{ site_name }}.
+To verify your email address and complete your registration, please click the following link: {{ activate_url }}.
+{% endblocktrans %}
+{% endautoescape %}
+{% endblock %}

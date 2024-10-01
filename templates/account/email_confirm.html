@@ -4,7 +4,7 @@
 <div class="container mt-5" role="alert" aria-live="polite">
     <div class="card shadow-sm p-4">
         <!-- Main heading for the confirm email address page -->
-        <h1 class="mb-4" id="confirm-email-heading">Confirm Email Address</h1>
+        <h1 class="mb-4" id="confirm-email-heading">Confirm Your Email Address</h1>
         
         <!-- Instructions for confirming the email address -->
         <p class="lead">
@@ -12,9 +12,19 @@
         </p>
 
         <!-- Confirmation button with aria-label for accessibility -->
-        <a href="{{ activate_url }}" class="btn btn-custom btn-lg mt-3" aria-label="Confirm your email address and complete registration">
+        <a href="{{ activate_url }}" class="btn btn-custom btn-lg mt-3" 
+           aria-label="Confirm your email address and complete registration">
             Confirm Email
         </a>
+
+        <!-- Display success message after confirmation -->
+        {% if messages %}
+            <div class="alert alert-success mt-4" role="alert" aria-live="assertive">
+                {% for message in messages %}
+                    {{ message }}
+                {% endfor %}
+            </div>
+        {% endif %}
     </div>
 </div>
 {% endblock %}

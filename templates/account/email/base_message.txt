@@ -1,0 +1,16 @@
+{% load i18n %}
+{% autoescape off %}
+{% blocktrans with site_name="Donegal Explorers" %}
+Welcome to {{ site_name }}! We’re excited to have you as part of our community of adventure seekers in Donegal.
+{% endblocktrans %}
+
+{% block content %}
+    {% blocktrans %}Thank you for joining us! Explore local events, activities, and family-friendly fun in our beautiful region. 
+    Don't hesitate to check out our upcoming events and make the most of your experience!{% endblocktrans %}
+{% endblock %}
+
+{% blocktrans with site_name="Donegal Explorers" site_domain="www.donegalexplorers.com" %}
+If you have any questions or need assistance, feel free to reach out to us. Happy exploring!
+Visit us at {{ site_domain }} for more information.
+{% endblocktrans %}
+{% endautoescape %}

@@ -1,0 +1,9 @@
+{% include "account/email/email_confirmation_message.txt" %}
+
+{% block content %}
+{% autoescape off %}
+{% blocktrans %}
+This confirmation email was sent to you as part of your sign-up process. Please ensure that you follow the link provided to verify your email address and complete your registration.
+{% endblocktrans %}
+{% endautoescape %}
+{% endblock %}

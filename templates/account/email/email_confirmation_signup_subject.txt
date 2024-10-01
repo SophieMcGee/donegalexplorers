@@ -1,0 +1,1 @@
+{% blocktrans with site_name=current_site.name %}Confirm your email for {{ site_name }} sign-up{% endblocktrans %}

@@ -1,0 +1,9 @@
+{% extends "account/email/base_message.txt" %}
+{% load i18n %}
+{% block content %}{% autoescape off %}
+{% blocktrans with site_name=current_site.name site_domain=current_site.domain %}You're receiving this email because you (or someone else) requested a verification of this email address for an account at {{ site_name }}. If you did not request this, please ignore this email.
+
+To verify your email address, click the link below:
+{{ activate_url }}
+{% endblocktrans %}
+{% endautoescape %}{% endblock %}
