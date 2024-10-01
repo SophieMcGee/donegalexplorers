@@ -2,7 +2,7 @@ from django.urls import path, include
 from .views import (
     Home, EventCreateView, EventUpdateView, SavedEventsView, EventList, EventDetail,
     save_event_to_calendar, rate_event, BrowseEventsView, EventDeleteView, MyEventsView, 
-    remove_event_from_calendar, signup_closed, CustomConfirmEmailView, CommentUpdateView, CommentDeleteView, ManageEmailView
+    remove_event_from_calendar, signup_closed, CommentUpdateView, CommentDeleteView, ManageEmailView, mark_notification_as_read, notifications_view
 )
 from django.conf import settings
 from django.shortcuts import redirect
@@ -31,8 +31,9 @@ urlpatterns = [
     path('my-events/', MyEventsView.as_view(), name='my_events'),
     path('remove-event/<int:event_id>/', remove_event_from_calendar, name='remove_event_from_calendar'),
     path('signup-closed/', signup_closed, name='signup_closed'),
-    path('accounts/confirm-email/<str:key>/', CustomConfirmEmailView.as_view(), name='account_confirm_email'),
     path('comment/<int:pk>/edit/', CommentUpdateView.as_view(), name='edit_comment'),
     path('comment/<int:pk>/delete/', CommentDeleteView.as_view(), name='delete_comment'),
     path('manage-email/', ManageEmailView.as_view(), name='manage_email'),
+    path('notifications/', notifications_view, name='notifications'),
+    path('notifications/mark-read/<int:notification_id>/', mark_notification_as_read, name='mark_notification_as_read'),
 ]

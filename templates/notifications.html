@@ -1,0 +1,31 @@
+{% extends "base_layout.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="card shadow-sm p-4">
+        <h1 class="mb-4" id="notifications-heading">Notifications</h1>
+        <ul class="list-group">
+            {% for notification in notifications %}
+                <li class="list-group-item d-flex justify-content-between align-items-center" aria-live="polite">
+                    <!-- Notification message -->
+                    <span>{{ notification.message }}</span>
+
+                    <!-- Read/Unread status with accessible link -->
+                    {% if not notification.is_read %}
+                        <a href="{% url 'mark_notification_as_read' notification.id %}" class="btn btn-sm btn-outline-custom" aria-label="Mark notification as read">
+                            Mark as read
+                        </a>
+                    {% else %}
+                        <span class="badge bg-success" aria-label="Notification read">Read</span>
+                    {% endif %}
+                </li>
+            {% empty %}
+                <!-- No notifications message -->
+                <li class="list-group-item text-center" aria-live="polite">
+                    No notifications
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock %}

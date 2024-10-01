@@ -5,12 +5,11 @@ from django.contrib.auth.decorators import login_required
 from django.views import View, generic
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from allauth.account.views import LoginView, ConfirmEmailView
+from allauth.account.views import LoginView
 from django.contrib import messages
-from .models import Event, Calendar, Rating, Comment
+from .models import Event, Calendar, Rating, Comment, Notification
 from .forms import EventForm, CommentForm
 from django.utils import timezone
-from allauth.account.models import EmailConfirmation, EmailConfirmationHMAC
 
 
 # View for homepage
@@ -243,21 +242,6 @@ class CustomLoginView(LoginView):
 def signup_closed(request):
     return render(request, 'account/signup_closed.html')
 
-# View to display email confirmation
-
-class CustomConfirmEmailView(ConfirmEmailView):
-    def post(self, request, *args, **kwargs):
-        key = kwargs['key']
-        confirmation = EmailConfirmationHMAC.from_key(key)
-        
-        if confirmation:
-            confirmation.confirm(request)
-            messages.success(request, 'Your email address has been successfully confirmed!')
-            return redirect('home')  # Redirect to the homepage
-        
-        messages.error(request, 'The confirmation link was invalid or expired.')
-        return redirect('account_email_verification_sent')
-
 # View for editing a comment
 class CommentUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Comment
@@ -292,3 +276,26 @@ class ManageEmailView(LoginRequiredMixin, TemplateView):
         context = super().get_context_data(**kwargs)
         context['can_add_email'] = True 
         return context
+
+# View to display notifications on user dashboard
+class DashboardView(LoginRequiredMixin, View):
+    def get(self, request):
+        notifications = Notification.objects.filter(user=request.user, is_read=False)
+        return render(request, 'account/dashboard.html', {'notifications': notifications})
+
+def user_profile(request):
+    
+    notifications = Notification.objects.filter(user=request.user, read=False)  # Only unread notifications
+    return render(request, 'profile.html', {'notifications': notifications})
+
+@login_required
+def notifications_view(request):
+    notifications = Notification.objects.filter(user=request.user).order_by('-created_at')
+    return render(request, 'notifications.html', {'notifications': notifications})
+
+@login_required
+def mark_notification_as_read(request, notification_id):
+    notification = get_object_or_404(Notification, id=notification_id, user=request.user)
+    notification.is_read = True
+    notification.save()
+    return redirect('notifications')

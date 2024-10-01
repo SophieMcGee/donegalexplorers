@@ -1,5 +1,5 @@
 from django import forms
-from .models import Event, Comment
+from .models import Event, Comment, UserProfile
 from django.core.exceptions import ValidationError
 
 
@@ -64,3 +64,8 @@ class CommentForm(forms.ModelForm):
         widgets = {
             'content': forms.Textarea(attrs={'class': 'form-control', 'rows': 3, 'placeholder': 'Enter your comment here...'}),
         }
+
+class NotificationSettingsForm(forms.ModelForm):
+    class Meta:
+        model = UserProfile
+        fields = ['receive_comment_notifications']
