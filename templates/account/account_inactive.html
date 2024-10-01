@@ -6,15 +6,23 @@
 {% endblock %}
 
 {% block content %}
-<div class="container mt-5">
+<div class="container mt-5" role="alert" aria-live="polite">
     <div class="card shadow-sm p-4 signup-content-box">
-        <h1 class="my-4">
+        <!-- Main heading for the account inactive page -->
+        <h1 class="my-4" id="account-inactive-heading">
             {% trans "Account Inactive" %}
         </h1>
+        
+        <!-- Informative paragraph to notify the user their account is inactive -->
         <p class="lead">Sorry, but your account is currently inactive.</p>
+        
+        <!-- Instructions for next steps -->
         <p>Please check your email for activation instructions or contact support through our social media links if you think this is an error.</p>
+        
         <!-- Button for navigating back to login -->
-        <a href="{% url 'account_login' %}" class="btn btn-custom btn-lg mt-3">Go to Login</a>
+        <a href="{% url 'account_login' %}" class="btn btn-custom btn-lg mt-3" aria-label="Go to the login page">
+            Go to Login
+        </a>
     </div>
 </div>
 {% endblock content %}

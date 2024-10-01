@@ -1,38 +1,37 @@
 {% extends "base_layout.html" %}
-{% block content %}
 
-<div class="container">
-    <h1>Delete Comment</h1>
+{% block content %}
+<div class="container" aria-labelledby="delete-comment-heading">
+    <h1 id="delete-comment-heading">Delete Comment</h1>
 
     <div class="col-md-6 mx-auto mt-3">
         <div class="card card-custom shadow-sm">
             <div class="card-body">
                 {% if user.is_authenticated %}
                     {% if comment.user == user or user.is_superuser %}
-                        <h3 class="card-title">Are you sure you want to delete this comment?</h3>
-                        <p class="text-muted">This action cannot be undone.</p>
+                        <h3 class="card-title" aria-live="polite">Are you sure you want to delete this comment?</h3>
+                        <p class="text-muted" aria-live="assertive">This action cannot be undone.</p>
                         <p><strong>Comment:</strong> {{ comment.content }}</p>
 
                         <!-- Delete confirmation form -->
-                        <form method="post" style="margin-top: 1.3em;">
+                        <form method="post" style="margin-top: 1.3em;" aria-label="Delete comment form for {{ comment.user.username }}">
                             {% csrf_token %}
-                            <button type="submit" class="btn btn-delete-custom mt-3">Delete Comment</button>
-                            <a href="{{ comment.event.get_absolute_url }}" class="btn btn-custom mt-3">Cancel</a>
+                            <button type="submit" class="btn btn-delete-custom mt-3" aria-label="Confirm deletion of comment by {{ comment.user.username }}">Delete Comment</button>
+                            <a href="{{ comment.event.get_absolute_url }}" class="btn btn-custom mt-3" aria-label="Cancel deletion and return to event {{ comment.event.title }}">Cancel</a>
                         </form>
 
                     {% else %}
-                        <div class="alert alert-warning mt-4">
+                        <div class="alert alert-warning mt-4" role="alert" aria-live="assertive">
                             You do not have permission to delete this comment.
                         </div>
                     {% endif %}
                 {% else %}
-                    <div class="alert alert-warning mt-4">
-                        You need to <a href="{% url 'account_login' %}">log in</a> to delete your comment.
+                    <div class="alert alert-warning mt-4" role="alert" aria-live="assertive">
+                        You need to <a href="{% url 'account_login' %}" aria-label="Log in to delete your comment">log in</a> to delete your comment.
                     </div>
                 {% endif %}
             </div>
         </div>
     </div>
 </div>
-
 {% endblock content %}

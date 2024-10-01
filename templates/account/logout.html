@@ -1,24 +1,31 @@
 {% extends "account/base.html" %}
 {% load allauth i18n %}
+
 {% block title %}
     {% trans "Sign Out" %}
 {% endblock title %}
+
 {% block content %}
-<div class="container-custom">
+<div class="container-custom" aria-labelledby="sign-out-heading">
     <div class="col-md-6 mx-auto mt-3">
         <div class="card card-custom shadow-sm">
             <div class="card-body">
-                <h1 class="my-4 text-center">
+                <!-- Sign-Out heading with aria-labelledby for accessibility -->
+                <h1 class="my-4 text-center" id="sign-out-heading">
                     {% trans "Sign Out" %}
                 </h1>
-                <p class="mb-4 text-center">
+
+                <!-- Description with aria-describedby for context -->
+                <p class="mb-4 text-center" id="sign-out-instructions">
                     {% trans 'Are you sure you want to sign out?' %}
                 </p>
+
+                <!-- Sign-Out form with aria-label for the button -->
                 {% url 'account_logout' as action_url %}
-                <form method="post" action="{{ action_url }}" class="text-center">
+                <form method="post" action="{{ action_url }}" class="text-center" aria-describedby="sign-out-instructions">
                     {% csrf_token %}
                     {{ redirect_field }}
-                    <button type="submit" class="btn btn-custom">
+                    <button type="submit" class="btn btn-custom" aria-label="Confirm signing out">
                         {% trans 'Sign Out' %}
                     </button>
                 </form>

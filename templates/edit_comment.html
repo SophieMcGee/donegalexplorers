@@ -9,7 +9,7 @@
     <!-- Display success messages -->
     {% if messages %}
         {% for message in messages %}
-            <div class="alert alert-success">
+            <div class="alert alert-success" role="alert" aria-live="polite">
                 {{ message }}
             </div>
         {% endfor %}
@@ -24,22 +24,22 @@
                         <p class="text-muted">Editing as: {{ user.username }}</p>
 
                         <!-- Comment form starts here -->
-                        <form method="post" style="margin-top: 1.3em;">
+                        <form method="post" style="margin-top: 1.3em;" aria-label="Edit your comment form">
                             {% csrf_token %}
                             {{ form.content|as_crispy_field }}
 
                             <!-- Update button -->
-                            <button type="submit" class="btn btn-custom mt-3">Update Comment</button>
+                            <button type="submit" class="btn btn-custom mt-3" aria-label="Update Comment">Update Comment</button>
                         </form>
 
                     {% else %}
-                        <div class="alert alert-warning mt-4">
+                        <div class="alert alert-warning mt-4" role="alert" aria-live="polite">
                             You do not have permission to edit this comment.
                         </div>
                     {% endif %}
                 {% else %}
-                    <div class="alert alert-warning mt-4">
-                        You need to <a href="{% url 'account_login' %}">log in</a> to edit your comment.
+                    <div class="alert alert-warning mt-4" role="alert" aria-live="polite">
+                        You need to <a href="{% url 'account_login' %}" aria-label="Log in to edit your comment">log in</a> to edit your comment.
                     </div>
                 {% endif %}
             </div>

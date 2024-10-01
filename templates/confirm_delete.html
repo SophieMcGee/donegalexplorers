@@ -1,19 +1,19 @@
 {% extends "base_layout.html" %}
 
 {% block content %}
-<div class="container">
+<div class="container" aria-labelledby="confirm-delete-heading">
     <div class="col-md-6 mx-auto mt-3">
         <div class="card card-custom shadow-sm">
             <div class="card-body">
-                <h1 class="card-title text-center">Confirm Delete</h1>
-                <p class="text-center">
+                <h1 class="card-title text-center" id="confirm-delete-heading">Confirm Delete</h1>
+                <p class="text-center" aria-live="polite">
                     Are you sure you want to delete the event: 
                     <strong>{{ object.title }}</strong>?
                 </p>
 
                 <!-- Adding user feedback messages -->
                 {% if messages %}
-                <ul class="messages">
+                <ul class="messages" role="alert">
                     {% for message in messages %}
                     <li class="alert alert-info">{{ message }}</li>
                     {% endfor %}
@@ -22,22 +22,22 @@
                 
                 <!-- Conditional delete functionality based on user roles -->
                 {% if user.is_authenticated and user.is_superuser or object.author == user %}
-                    <p class="text-warning text-center">
+                    <p class="text-warning text-center" aria-live="assertive">
                         Note: Only the event author or an administrator can delete this event.
                     </p>
                     <div class="text-center">
-                        <form method="post">
+                        <form method="post" aria-label="Delete event form for {{ object.title }}">
                             {% csrf_token %}
                             <button type="submit" class="btn btn-delete-custom" aria-label="Confirm deletion of event {{ object.title }}">Confirm Deletion</button>
-                            <a href="{% url 'event_detail' object.slug %}" class="btn btn-outline-custom" aria-label="Cancel deletion and go back to event {{ object.title }}">Cancel</a>
+                            <a href="{% url 'event_detail' object.slug %}" class="btn btn-outline-custom" aria-label="Cancel deletion and return to event {{ object.title }}">Cancel</a>
                         </form>
                     </div>
                 {% else %}
-                    <p class="text-danger text-center">
+                    <p class="text-danger text-center" role="alert" aria-live="assertive">
                         You do not have permission to delete this event.
                     </p>
                     <div class="text-center">
-                        <a href="{% url 'home' %}" class="btn btn-custom" aria-label="Go back home">Go Back Home</a>
+                        <a href="{% url 'home' %}" class="btn btn-custom" aria-label="Return to home page">Go Back Home</a>
                     </div>
                 {% endif %}
             </div>

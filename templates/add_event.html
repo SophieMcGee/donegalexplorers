@@ -2,8 +2,8 @@
 
 {% load crispy_forms_tags %}
 {% block content %}
-<div class="container-custom">
-    <h1 class="mt-4">Add Event</h1>
+<div class="container-custom" aria-labelledby="add-event-heading">
+    <h1 class="mt-4" id="add-event-heading">Add Event</h1>
     <div class="col-md-6 mx-auto mt-3">
         <div class="card-custom">
             <div class="card-body">
@@ -13,13 +13,13 @@
 
                     <!-- Show form errors -->
                     {% if form.non_field_errors %}
-                        <div class="alert alert-danger">
+                        <div class="alert alert-danger" role="alert">
                             {{ form.non_field_errors }}
                         </div>
                     {% endif %}
                     
                     <!-- Event form starts here -->
-                    <form method="post" enctype="multipart/form-data" class="form-custom" style="margin-top: 1.3em;">
+                    <form method="post" enctype="multipart/form-data" class="form-custom" aria-label="Event creation form" style="margin-top: 1.3em;">
                         {% csrf_token %}
                         
                         <!-- Title -->
@@ -51,13 +51,13 @@
 
                         <!-- Submit button -->
                         <div class="text-center">
-                            <button type="submit" class="btn btn-custom mt-3">Submit Event</button>
+                            <button type="submit" class="btn btn-custom mt-3" aria-label="Submit event">Submit Event</button>
                         </div>
                     </form>
                     
                 {% else %}
-                    <div class="alert-custom mt-4">
-                        You need to <a href="{% url 'account_login' %}">log in</a> to add an event.
+                    <div class="alert-custom mt-4" role="alert">
+                        You need to <a href="{% url 'account_login' %}" aria-label="Login to add event">log in</a> to add an event.
                     </div>
                 {% endif %}
             </div>

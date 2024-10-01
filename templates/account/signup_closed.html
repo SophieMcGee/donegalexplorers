@@ -1,11 +1,13 @@
 {% extends "account/base.html" %}
 {% block title %}Signup Closed{% endblock title %}
 {% block content %}
-<div class="container">
+<div class="container" aria-labelledby="signup-closed-heading">
     <div class="col-md-6 mx-auto mt-3">
         <div class="card card-custom shadow-sm">
             <div class="card-body">
-                <h1 class="card-title text-center">Sign Up Closed</h1>
+                <!-- Heading with id for aria-labelledby -->
+                <h1 class="card-title text-center" id="signup-closed-heading">Sign Up Closed</h1>
+                <!-- Message informing the user -->
                 <p class="text-muted text-center">
                     We are not accepting new registrations at this time.
                 </p>

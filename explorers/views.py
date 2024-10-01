@@ -11,6 +11,7 @@ from .models import Event, Calendar, Rating, Comment
 from .forms import EventForm, CommentForm
 from django.utils import timezone
 
+
 # View for homepage
 
 class Home(View):

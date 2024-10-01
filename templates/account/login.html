@@ -5,23 +5,31 @@
 {% block title %}Sign In{% endblock title %}
 
 {% block content %}
-<div class="signup-content-box">
-    <h2 class="text-center">Sign In</h2>
+<div class="signup-content-box" aria-labelledby="sign-in-heading">
+    <!-- Sign-In heading with aria-labelledby for accessibility -->
+    <h2 class="text-center" id="sign-in-heading">Sign In</h2>
     
     <p class="text-center">
-        {% blocktranslate %}If you haven't created an account yet, please <a href="{{ signup_url }}" class="text-link">sign up</a> first.{% endblocktranslate %}
+        {% blocktranslate %}If you haven't created an account yet, please 
+        <a href="{{ signup_url }}" class="text-link" aria-label="Sign up for a new account">sign up</a> first.
+        {% endblocktranslate %}
     </p>
     
-    <form method="post" action="{% url 'account_login' %}" class="form-custom">
+    <!-- Sign-In form with form description -->
+    <form method="post" action="{% url 'account_login' %}" class="form-custom" aria-describedby="sign-in-instructions">
         {% csrf_token %}
         
-        
-    
-        <!-- Display individual field errors -->
+        <!-- Instructions for users on how to sign in -->
+        <p id="sign-in-instructions" class="sr-only">
+            Please fill in your email and password to sign in.
+        </p>
+
+        <!-- Display individual field errors with aria-describedby for form errors -->
         {{ form.as_p }}
     
+        <!-- Sign-In button with aria-label -->
         <div class="text-center">
-            <button type="submit" class="btn btn-custom">Sign In</button>
+            <button type="submit" class="btn btn-custom" aria-label="Submit to sign in">Sign In</button>
         </div>
     </form>
     
@@ -29,10 +37,10 @@
         <hr>
         <div class="text-center">
             {% if PASSKEY_LOGIN_ENABLED %}
-                <button id="passkey_login" class="btn btn-outline-custom">Sign in with a passkey</button>
+                <button id="passkey_login" class="btn btn-outline-custom" aria-label="Sign in using a passkey">Sign in with a passkey</button>
             {% endif %}
             {% if LOGIN_BY_CODE_ENABLED %}
-                <a href="{{ request_login_code_url }}" class="btn btn-outline-custom">Mail me a sign-in code</a>
+                <a href="{{ request_login_code_url }}" class="btn btn-outline-custom" aria-label="Mail me a sign-in code">Mail me a sign-in code</a>
             {% endif %}
         </div>
     {% endif %}

@@ -1,15 +1,20 @@
 {% extends "base_layout.html" %}
 
 {% block content %}
-<div class="container mt-5">
+<div class="container mt-5" role="alert" aria-live="polite">
     <div class="card shadow-sm p-4">
-        <h1 class="mb-4">Confirm Email Address</h1>
+        <!-- Main heading for the confirm email address page -->
+        <h1 class="mb-4" id="confirm-email-heading">Confirm Email Address</h1>
+        
+        <!-- Instructions for confirming the email address -->
         <p class="lead">
             Please confirm your email address by clicking the button below to complete your registration.
         </p>
 
-        <!-- Confirmation button -->
-        <a href="{{ activate_url }}" class="btn btn-custom btn-lg mt-3">Confirm Email</a>
+        <!-- Confirmation button with aria-label for accessibility -->
+        <a href="{{ activate_url }}" class="btn btn-custom btn-lg mt-3" aria-label="Confirm your email address and complete registration">
+            Confirm Email
+        </a>
     </div>
 </div>
 {% endblock %}
