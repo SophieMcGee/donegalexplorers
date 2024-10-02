@@ -69,3 +69,11 @@ class NotificationSettingsForm(forms.ModelForm):
     class Meta:
         model = UserProfile
         fields = ['receive_comment_notifications']
+
+class NotificationPreferencesForm(forms.ModelForm):
+    class Meta:
+        model = UserProfile
+        fields = ['receive_comment_notifications']
+        labels = {
+            'receive_comment_notifications': 'Receive notifications for comments',
+        }

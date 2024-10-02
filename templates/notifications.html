@@ -1,9 +1,10 @@
 {% extends "base_layout.html" %}
-
+{% load crispy_forms_tags %}
 {% block content %}
 <div class="container mt-5">
     <div class="card shadow-sm p-4">
         <h1 class="mb-4" id="notifications-heading">Notifications</h1>
+        
         <ul class="list-group">
             {% for notification in notifications %}
                 <li class="list-group-item d-flex justify-content-between align-items-center" aria-live="polite">
@@ -26,6 +27,20 @@
                 </li>
             {% endfor %}
         </ul>
+
+        <!-- Notification Preferences Form -->
+        <hr class="my-4">
+        <h3 class="mb-3">Notification Preferences</h3>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-check form-switch">
+                <!-- Only show the checkbox input, not the label twice -->
+                <input type="checkbox" class="form-check-input" id="id_receive_comment_notifications" name="receive_comment_notifications" {% if preferences_form.receive_comment_notifications.value %}checked{% endif %}>
+                <label class="form-check-label" for="id_receive_comment_notifications">Receive notifications for comments</label>
+            </div>
+            <!-- Adjust button color -->
+            <button type="submit" class="btn btn-outline-custom mt-3">Update Preferences</button>
+        </form>
     </div>
 </div>
-{% endblock %}
+{% endblock content %}

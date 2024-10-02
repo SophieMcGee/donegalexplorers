@@ -7,8 +7,8 @@ from django.views.generic import ListView, CreateView, UpdateView, DeleteView, T
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from allauth.account.views import LoginView
 from django.contrib import messages
-from .models import Event, Calendar, Rating, Comment, Notification
-from .forms import EventForm, CommentForm
+from .models import Event, Calendar, Rating, Comment, Notification, UserProfile
+from .forms import EventForm, CommentForm, NotificationPreferencesForm
 from django.utils import timezone
 
 
@@ -281,8 +281,25 @@ class ManageEmailView(LoginRequiredMixin, TemplateView):
 
 @login_required
 def notifications_view(request):
+    # Get or create the user's profile
+    user_profile, created = UserProfile.objects.get_or_create(user=request.user)
+
+    # Fetch notifications
     notifications = Notification.objects.filter(user=request.user).order_by('-created_at')
-    return render(request, 'notifications.html', {'notifications': notifications})
+
+    # Handle POST request to update preferences
+    if request.method == 'POST':
+        preferences_form = NotificationPreferencesForm(request.POST, instance=user_profile)
+        if preferences_form.is_valid():
+            preferences_form.save()
+            return redirect('notifications')  # Refresh the page to show the updated preferences
+    else:
+        preferences_form = NotificationPreferencesForm(instance=user_profile)
+
+    return render(request, 'notifications.html', {
+        'notifications': notifications,
+        'preferences_form': preferences_form,
+    })
 
 @login_required
 def mark_notification_as_read(request, notification_id):
