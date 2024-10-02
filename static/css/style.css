@@ -619,6 +619,12 @@ footer.footer-custom {
     margin-left: 10px;
 }
 
+/*Logo in navbar*/
+#navbar-logo {
+    max-height: 150px; 
+    width: auto;   
+}
+
 /* Media query for larger screens */
 @media (min-width: 992px) {
     .hero-section,
@@ -663,5 +669,9 @@ footer.footer-custom {
     .hero-content {
         padding-right: 0;
         margin-bottom: 20px;       
+    }
+
+    #navbar-logo {
+        max-height: 100px;
     }
 }
