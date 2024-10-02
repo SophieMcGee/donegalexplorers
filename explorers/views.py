@@ -10,6 +10,7 @@ from django.contrib import messages
 from .models import Event, Calendar, Rating, Comment, Notification, UserProfile
 from .forms import EventForm, CommentForm, NotificationPreferencesForm
 from django.utils import timezone
+from datetime import datetime
 
 
 # View for homepage
@@ -35,6 +36,7 @@ class EventList(generic.ListView):
 @login_required
 def save_event_to_calendar(request, event_id):
     event = get_object_or_404(Event, event_id=event_id)
+    event.start_date = timezone.make_aware(event.start_date) if timezone.is_naive(event.start_date) else event.start_date
     Calendar.objects.get_or_create(user=request.user, event=event, date=event.start_date)
     return redirect('event_detail', slug=event.slug)
 
@@ -189,6 +191,8 @@ class EventCreateView(CreateView):
 
     def form_valid(self, form):
         form.instance.author = self.request.user  # Assign the logged-in user to the event
+        form.instance.start_date = timezone.make_aware(form.instance.start_date) if timezone.is_naive(form.instance.start_date) else form.instance.start_date
+        form.instance.end_date = timezone.make_aware(form.instance.end_date) if timezone.is_naive(form.instance.end_date) else form.instance.end_date
         return super().form_valid(form)  # Call the original form_valid method
 
 # View to update an event
@@ -200,6 +204,8 @@ class EventUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
     def form_valid(self, form):
         form.instance.user = self.request.user  # Ensure the author is set
+        form.instance.start_date = timezone.make_aware(form.instance.start_date) if timezone.is_naive(form.instance.start_date) else form.instance.start_date
+        form.instance.end_date = timezone.make_aware(form.instance.end_date) if timezone.is_naive(form.instance.end_date) else form.instance.end_date
         messages.success(self.request, "Your event has been updated successfully!")
         return super().form_valid(form)
 
@@ -209,7 +215,7 @@ class EventUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
     def test_func(self):
         event = self.get_object()
-        return self.request.user.is_superuser or event.user == self.request.user
+        return self.request.user.is_superuser or event.author == self.request.user
 
 # View to delete an event
 
@@ -307,3 +313,7 @@ def mark_notification_as_read(request, notification_id):
     notification.is_read = True
     notification.save()
     return redirect('notifications')
+
+# custom 404 view
+def custom_404(request, exception):
+    return render(request, '404.html', status=404)

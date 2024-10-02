@@ -8,6 +8,7 @@ from django.conf import settings
 from django.shortcuts import redirect
 from django.views.generic import TemplateView
 from allauth.account.views import email_verification_sent, confirm_email
+from django.conf.urls import handler404
 
 def signup_redirect(request):
     if not settings.SIGNUP_ENABLED:
@@ -37,3 +38,6 @@ urlpatterns = [
     path('notifications/', notifications_view, name='notifications'),
     path('notifications/mark-read/<int:notification_id>/', mark_notification_as_read, name='mark_notification_as_read'),
 ]
+
+# Custom error handler
+handler404 = 'explorers.views.custom_404'
