@@ -276,7 +276,6 @@ section {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 400px; 
 }
 
 .hero-content h1 {
@@ -644,15 +643,6 @@ footer.footer-custom {
         align-items: center;
         padding-left: 20px;
         padding-right: 20px;
-    }
-
-    .hero-content-box {
-        max-width: 95%;
-        text-align: center;
-    }
-
-    .hero-content h1, .hero-content p {
-        text-align: center;
     }
 }
 
