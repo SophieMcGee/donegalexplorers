@@ -294,7 +294,7 @@ section {
 
 .hero-image {
     flex: 1;
-    background-image: url('/static/css/images/hero-image.webp');
+    background-image: url("/static/css/images/hero-image.0c6bc11d654a.webp");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
