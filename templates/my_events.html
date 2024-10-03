@@ -12,15 +12,15 @@
             <!-- Search bar -->
             <div class="col-md-8">
                 <label for="search-events" class="visually-hidden">Search events</label>
-                <input type="text" id="search-events" name="search" class="form-control" placeholder="Search events..." value="{{ request.GET.search }}" aria-label="Search for events">
+                <input type="text" id="search-events" name="search" class="form-control" placeholder="Search events..." value="{{ search_query }}" aria-label="Search for events">
             </div>
             <!-- Sort dropdown -->
             <div class="col-md-4">
                 <label for="sort-by" class="visually-hidden">Sort events by</label>
                 <select id="sort-by" name="sort_by" class="form-select" aria-label="Sort events">
-                    <option value="start_date" {% if request.GET.sort_by == 'start_date' %}selected{% endif %}>Sort by Start Date</option>
-                    <option value="location" {% if request.GET.sort_by == 'location' %}selected{% endif %}>Sort by Location</option>
-                    <option value="title" {% if request.GET.sort_by == 'title' %}selected{% endif %}>Sort by Title</option>
+                    <option value="start_date" {% if sort_by == 'start_date' %}selected{% endif %}>Sort by Start Date</option>
+                    <option value="location" {% if sort_by == 'location' %}selected{% endif %}>Sort by Location</option>
+                    <option value="title" {% if sort_by == 'title' %}selected{% endif %}>Sort by Title</option>
                 </select>
                 <button type="submit" class="btn btn-custom mt-2" aria-label="Apply sort and search filters">Apply</button>
             </div>

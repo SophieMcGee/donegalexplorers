@@ -239,7 +239,35 @@ class MyEventsView(LoginRequiredMixin, ListView):
     context_object_name = 'events'
 
     def get_queryset(self):
-        return Event.objects.filter(author=self.request.user).order_by('-created_on')
+        # Get search and sorting parameters from the request
+        search_query = self.request.GET.get('search', '')
+        sort_by = self.request.GET.get('sort_by', 'start_date')
+
+        # Filter events created by the logged-in user
+        queryset = Event.objects.filter(author=self.request.user)
+
+        # Apply search filter if a query is provided
+        if search_query:
+            queryset = queryset.filter(
+                title__icontains=search_query
+            ) | queryset.filter(description__icontains=search_query)
+
+        # Apply sorting logic based on the sort_by parameter
+        if sort_by == 'title':
+            queryset = queryset.order_by('title')
+        elif sort_by == 'location':
+            queryset = queryset.order_by('location')
+        else:
+            queryset = queryset.order_by('start_date')  # Default to start date sorting
+
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # Pass search and sorting values back to the template to maintain state
+        context['search_query'] = self.request.GET.get('search', '')
+        context['sort_by'] = self.request.GET.get('sort_by', 'start_date')
+        return context
 
 # View to display message for too many login attempts
 
