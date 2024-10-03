@@ -770,8 +770,6 @@ The project is designed to be accessible to all users by:
 - **ARIA Labels**: Interactive elements, such as buttons, form inputs, and links, use `aria-label` to provide clear descriptions for users relying on screen readers.
 - **Keyboard Navigation**: Interactive components (forms, buttons, and dropdowns) can be navigated using only the keyboard.
 
----
-
 ## Page-Specific Features
 
 ### Home Page Features
@@ -798,4 +796,22 @@ Each card is styled using Bootstrap’s card components, combined with custom CS
 - **Upcoming Events**: The home page also displays the next three upcoming events in a carousel format, pulling from the database and ensuring users are always aware of what's happening next.
 
 ![Upcoming Events](docs/readme_images/upcoming-events.png)
+
+### Event Browsing Features
+
+The **Browse Events** page provides users with a list of all upcoming events. Key features include:
+
+- **Search and Sorting**: Users can search for events by keywords and sort them by date, title, or location, using form controls at the top of the page. The search bar dynamically filters events based on the user's input, and sorting options allow users to quickly find events that match their preferences.
+- **Event Cards**: Each event is displayed in a Bootstrap card, featuring the event title, location, date, and a short description. Cards include a “Read More” button that directs users to the detailed event page.
+
+![Browse Events Page](docs/readme_images/browse-events-page.png)
+
+The individual **Event Detail** pages provide comprehensive information about each event. Features include:
+
+- **Detailed Event Information**: Users can see the full event details, including location, start/end date and time, and a more detailed description. Event images (if available) are displayed in a responsive format at the top of the page. If no image has been added a placeholder image is shown.
+- **Comments and Ratings**: Logged-in users can leave comments about the event or add a rating. Comments are displayed in a section below the event details, with the most recent comments displayed first. A user can comment multiple times on an event, however each user can only rate an event once and the average rating is calculated and displayed. Comments can only be edited or deleted by an admin account holder or by the user who made the comment.
+- **Save to Calendar**: Logged-in users can save the event to their personal calendar with a single click. A button labeled “Save to My Calendar” is available for quick access. Once an event is saved to the users calendar, a button is available to 'remove from calendar'.
+- **Edit and Delete Event**: If an event has been added by a user, it is possible for them to edit or delete the event via buttons within the individual event detail page for ease of management.
+
+![Event Detail Page](docs/readme_images/event-detail-page.png)
 
