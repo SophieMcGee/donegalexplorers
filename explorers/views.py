@@ -51,17 +51,19 @@ class SavedEventsView(LoginRequiredMixin, ListView):
         selected_month = self.request.GET.get('month', None)
         current_month = timezone.now().month
         current_year = timezone.now().year
+        current_date = timezone.now()
 
         if selected_month:
             month, year = map(int, selected_month.split('-')) 
         else:
             month, year = current_month, current_year  # Default to current month and year
 
-        # Filter events based on the selected or default month and year
+        # Filter events based on the selected or default month and year, and only show events from today onwards
         return Calendar.objects.filter(
             user=self.request.user,
             event__start_date__month=month,
-            event__start_date__year=year
+            event__start_date__year=year,
+            event__end_date__gte=current_date  # Only include events ending in the future
         ).order_by('event__start_date')
 
     def get_context_data(self, **kwargs):
@@ -165,8 +167,10 @@ class BrowseEventsView(View):
     def get(self, request, *args, **kwargs):
         search_query = request.GET.get('search', '')
         sort_by = request.GET.get('sort_by', 'start_date')
+        current_date = timezone.now()
         
-        events = Event.objects.all()
+        # Fetch only events that have a future or current start date
+        events = Event.objects.filter(start_date__gte=current_date)
 
         # Apply search filter
         if search_query:
