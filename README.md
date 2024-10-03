@@ -25,10 +25,10 @@ The live site can be viewed here - <a href="https://donegal-explorers-22a6c2ed48
     * [**Colour Scheme and Typography**](<#colour-scheme-and-typography>)
         * [Typography](<#typography>)
         * [Colour Scheme](<#colour-scheme>)
-    * [**Website Logo**](<#website-logo>)
-    * [**Final Wireframes**](<#final-wireframes>)
+        * [Logo and Branding](<#logo-and-branding>)
+* [**Data Model**](<#data-model>)
 * [**Features**](<#features>)
-    * [**Generic Website Features**](<#generic-website-features>)
+    * [**General Features**](<#general-features>)
         * [Responsive Design](<#responsive-design>)
         * [Clear Navigation](<#clear-navigation>)
         * [Hero Section](<#hero-section>)
@@ -554,7 +554,6 @@ Based on the competitor analysis, several key design considerations emerged that
   [Back to top](<#contents>)
 
 
-
 # Design
 
 ## Planning and Development
@@ -594,8 +593,8 @@ Key design considerations during the skeleton phase included:
 - **Responsive layout**: The wireframes were built to ensure the design adapts seamlessly across various screen sizes, from desktop to mobile.
 - **Content hierarchy**: Events, user actions, and navigation options are displayed prominently, reducing the need for excessive scrolling or searching.
 
-Below is an example of the initial wireframes created for the platform:
-![wireframe example](docs/readme_images/wireframe.png)
+Below are the wireframes created for the platform:
+![wireframe](docs/readme_images/wireframe.png)
 
 <b>This wireframe is available to view in Figma via <a href="https://www.figma.com/design/SQvy4AFWPylL3V62RDHIo2/Donegal-Explorers?node-id=0-1&t=goDdGBxJlvgIOZzh-1" target="_blank" rel="noopener">THIS LINK.</a></b>
 
@@ -653,3 +652,150 @@ The Donegal Explorers logo reflects the local, community-driven nature of the pl
 ![Donegal Explorers Logo](docs/readme_images/donegal-explorers.png)
 
 [Back to top](<#contents>)
+
+# Data Model
+
+The data model for this project has been designed with scalability and clarity in mind. It consists of several related models that interact with each other to ensure smooth functionality for event management, user interaction, notifications, and more. Below is the database schema that visualises the relationships between the key models:
+
+![Database Schema](docs/readme_images/database-schema.png)
+
+## UserProfile
+- **Fields**: 
+  - `user`: A `OneToOneField` linking to Django's built-in `User` model, allowing extended attributes for each user.
+  - `receive_comment_notifications`: A `BooleanField` that determines if the user should receive notifications for new comments on their events.
+
+## User
+- **Fields**: 
+  - `user_id`: Primary key, an auto-incrementing ID.
+  - `username`, `email`, `password`: Basic fields provided by Django’s user model for authentication and account management.
+
+## Event
+- **Fields**:
+  - `event_id`: Primary key for each event.
+  - `author`: A `ForeignKey` to the `User` model, representing the user who created the event.
+  - `title`, `description`, `location`: Essential fields to describe the event.
+  - `start_date`, `end_date`, `start_time`, `end_time`: Fields managing the schedule of the event.
+  - `image`: An image field using Cloudinary for event images.
+  - `status`: A field that stores the publication status of the event.
+  
+- **Relationships**: 
+  - An event is related to a user via the `author` field. It also connects to other models like `Comment`, `Rating`, and `Calendar` for further user interactions.
+
+## Calendar
+- **Fields**:
+  - `calendar_id`: Primary key for each calendar entry.
+  - `user`: A `ForeignKey` linking the calendar to a specific user.
+  - `event`: A `ForeignKey` linking the saved event to the calendar.
+  - `date`: The date the event is saved.
+  - `saved_on`: The timestamp when the event was added to the user's calendar.
+
+## Comment
+- **Fields**:
+  - `comment_id`: Primary key for each comment.
+  - `event`: A `ForeignKey` linking the comment to the relevant event.
+  - `user`: A `ForeignKey` linking the comment to the user who posted it.
+  - `content`: The text content of the comment.
+  - `created_on`: Timestamp of when the comment was created.
+  - `approved`: A boolean flag to moderate comments before they are visible.
+
+## Rating
+- **Fields**:
+  - `rating_id`: Primary key for each rating.
+  - `user`: A `ForeignKey` linking the rating to the user.
+  - `event`: A `ForeignKey` linking the rating to the event being rated.
+  - `rating`: An integer field representing the rating given by the user to the event.
+
+## Notification
+- **Fields**:
+  - `user`: A `ForeignKey` linking the notification to a specific user.
+  - `message`: The content of the notification.
+  - `is_read`: A boolean flag to mark if the notification has been read by the user.
+  - `created_at`: A timestamp indicating when the notification was created.
+
+The model structure enables users to interact with events efficiently, allowing for event creation, commenting, saving events to their calendar, and rating events. Notifications ensure users are updated with relevant actions on their events or interactions with other users.
+
+The relationships between models also allow for seamless data queries, ensuring efficient access to the right information based on user activity.
+
+## General Features
+
+### Responsive Design
+The website is built using a combination of **Bootstrap** and **custom CSS** to ensure responsiveness across all devices. The design is optimised for mobile first and adapts to various screen sizes with the use of Bootstrap’s grid system and media queries.
+
+#### Key Breakpoints
+- **Small Devices (Max-width: 768px)**: Elements are stacked vertically to ensure accessibility and usability on mobile devices. The navbar is collapsed into a hamburger menu.
+- **Medium Devices (Max-width: 992px)**: The layout becomes wider, with form fields, buttons, and cards adjusting to medium-sized screens like tablets.
+- **Large Devices (Min-width: 992px)**: The layout expands to make use of available space on desktops, with increased spacing between elements and larger font sizes for readability.
+
+### Navigation
+- **Navbar**: The site features a consistent navigation bar that adapts to different screen sizes. For mobile users, the navbar collapses into a dropdown menu. The menu options dynamically change based on whether the user is logged in or not.
+- **Login and Authentication**: If a user is logged in, the navbar displays options for 'My Events,' 'My Calendar,' and an area to manage their accounts. For unauthenticated users, options to 'Sign Up' and 'Login' are shown.
+- **Dropdown Menus**: As visible in the image below, dropdowns are used for event-related actions, including 'Browse Events,' 'Add Event,' and 'My Events' to ensure smooth navigation.
+
+![Logged in user](docs/readme_images/logged-in-user.png)
+
+### Logo and Responsive Resizing in Navbar
+
+The logo for **Donegal Explorers** is featured prominently in the navigation bar across all pages of the site, serving as a central branding element. It provides users with an immediate visual association to the platform. The logo is designed to resize responsively based on the screen size, ensuring that it remains clear and proportionate on all devices. 
+
+- **On larger screens** (e.g., desktops), the logo is displayed at a more prominent size, reinforcing the brand presence. Its dimensions are set to ensure it doesn't overshadow the navigation links but maintains a strong visual presence.
+- **On smaller screens** (e.g., tablets and mobile devices), the logo adjusts to a smaller size to make optimal use of the limited screen space. This resizing ensures the navigation bar remains uncluttered and that users can still easily navigate through the site without obstruction.
+
+The resizing of the logo is handled using both CSS and Bootstrap's responsive classes to maintain consistency across breakpoints.
+
+### Favicon
+
+A custom favicon is used on all pages of the website to enhance brand identity and improve user experience. This small yet significant detail ensures that users can easily identify the Donegal Explorers site even when they have multiple browser tabs open. The favicon visually represents the platform and contributes to the professional feel of the site. 
+
+It is particularly useful when users are switching between tabs, as it provides quick visual feedback about the Donegal Explorers website, even when minimised to a small icon. The favicon is consistent with the logo and brand color scheme, maintaining uniformity across various visual elements of the site.
+
+### Footer
+
+The footer is a persistent element displayed across all pages of the site, designed to provide users with quick access to social media links.
+
+![Footer](docs/readme_images/footer.png)
+
+### Social Media Integration
+
+Social media icons are prominently featured in the footer, allowing users to easily connect with Donegal Explorers on various platforms. These icons link to the respective social media pages, opening in a new browser tab to ensure users remain engaged with the site while exploring the external content.
+
+- **Font Awesome Icons**: The icons are derived from the Font Awesome library and are styled to match the site's branding. Their colors change on hover, providing a subtle yet effective interaction for users and drawing attention to these external resources.
+  
+- **Responsiveness**: The social media links are fully responsive, adapting their size and placement based on the device.
+
+This integration not only enhances the site's interactivity but also encourages users to become part of a wider community of explorers, connecting through platforms like Facebook, Instagram, and Twitter. These links play a key role in building the social presence of Donegal Explorers, fostering engagement beyond the website.
+
+### Accessibility
+The project is designed to be accessible to all users by:
+- **Semantic HTML**: Elements such as `<header>`, `<nav>`, and `<footer>` help assistive technologies navigate the page.
+- **ARIA Labels**: Interactive elements, such as buttons, form inputs, and links, use `aria-label` to provide clear descriptions for users relying on screen readers.
+- **Keyboard Navigation**: Interactive components (forms, buttons, and dropdowns) can be navigated using only the keyboard.
+
+---
+
+## Page-Specific Features
+
+### Home Page Features
+
+- **Hero Section**: The hero section greets users with a large banner image showcasing the beauty of Donegal and a prominent call-to-action message encouraging users to explore family adventures. A clear and accessible "Sign Up" button immediately directs users to create an account and start participating in events. This section is designed to be fully responsive, adapting to different screen sizes using Bootstrap's responsive classes and custom CSS, ensuring the layout remains visually appealing and easy to interact with on all devices.
+
+![Hero Section](docs/readme_images/hero-section.png)
+
+- **Welcome Section**: The welcome section introduces Donegal Explorers to users, providing an overview of what the platform offers, including event browsing, saving events, and family activities in Donegal. The layout uses Bootstrap to ensure proper spacing and alignment, with text centered for optimal readability on both small and large screens.
+
+
+- **Features Section: Event Interactions**: Below the welcome section, users are presented with three interactive cards that serve as quick links to the main features of the website:
+
+1. **Browse Events**: This card leads users to the event browsing page, allowing them to explore upcoming and family-friendly events across Donegal. It includes an icon representing event exploration and a short description that encourages users to engage.
+
+2. **Add Event**: The second card is aimed at event organisers and allows users to quickly access the event submission form, enabling them to add their events to the platform. Like the "Browse Events" card, it includes an icon and a brief description to make the purpose clear.
+
+3. **View Calendar**: The third card directs users to their personal calendar, where they can view saved events in a convenient month-by-month format. The calendar helps users keep track of events they've registered for or marked as favorites.
+
+Each card is styled using Bootstrap’s card components, combined with custom CSS for hover effects and shadows to give them a modern, clickable feel. The cards are displayed in a responsive grid, ensuring they remain proportionate and aligned on different screen sizes, from mobile to desktop.
+
+![Features Section](docs/readme_images/features-sections.png)
+
+- **Upcoming Events**: The home page also displays the next three upcoming events in a carousel format, pulling from the database and ensuring users are always aware of what's happening next.
+
+![Upcoming Events](docs/readme_images/upcoming-events.png)
+
