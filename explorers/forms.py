@@ -7,7 +7,10 @@ from django.utils.translation import gettext_lazy as _
 class EventForm(forms.ModelForm):
     class Meta:
         model = Event
-        fields = ['title', 'description', 'location', 'start_date', 'end_date', 'start_time', 'end_time', 'image', 'status']
+        fields = [
+            'title', 'description', 'location', 'start_date', 'end_date',
+            'start_time', 'end_time', 'image', 'status'
+        ]
         widgets = {
             'start_date': forms.DateInput(attrs={'type': 'date'}),
             'end_date': forms.DateInput(attrs={'type': 'date'}),
@@ -22,10 +25,14 @@ class EventForm(forms.ModelForm):
 
         # Ensure that end date is after start date
         if start_date and end_date and end_date < start_date:
-            raise ValidationError(_('End date must be after the start date.'), code='invalid')
+            raise ValidationError(
+                _('End date must be after the start date.'),
+                code='invalid'
+            )
 
         # Continue to clean the data as necessary
         return cleaned_data
+
 
 class CommentForm(forms.ModelForm):
     class Meta:
@@ -35,18 +42,28 @@ class CommentForm(forms.ModelForm):
             'content': '',
         }
         widgets = {
-            'content': forms.Textarea(attrs={'class': 'form-control', 'rows': 3, 'placeholder': 'Enter your comment here...'}),
+            'content': forms.Textarea(
+                attrs={
+                    'class': 'form-control',
+                    'rows': 3,
+                    'placeholder': 'Enter your comment here...'
+                }
+            ),
         }
+
 
 class NotificationSettingsForm(forms.ModelForm):
     class Meta:
         model = UserProfile
         fields = ['receive_comment_notifications']
 
+
 class NotificationPreferencesForm(forms.ModelForm):
     class Meta:
         model = UserProfile
         fields = ['receive_comment_notifications']
         labels = {
-            'receive_comment_notifications': 'Receive notifications for comments',
+            'receive_comment_notifications': (
+                'Receive notifications for comments'
+            ),
         }

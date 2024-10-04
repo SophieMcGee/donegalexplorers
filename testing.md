@@ -172,7 +172,7 @@ All HTML pages were run through the [W3C HTML Validator](https://validator.w3.or
 | rate_event.html                      | No errors  | No errors |
 | saved_events.html                    | N/A        | No errors |
 
-During the HTML validation process, some warnings were generated for two templates, indicating that <h1> tags were either missing or improperly used. Upon further inspection, it was determined that the validator may have misinterpreted the structure of certain elements. Specifically, this might have occurred because the <h1> tags were nested within container elements, which could have led to incorrect readings by the validator. After double checking the code, I confirmed tags were correctly implemented to ensure semantic structure and accessibility, serving as the top-level heading on each page as per best practices. Despite the validator's warnings, the headings follow proper hierarchy and have been confirmed to display as intended across various devices and screen readers.
+During the HTML validation process, some warnings were were identified and resolved. One rror was related to the use of aria-label attributes, particularly on elements that already contained descriptive text. This was corrected by removing unnecessary aria-label attributes where the visual text was sufficient for accessibility. Additionally, the validator flagged potential heading hierarchy problems, prompting updates to ensure that the correct heading levels (h1, h2, etc.) were used consistently in some templates, improving both readability and accessibility for screen readers.
 
 ### CSS Testing
 
