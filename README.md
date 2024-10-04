@@ -8,70 +8,33 @@ The live site can be viewed here - <a href="https://donegal-explorers-22a6c2ed48
 
 # Contents
 
-* [**Website Objectives**](<#website-objectives>)
-* [**Agile Methodology**](<#agile-methodology>)
-* [**User Experience UX**](<#user-experience-ux>)
-    * [**Client Background and Goals**](<#client-background-and-goals>)
-    * [**Target Audience**](<#target-audience>)
-    * [**User Stories**](<#user-stories>)
-    * [**Market Research**](<#market-research>)
-* [**Design**](<#design>)
-    * [**Planning and Development**](<#planning-and-development>)
-        * [Strategy](<#strategy>)
-        * [Scope](<#scope>)
-        * [Structure](<#structure>)
-        * [Skeleton](<#skeleton>)
-        * [Surface](<#surface>)
-    * [**Colour Scheme and Typography**](<#colour-scheme-and-typography>)
-        * [Typography](<#typography>)
-        * [Colour Scheme](<#colour-scheme>)
-        * [Logo and Branding](<#logo-and-branding>)
-* [**Data Model**](<#data-model>)
-* [**Features**](<#features>)
-    * [**General Features**](<#general-features>)
-        * [Responsive Design](<#responsive-design>)
-        * [Clear Navigation](<#clear-navigation>)
-        * [Hero Section](<#hero-section>)
-        * [Call-to-Action Buttons](<#call-to-action-buttons>)
-        * [Favicon](<#favicon>)
-        * [Footer](<#Footer>)
-        * [Testimonials](<#testimonials>)
-        * [404 Page](<#404-page>)
-        * [Contact Page](<#contact-page>)
-    * [**Homepage Features**](<#homepage-features>)
-        * [About Section](<#about-section>)
-        * [Services Section](<#services-section>)
-        * [Pricing Section](<#pricing-section>)
-    * [**About Page Features**](<#about-page-features>)
-        * [Main About Section](<#main-about-section>)
-        * [Reasons to Work With Me Section](<#reasons-to-work-with-me-section>)
-    * [**Service Page Features**](<#service-page-features>)
-        * [Introduction Section](<#introduction-section>)
-        * [Main Services Section](<#main-services-section>)
-        * [Process Section](<#process-section>)
-     * [**Future Features**](<#future-features>)
-        * [Portfolio Page](<#portfolio-page>)
-        * [Content Request Form](<#content-request-form>)
-        * [Client Dashboard and Integration](<#client-dashboard-and-integration>)
-        * [Blog Page](<#blog-page>)
-* [**Technologies Used**](<#technologies-used>)
-* [**Deployment**](<#deployment>)
-    * [**Opening the repository**](<#opening-the-repository>)
-    * [**Forking the repository**](<#forking-the-repository>)
-    * [**Cloning the repository**](<#cloning-the-repository>)
-* [**Testing**](<#testing>)
-    * [**Validator Testing**](<#validator-testing>)
-        * [HTML Validation](<#html-validation>)
-        * [CSS Validation](<#css-validation>)
-    * [**Responsivity Testing**](<#responsivity-testing>)
-    * [**Accessibility Testing**](<#accessibility-testing>)
-    * [**Performance Testing**](<#performance-testing>)
-    * [**Testing of User Stories**](<#testing-of-user-stories>)
-    * [**Manual Testing of Features**](<#manual-testing-of-features>)
-    * [**Bugs**](<#bugs>)
-* [**Credits**](<#credits>)
-* [**Acknowledgements**](<#acknowledgements>)
-
+* [**Website Objectives**](#website-objectives)
+* [**Agile Methodology**](#agile-methodology)
+  * [**Key Agile Practices Utilised**](#key-agile-practices-utilised)
+  * [**Example Milestones and User Stories**](#example-milestones-and-user-stories)
+* [**User Experience (UX)**](#user-experience-ux)
+  * [**Client Background and Goals**](#client-background-and-goals)
+  * [**Target Audience**](#target-audience)
+  * [**User Stories**](#user-stories-1)
+* [**Market Research**](#market-research)
+* [**Design**](#design)
+  * [**Planning and Development**](#planning-and-development)
+  * [**Colour Scheme and Typography**](#colour-scheme-and-typography)
+* [**Data Model**](#data-model)
+* [**General Features**](#general-features)
+* [**Page-Specific Features**](#page-specific-features)
+  * [**Home Page Features**](#home-page-features)
+  * [**Event Management Features**](#event-management-features)
+  * [**User Account Features**](#user-account-features)
+  * [**404 Page**](#404-page)
+  * [**Authentication**](#authentication)
+  * [**Future Features**](#future-features)
+* [**Technologies Used**](#technologies-used)
+* [**Deployment**](#deployment)
+* [**Testing**](#testing)
+* [**Bugs**](#bugs)
+* [**Credits**](#credits)
+* [**Acknowledgements**](#acknowledgements)
 # Website Objectives
 
 The **Donegal Explorers** website is designed to provide users with a comprehensive platform for discovering, organising, and managing events in Donegal. The primary goal is to create a user-friendly space where event organisers can submit and promote their events, and site visitors or registered users can browse, save, and rate events. This project also emphasises building community engagement through features like event calendars, user feedback via ratings and comments, and personalised notifications.
@@ -1332,3 +1295,186 @@ To fork the repository and make changes without affecting the original project:
 # Testing
 
 Extensive testing was completed both during the development and post development with results available to view [here](/testing.md)
+
+# Bugs
+
+## Bugs
+
+During the development of this project, several bugs were encountered and resolved. The following section outlines the key issues that arose, including problems with CSS, template rendering, form validation, and functionality in views and models. Each bug is described in detail, along with the steps taken to diagnose and resolve the issue. By thoroughly addressing these bugs, the project has been enhanced in terms of stability, user experience, and overall functionality. This section highlights the importance of debugging and iteration in the development process, ensuring that the final product meets the intended goals.
+
+### CSS Not Loading Properly
+- **Issue:** The header turned blue, and styles weren't applying correctly after moving styles from inline to a CSS file.
+- **Resolution:** Ensured the correct path to the stylesheet using Django's `{% static %}` tag in the `base.html` template. This allowed styles to be properly loaded.
+
+### Footer Styles Not Applied
+- **Issue:** Footer styles were not being applied after moving the CSS to a separate file.
+- **Resolution:** Confirmed the correct structure and path of CSS. Adjusted the CSS selectors to correctly target footer elements, ensuring consistent styling.
+
+### Incorrect CSS Property Use
+- **Issue:** Attempted to set a time field in a Django form that was non-editable.
+- **Resolution:** Removed the time field from the form as it was set to auto-populate with `auto_now_add=True` in the model, making it non-editable.
+
+### FieldError in Django Form
+- **Issue:** A `FieldError` was raised because the time field, which is auto-populated, was included in the form.
+- **Resolution:** Removed the time field from the form in `forms.py` as it was unnecessary and caused the error.
+
+### Django Migration Issues
+- **Issue:** Encountered errors when running `makemigrations` due to model and import issues.
+- **Resolution:** Corrected the import statements and model definitions to ensure `makemigrations` and `migrate` ran successfully.
+
+### TemplateSyntaxError in Signup Page
+- **Issue:** A `TemplateSyntaxError` occurred on the signup page due to a missing block tag (`{% endif %}`).
+- **Resolution:** Ensured all block tags (e.g., `{% if %}`, `{% element %}`) were correctly opened and closed, particularly adding a missing `{% endif %}`.
+
+### ConnectionRefusedError During Login
+- **Issue:** A `ConnectionRefusedError` occurred when attempting to log in, indicating the connection to the server was being refused.
+- **Resolution:** Ensured the Django server was running and email backend settings were correctly configured, using a console email backend for development.
+
+### Initial Setup Errors
+- **Issue:** Configuration errors related to email verification during the initial setup.
+- **Resolution:** Corrected the email backend settings in `settings.py` and restarted the server to apply changes.
+
+### Missing or Incorrect Block Tags in Templates
+- **Issue:** Errors were due to missing or incorrectly placed Django template tags, leading to rendering issues.
+- **Resolution:** Reviewed and corrected all template tags, ensuring proper use of `{% if %}`, `{% endif %}`, `{% element %}`, and `{% endelement %}` tags.
+
+### Slug Field Addition for Event Model
+- **Issue:** The `slug` field was missing, causing issues with user-friendly URLs for events.
+- **Resolution:** Added a `slug` field using `AutoSlugField` to the Event model, updated the `EventCreateView` to auto-generate slugs, and ran migrations.
+
+### Errors in urls.py and views.py
+- **Issue:** Incorrect imports and usage in `urls.py` and `views.py` caused errors.
+- **Resolution:** Corrected imports in `urls.py`, updated URL patterns, and ensured that `SavedEventsView` and other views were correctly defined.
+
+### Error Adding Event Status Field
+- **Issue:** A `NameError: name 'EVENT_STATUS_CHOICES' is not defined` occurred when adding an event status field.
+- **Resolution:** Defined `EVENT_STATUS_CHOICES` in `models.py` and updated the Event model with a `status` field. Ran migrations to apply the changes.
+
+### Image Display Issues on My Events Page
+- **Issue:** Event images were not displaying in the `my_events.html` template.
+- **Resolution:** Corrected the Cloudinary image field and template code to ensure images rendered properly.
+
+### Event Editing Permission Issues
+- **Issue:** Unauthorised users could access the event editing form.
+- **Resolution:** Added permission checks in the `edit_event.html` template to restrict access to event authors or superusers.
+
+### NoReverseMatch Errors in Event Detail Page
+- **Issue:** `NoReverseMatch` errors occurred for URLs like `save_event_to_calendar`, `edit_event`, `delete_event`, and `rate_event`.
+- **Resolution:** Replaced `event.id` with `event.pk` to correctly pass the event’s primary key for URL resolution.
+
+### Email Verification Page Not Displaying Custom Template
+- **Issue:** The email verification page was not displaying the custom `email_verification_sent.html` template.
+- **Resolution:** Updated `urls.py` to reference the correct custom template and verified the TEMPLATES configuration in `settings.py`.
+
+### CSS Formatting Not Applied in Heroku Deployment
+- **Issue:** CSS was not applied correctly in Heroku after deployment.
+- **Resolution:** Configured static file settings, added `WhitenoiseMiddleware`, and ran `collectstatic` to resolve the issue.
+
+### Notification Bug: No Notifications Appearing
+- **Issue:** Users were not receiving notifications for event comments.
+- **Resolution:** Updated the signal logic to ensure notifications were triggered and displayed in the template.
+
+### Form Field Display Error with `as_crispy_field`
+- **Issue:** A `TemplateSyntaxError` occurred due to the use of the `as_crispy_field` filter without the proper installation.
+- **Resolution:** Replaced `as_crispy_field` with manual form rendering using Bootstrap classes.
+
+### Large Logo Display in Navbar
+- **Issue:** The logo in the navbar appeared too large and disrupted the layout.
+- **Resolution:** Adjusted the logo size using `max-width` and `height` properties in the CSS.
+
+### Duplicate UserProfile Creation Error
+- **Issue:** Manually creating a user profile resulted in a `UniqueViolation` error.
+- **Resolution:** Used `get_or_create()` for profile creation to prevent duplicates.
+
+### Email Notifications Not Being Sent
+- **Issue:** Email notifications for event comments were not being sent due to incorrect SMTP configuration.
+- **Resolution:** Updated the SMTP settings in `settings.py` to ensure emails were properly sent.
+
+### Dynamic Navbar for Logged-in Users Not Showing Properly
+- **Issue:** The dynamic display of the navbar for logged-in users was not working.
+- **Resolution:** Updated the navbar rendering logic to show the correct links for authenticated users.
+
+### Event Deletion Confirmation
+- **Issue:** No confirmation was prompted before deleting an event.
+- **Resolution:** Added a confirmation modal for event deletions.
+
+### Rating Feature: Multiple Submissions
+- **Issue:** Users were able to submit multiple ratings for the same event.
+- **Resolution:** Added validation to prevent multiple submissions of event ratings.
+
+### Search and Sorting Functionality
+- **Issue:** The search and sorting functionality on the event listing page needed refinement.
+- **Resolution:** Improved the search and sorting logic in the `BrowseEventsView` and adjusted the UI for a better user experience.
+
+# Credits
+
+Throughout the development of this project, several resources were used to assist with coding, design, and functionality implementation. Below are the key sites and tutorials that provided guidance during the development process:
+
+1. **Django Documentation**  
+   - For understanding Django's models, views, and template syntax, as well as handling forms, migrations, and more.
+   - [https://docs.djangoproject.com/en/stable/](https://docs.djangoproject.com/en/stable/)
+
+2. **Stack Overflow**  
+   - General problem-solving and debugging guidance, including Django-specific issues like migrations, URL routing, and template rendering.
+ 
+3. **Django Crispy Forms**  
+   - Helped with implementing better form layouts and customization using the Crispy Forms library.
+   - [https://django-crispy-forms.readthedocs.io/en/stable/](https://django-crispy-forms.readthedocs.io/en/stable/)
+
+4. **W3Schools - CSS and HTML**  
+   - For basic HTML and CSS syntax and learning how to structure layout and styling for the project.
+   - [https://www.w3schools.com/html/](https://www.w3schools.com/html/)  
+   - [https://www.w3schools.com/css/](https://www.w3schools.com/css/)
+
+5. **Bootstrap Documentation**  
+   - For adding responsive design elements and styling using Bootstrap classes.
+   - [https://getbootstrap.com/docs/5.3/getting-started/introduction/](https://getbootstrap.com/docs/5.3/getting-started/introduction/)
+
+6. **Django Allauth Documentation**  
+   - For implementing user authentication, registration, and account management functionality.
+   - [https://django-allauth.readthedocs.io/en/stable/](https://django-allauth.readthedocs.io/en/stable/)
+
+7. **Cloudinary Documentation**  
+   - For handling media file uploads, especially images for events.
+   - [https://cloudinary.com/documentation/django_image_and_video_upload](https://cloudinary.com/documentation/django_image_and_video_upload)
+
+8. **Whitenoise Documentation**  
+   - Used to configure and serve static files when deploying to Heroku.
+   - [http://whitenoise.evans.io/en/stable/](http://whitenoise.evans.io/en/stable/)
+
+10. **Heroku Documentation**  
+    - Helped with deploying the Django project to Heroku and managing environment configurations.
+    - [https://devcenter.heroku.com/articles/getting-started-with-python](https://devcenter.heroku.com/articles/getting-started-with-python)
+
+11. **FontAwesome**  
+    - Used for adding icons to the website's navigation bar and footer.
+    - [https://fontawesome.com/](https://fontawesome.com/)
+
+12. **MDN Web Docs**  
+    - For general JavaScript help, especially for event handling and enhancing form validation.
+    - [https://developer.mozilla.org/en-US/docs/Web/JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+
+13. **Codemy Django Tutorials**  
+    - Helped with understanding Django forms, views, and CRUD operations.
+    - [https://www.youtube.com/c/Codemycom](https://www.youtube.com/c/Codemycom)
+
+14. **Tuts+ Code**  
+    - Helped with understanding how to structure Django models and work with form validation.
+    - [https://code.tutsplus.com/tutorials/](https://code.tutsplus.com/tutorials/)
+
+15. **CSS-Tricks**  
+    - For learning about advanced CSS techniques and resolving layout-related issues.
+    - [https://css-tricks.com/](https://css-tricks.com/)
+
+16. **Django Slugify**  
+    - Helped with generating slugs for event titles in a user-friendly format.
+    - [https://pypi.org/project/django-autoslug/](https://pypi.org/project/django-autoslug/)
+
+The various Code Institute walkthroughs and course content also provided guidance throughout the setup and development of this project, with the slack community posts also assisting with troubleshooting.
+
+# Acknowledgements
+
+
+I would like to express my thanks to my mentor, Gareth, for his brilliant guidance, insightful feedback, and continuous support throughout this project. His expertise and patience have been invaluable, and his advice has greatly contributed to the success of this work.
+
+I would also like to thank my peers within the Code Institute course for their collaborative spirit, helping with functionality checks, and providing constructive feedback. Their input helped me refine the project and improve the overall user experience.
