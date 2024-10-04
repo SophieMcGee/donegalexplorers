@@ -1221,4 +1221,111 @@ Each of these technologies contributed to the successful development of Donegal 
 
 [Back to top](<#contents>)
 
+# Deployment
+
+## Heroku Deployment
+
+The Donegal Explorers website was deployed using Heroku, a cloud platform that simplifies the deployment and scaling of applications. Below are the steps taken to successfully deploy the site:
+
+### 1. **Create a Heroku App**
+   - Log into your Heroku account. If you don’t have an account, sign up for free.
+   - Click the "New" button in the top-right corner and select "Create New App" from the dropdown menu.
+   - Enter a unique app name (e.g., `donegal-explorers`) and select your region.
+   - Click "Create App" to proceed.
+
+### 2. **Set Up PostgreSQL Database**
+   - Navigate to the **Resources** tab in your Heroku app dashboard.
+   - In the "Add-ons" search bar, type in `Heroku Postgres` and select it. This will automatically set up the PostgreSQL database and add it to your environment.
+   - Copy the `DATABASE_URL` from the **Settings** tab under **Config Vars**—this is required to configure your Django application to connect to the PostgreSQL database.
+
+### 3. **Prepare Environment Variables**
+   - In your local project, create an `env.py` file to store sensitive environment variables such as your `SECRET_KEY` and `DATABASE_URL`.
+   - In the `env.py` file, add:
+     ```python
+     import os
+     os.environ["DATABASE_URL"] = "<your-database-url>"
+     os.environ["SECRET_KEY"] = "<your-secret-key>"
+     ```
+   - Ensure the `env.py` file is imported in your `settings.py` file to load these variables at runtime.
+   - Update `settings.py` to replace the default SQLite configuration with PostgreSQL by setting `DATABASES` to use the `DATABASE_URL` environment variable.
+
+### 4. **Install Dependencies and Prepare Static Files**
+   - Run the following commands in your terminal to install necessary dependencies:
+     ```bash
+     pip install dj-database-url psycopg2
+     pip freeze > requirements.txt
+     ```
+   - Configure static file storage in `settings.py`:
+     ```python
+     STATIC_URL = '/static/'
+     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+     ```
+   - Use **Cloudinary** for storing media files by installing the required library and adding `cloudinary` to your installed apps:
+     ```bash
+     pip install cloudinary
+     ```
+
+### 5. **Configure Django Settings for Production**
+   - Ensure the following configurations are in place for production:
+     - Set `DEBUG = False`.
+     - Update the `ALLOWED_HOSTS` list to include your Heroku app URL and localhost for development:
+       ```python
+       ALLOWED_HOSTS = ['donegal-explorers.herokuapp.com', 'localhost']
+       ```
+   - Add the following static files configuration for Cloudinary:
+     ```python
+     CLOUDINARY_STORAGE = {
+         'CLOUD_NAME': '<your-cloud-name>',
+         'API_KEY': '<your-api-key>',
+         'API_SECRET': '<your-api-secret>',
+     }
+     DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+     ```
+   - Set up a `Procfile` in the root directory to tell Heroku how to run your application:
+     ```bash
+     web: gunicorn donegal_explorers.wsgi:application
+     ```
+
+### 6. **Update Heroku Config Vars**
+   - Navigate to the **Settings** tab in your Heroku app.
+   - Under **Config Vars**, add the following keys and values:
+     - `SECRET_KEY`: Your Django secret key.
+     - `DATABASE_URL`: The URL of your PostgreSQL database (automatically added when you set up the database).
+     - `CLOUDINARY_URL`: The API URL for your Cloudinary account.
+     - `DISABLE_COLLECTSTATIC = 1` (Only needed during initial deployment to prevent Heroku from running collectstatic prematurely).
+
+### 7. **Deploying the Application**
+   - In the **Deploy** tab in Heroku, connect your app to your GitHub repository by selecting GitHub as the deployment method.
+   - Search for your repository and connect it.
+   - In the **Manual Deploy** section, select the branch you want to deploy (e.g., `main` or `master`) and click "Deploy Branch".
+   - Optionally, enable automatic deploys to deploy automatically when changes are pushed to the repository.
+
+### 8. **Collect Static Files and Final Configuration**
+   - Once the app is deployed, remove the `DISABLE_COLLECTSTATIC` variable in Heroku's Config Vars.
+   - Run the following command in your Heroku app's terminal:
+     ```bash
+     heroku run python manage.py collectstatic --noinput
+     ```
+   - This will gather all static files for deployment.
+
+### 9. **View the Live Site**
+   - Once the deployment is complete, click the "View" button in Heroku to access the live version of your site at `https://<your-app-name>.herokuapp.com`.
+
+## Cloning and Forking this Repository
+
+#### Cloning the Repository
+To clone this repository for local development:
+
+1. Navigate to the repository on GitHub.
+2. Click the "Code" button and copy the HTTPS or SSH link.
+3. Open your terminal or command prompt.
+4. Run the following command:
+   ```bash
+   git clone https://github.com/SophieMcGee/donegalexplorers
+
+To fork the repository and make changes without affecting the original project:
+
+1. Navigate to the repository on GitHub.
+2. Click the "Fork" button in the top-right corner.
+3. GitHub will create a copy of the repository under your account, which you can clone and modify freely.
 
