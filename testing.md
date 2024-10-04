@@ -197,4 +197,161 @@ An example of the validation confirmation for the views.py file can be seen belo
 
 ![Python Validator](docs/readme_images/python-validator.png)
 
+## Responsivity Tests
+
+Throughout the development of the Donegal Explorers website, extensive testing was conducted to ensure its responsive design across various devices. Using Chrome Dev Tools, I simulated different screen sizes and orientations to verify that all elements, including navigation, event listings, and user forms, displayed correctly and functioned seamlessly on a wide range of devices. This testing process was integrated into the development workflow to maintain consistent layout and functionality across screen sizes.
+
+Upon completion, additional testing was conducted using the Responsinator tool to evaluate the site's performance on different browsers, including Chrome, Firefox, and Edge. The site was assessed for screen widths starting at 280 pixels, confirming that there were no issues with stretching, pixelation, or horizontal scrolling. All components, including images, buttons, and text, aligned as expected, maintaining visual integrity and usability on mobile devices, tablets, and desktops.
+
+To further ensure responsive behavior, manual tests were performed on physical devices such as smartphones and tablets. This helped validate touch interactions, button sizes, and overall layout, ensuring a smooth and consistent user experience across all platforms.
+
+The results of these tests, including the range of screen sizes tested, confirm that the Donegal Explorers site adapts effectively to a variety of devices and screen resolutions.
+
+| **Device Tested**                   | **Standard Screen Width** | **Issues Found** |
+|-------------------------------------|--------------------------|------------------|
+| iPhone eXpensive portrait           | 375px                    | No Issues        |
+| iPhone eXpensive landscape          | 734px                    | No Issues        |
+| Android (Pixel 2) portrait          | 412px                    | No Issues        |
+| Android (Pixel 2) landscape         | 684px                    | No Issues        |
+| iPhone 6-8 portrait                 | 667px                    | No Issues        |
+| iPhone 6-8 landscape                | 414px                    | No Issues        |
+| iPhone 6-8 Plump portrait           | 736px                    | No Issues        |
+| iPhone 6-8 Plump landscape          | 768px                    | No Issues        |
+| iPad landscape                      | 1024px                   | No Issues        |
+| iPhone SE portrait                  | 375px                    | No Issues        |
+| iPhone SE landscape                 | 675px                    | No Issues        |
+| iPhone XR portrait                  | 414px                    | No Issues        |
+| iPhone XR landscape                 | 896px                    | No Issues        |
+| iPhone 12 Pro portrait              | 390px                    | No Issues        |
+| iPhone 12 Pro landscape             | 932px                    | No Issues        |
+| iPhone 14 Pro Max portrait          | 430px                    | No Issues        |
+| iPhone 14 Pro Max landscape         | 932px                    | No Issues        |
+| Pixel 7 portrait                    | 915px                    | No Issues        |
+| Pixel 7 landscape                   | 915px                    | No Issues        |
+| Samsung Galaxy S8+ portrait         | 360px                    | No Issues        |
+| Samsung Galaxy S8+ landscape        | 740px                    | No Issues        |
+| Samsung Galaxy S20 Ultra portrait   | 412px                    | No Issues        |
+| Samsung Galaxy S20 Ultra landscape  | 915px                    | No Issues        |
+| iPad Mini portrait                  | 768px                    | No Issues        |
+| iPad Mini landscape                 | 1024px                   | No Issues        |
+| iPad Air portrait                   | 820px                    | No Issues        |
+| iPad Air landscape                  | 1180px                   | No Issues        |
+| iPad Pro portrait                   | 1024px                   | No Issues        |
+| iPad Pro landscape                  | 1366px                   | No Issues        |
+| Surface Pro 7 portrait              | 912px                    | No Issues        |
+| Surface Pro 7 landscape             | 1368px                   | No Issues        |
+| Surface Duo portrait                | 540px                    | No Issues        |
+| Surface Duo landscape               | 720px                    | No Issues        |
+| Galaxy Fold portrait                | 653px                    | No Issues        |
+| Galaxy Fold landscape               | 1280px                   | No Issues        |
+| Asus Zenbook Fold portrait          | 653px                    | No Issues        |
+| Asus Zenbook Fold landscape         | 1280px                   | No Issues        |
+
+To test the responsiveness of the Donegal Explorers website interface, follow these steps:
+1. Navigate to the Donegal Explorers website URL.
+2. Open the developer tools in your browser (e.g., Chrome, Firefox).
+3. Set the zoom to 50% and select the 'Responsive' mode in the device toolbar.
+4. Adjust the screen width to various dimensions, mimicking different devices, to observe how the site adapts to various screen sizes and orientations.
+
+## Accessibility Testing
+
+Accessibility testing was a key focus throughout the development of the **Donegal Explorers** website to ensure a welcoming and inclusive experience for all users, particularly those utilising assistive technologies. The following key criteria were addressed to meet the Web Content Accessibility Guidelines (WCAG) and enhance usability:
+
+1. **Colour Contrast**: The contrast between text and background colors was carefully checked to meet WCAG 2.1 standards. This ensures readability for users with visual impairments, particularly those with color blindness or low vision. Tools like Chrome DevTools and WebAIM contrast checker were used to verify that all colors across the site met the minimum contrast ratio guidelines.
+
+2. **Heading Structure**: A clear and logical heading hierarchy was implemented across all pages. This helps users who rely on screen readers to navigate and understand the structure of the content easily. The appropriate use of headings also enhances the overall accessibility by allowing users to quickly jump between sections of the page.
+
+3. **Semantic HTML and Landmark Elements**: Content was structured using semantic HTML5 elements such as `<article>`, `<nav>`, `<section>`, and `<footer>` to create logical divisions. These elements assist users of screen readers by providing meaningful navigation cues, allowing them to understand and explore the content more effectively.
+
+4. **Alt Text for Images**: Every image, including icons and buttons, is equipped with descriptive alternative text (alt text). This provides essential context for users relying on screen readers. For decorative images, null alt text (`alt=""`) was used to ensure that screen readers skip over these elements, preventing unnecessary clutter in the auditory experience.
+
+5. **ARIA Attributes**: Appropriate ARIA (Accessible Rich Internet Applications) attributes were applied to interactive elements. This ensures that users with disabilities can understand and interact with the website. Elements such as buttons, links, and form fields have `aria-labels`, ensuring that screen readers provide clear instructions to users on how to operate these controls.
+
+6. **Keyboard Navigation**: All interactive elements, such as forms, links, and buttons, were tested to ensure they are fully navigable via the keyboard. This allows users who cannot use a mouse to interact with the website easily and effectively.
+
+7. **Form Accessibility**: Forms across the website, including the event submission and login forms, have clear labels and validation messages to ensure that users with cognitive or visual impairments can complete forms without confusion. Error messages are prominently displayed and associated with their respective fields using `aria-describedby` and form validation attributes.
+
+8. **Accessible Controls**: Dropdowns, navigation links, and other interactive elements were thoroughly tested for screen reader accessibility and were labeled with ARIA attributes where necessary. This ensures that users who rely on screen readers can easily access and interact with the website's features, such as browsing events, managing notifications, and saving events to their calendar.
+
+9. **Language Declaration**: The `lang="en"` attribute was set in the HTML document to specify that the content is in English. This helps screen readers and other assistive technologies interpret the content accurately and pronounce it correctly.
+
+These accessibility features were rigorously tested using tools such as Chrome DevTools, Lighthouse, and the WAVE Web Accessibility Evaluation Tool. Additionally, manual testing with screen readers like NVDA and keyboard-only navigation was conducted to ensure that all users, regardless of ability, can fully engage with and enjoy the Donegal Explorers platform.
+
+## Performance Testing
+
+| Page                               | Performance | Accessibility | Best Practices | SEO |
+|------------------------------------|:-----------:|:-------------:|:--------------:|:---:|
+| Desktop                            |             |               |                |     |
+| add_event.html                     |             |               |                |     |
+| base_layout.html                   | N/A         | N/A           | N/A            | N/A |
+| browse_events.html                 |             |               |                |     |
+| delete_event.html                  |             |               |                |     |
+| index.html                         |             |               |                |     |
+| my_events.html                     |             |               |                |     |
+| my_calendar.html                   |             |               |                |     |
+| event_detail.html                  |             |               |                |     |
+| notifications.html                 |             |               |                |     |
+| change_password.html               |             |               |                |     |
+| login.html                         |             |               |                |     |
+| logout.html                        |             |               |                |     |
+| signup.html                        |             |               |                |     |
+| manage_email_addresses.html        |             |               |                |     |
+| email_confirm.html                 |             |               |                |     |
+| email_verification_sent.html       |             |               |                |     |
+| password_change.html               |             |               |                |     |
+| password_reset_done.html           |             |               |                |     |
+| password_reset_from_key_done.html  |             |               |                |     |
+| password_reset_from_key.html       |             |               |                |     |
+| password_reset.html                |             |               |                |     |
+| signup_closed.html                 |             |               |                |     |
+| account_inactive.html              |             |               |                |     |
+| base.html                          | N/A         | N/A           | N/A            | N/A |
+| 404.html                           |             |               |                |     |
+| email.html                         |             |               |                |     |
+| confirm_delete.html                |             |               |                |     |
+| delete_comment.html                |             |               |                |     |
+| edit_comment.html                  |             |               |                |     |
+| edit_event.html                    |             |               |                |     |
+| event_confirmation.html            |             |               |                |     |
+| event_list.html                    |             |               |                |     |
+| rate_event.html                    |             |               |                |     |
+| saved_events.html                  |             |               |                |     |
+|                                    |             |               |                |     |
+| Mobile                             |             |               |                |     |
+| add_event.html                     |             |               |                |     |
+| base_layout.html                   | N/A         | N/A           | N/A            | N/A |
+| browse_events.html                 |             |               |                |     |
+| delete_event.html                  |             |               |                |     |
+| index.html                         |             |               |                |     |
+| my_events.html                     |             |               |                |     |
+| my_calendar.html                   |             |               |                |     |
+| event_detail.html                  |             |               |                |     |
+| notifications.html                 |             |               |                |     |
+| change_password.html               |             |               |                |     |
+| login.html                         |             |               |                |     |
+| logout.html                        |             |               |                |     |
+| signup.html                        |             |               |                |     |
+| manage_email_addresses.html        |             |               |                |     |
+| email_confirm.html                 |             |               |                |     |
+| email_verification_sent.html       |             |               |                |     |
+| password_change.html               |             |               |                |     |
+| password_reset_done.html           |             |               |                |     |
+| password_reset_from_key_done.html  |             |               |                |     |
+| password_reset_from_key.html       |             |               |                |     |
+| password_reset.html                |             |               |                |     |
+| signup_closed.html                 |             |               |                |     |
+| account_inactive.html              |             |               |                |     |
+| base.html                          | N/A         | N/A           | N/A            | N/A |
+| 404.html                           |             |               |                |     |
+| email.html                         |             |               |                |     |
+| confirm_delete.html                |             |               |                |     |
+| delete_comment.html                |             |               |                |     |
+| edit_comment.html                  |             |               |                |     |
+| edit_event.html                    |             |               |                |     |
+| event_confirmation.html            |             |               |                |     |
+| event_list.html                    |             |               |                |     |
+| rate_event.html                    |             |               |                |     |
+| saved_events.html                  |             |               |                |     |
+
+
 ---
