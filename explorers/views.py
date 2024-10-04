@@ -22,8 +22,9 @@ class Home(View):
         upcoming_events = Event.objects.filter(
             status='published', start_date__gte=timezone.now()
         ).order_by('start_date')[:3]  # Get next 3 upcoming events
-        return render(request, 'index.html',
-            {'upcoming_events': upcoming_events})
+        return render(
+            request, 'index.html', {'upcoming_events': upcoming_events}
+        )
 
 # View to list events with filters (homepage)
 
@@ -247,8 +248,9 @@ class EventUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         form.instance.end_date = timezone.make_aware(
             form.instance.end_date) if timezone.is_naive(
             form.instance.end_date) else form.instance.end_date
-        messages.success(self.request,
-            "Your event has been updated successfully!")
+        messages.success(
+            self.request, "Your event has been updated successfully!"
+        )
         return super().form_valid(form)
 
     def get_success_url(self):
@@ -257,9 +259,12 @@ class EventUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
     def test_func(self):
         event = self.get_object()
-        return self.request.user.is_superuser or event.author == self.request.user
+        return (
+            self.request.user.is_superuser or event.author == self.request.user
+        )
 
 # View to delete an event
+
 
 class EventDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Event
@@ -268,9 +273,13 @@ class EventDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
     def test_func(self):
         event = self.get_object()
-        return event.author == self.request.user or self.request.user.is_superuser
+        return (
+            event.author == self.request.user or self.request.user.is_superuser
+        )
 
 # View to display the events created by the logged-in user
+
+
 class MyEventsView(LoginRequiredMixin, ListView):
     model = Event
     template_name = 'my_events.html'
@@ -296,7 +305,7 @@ class MyEventsView(LoginRequiredMixin, ListView):
         elif sort_by == 'location':
             queryset = queryset.order_by('location')
         else:
-            queryset = queryset.order_by('start_date')  # Default to start date sorting
+            queryset = queryset.order_by('start_date')
 
         return queryset
 
@@ -309,16 +318,20 @@ class MyEventsView(LoginRequiredMixin, ListView):
 
 # View to display message for too many login attempts
 
+
 class CustomLoginView(LoginView):
     def form_invalid(self, form):
         return super().form_invalid(form)
 
 # View to test signup closed page
 
+
 def signup_closed(request):
     return render(request, 'account/signup_closed.html')
 
 # View for editing a comment
+
+
 class CommentUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Comment
     fields = ['content']
@@ -329,9 +342,13 @@ class CommentUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
     def test_func(self):
         comment = self.get_object()
-        return self.request.user == comment.user or self.request.user.is_superuser
+        return (
+            self.request.user == comment.user or self.request.user.is_superuser
+        )
 
 # View for deleting a comment
+
+
 class CommentDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Comment
     template_name = 'delete_comment.html'
@@ -341,34 +358,44 @@ class CommentDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
     def test_func(self):
         comment = self.get_object()
-        return self.request.user == comment.user or self.request.user.is_superuser
+        return (
+            self.request.user == comment.user or self.request.user.is_superuser
+        )
 
 # View for managing emails
+
+
 class ManageEmailView(LoginRequiredMixin, TemplateView):
     template_name = 'account/email.html'
 
-    
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['can_add_email'] = True 
+        context['can_add_email'] = True
         return context
 
 # View to display notifications on user dashboard
 
+
 @login_required
 def notifications_view(request):
     # Get or create the user's profile
-    user_profile, created = UserProfile.objects.get_or_create(user=request.user)
+    user_profile, created = UserProfile.objects.get_or_create(
+        user=request.user
+    )
 
     # Fetch notifications
-    notifications = Notification.objects.filter(user=request.user).order_by('-created_at')
+    notifications = Notification.objects.filter(
+        user=request.user
+    ).order_by('-created_at')
 
     # Handle POST request to update preferences
     if request.method == 'POST':
-        preferences_form = NotificationPreferencesForm(request.POST, instance=user_profile)
+        preferences_form = NotificationPreferencesForm(
+            request.POST, instance=user_profile
+        )
         if preferences_form.is_valid():
             preferences_form.save()
-            return redirect('notifications')  # Refresh the page to show the updated preferences
+            return redirect('notifications')
     else:
         preferences_form = NotificationPreferencesForm(instance=user_profile)
 
@@ -377,13 +404,18 @@ def notifications_view(request):
         'preferences_form': preferences_form,
     })
 
+
 @login_required
 def mark_notification_as_read(request, notification_id):
-    notification = get_object_or_404(Notification, id=notification_id, user=request.user)
+    notification = get_object_or_404(
+        Notification, id=notification_id, user=request.user
+    )
     notification.is_read = True
     notification.save()
     return redirect('notifications')
 
 # custom 404 view
+
+
 def custom_404(request, exception):
     return render(request, '404.html', status=404)

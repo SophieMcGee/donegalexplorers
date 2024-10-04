@@ -186,4 +186,11 @@ All custom Javascript code was validated using the JShint Validator. No errors w
 
 ![JSHint Validator](docs/readme_images/js-validator.png)
 
+
+### Python Testing
+
+An example of the validation confirmation for the views.py file can be seen below.
+
+![Python Validator](docs/readme_images/python-validator.png)
+
 ---
