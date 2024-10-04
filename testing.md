@@ -197,6 +197,8 @@ An example of the validation confirmation for the views.py file can be seen belo
 
 ![Python Validator](docs/readme_images/python-validator.png)
 
+[Back to top](<#contents>)
+
 ## Responsivity Tests
 
 Throughout the development of the Donegal Explorers website, extensive testing was conducted to ensure its responsive design across various devices. Using Chrome Dev Tools, I simulated different screen sizes and orientations to verify that all elements, including navigation, event listings, and user forms, displayed correctly and functioned seamlessly on a wide range of devices. This testing process was integrated into the development workflow to maintain consistent layout and functionality across screen sizes.
@@ -253,6 +255,8 @@ To test the responsiveness of the Donegal Explorers website interface, follow th
 3. Set the zoom to 50% and select the 'Responsive' mode in the device toolbar.
 4. Adjust the screen width to various dimensions, mimicking different devices, to observe how the site adapts to various screen sizes and orientations.
 
+[Back to top](<#contents>)
+
 ## Accessibility Testing
 
 Accessibility testing was a key focus throughout the development of the **Donegal Explorers** website to ensure a welcoming and inclusive experience for all users, particularly those utilising assistive technologies. The following key criteria were addressed to meet the Web Content Accessibility Guidelines (WCAG) and enhance usability:
@@ -277,81 +281,270 @@ Accessibility testing was a key focus throughout the development of the **Donega
 
 These accessibility features were rigorously tested using tools such as Chrome DevTools, Lighthouse, and the WAVE Web Accessibility Evaluation Tool. Additionally, manual testing with screen readers like NVDA and keyboard-only navigation was conducted to ensure that all users, regardless of ability, can fully engage with and enjoy the Donegal Explorers platform.
 
+[Back to top](<#contents>)
+
 ## Performance Testing
 
 | Page                               | Performance | Accessibility | Best Practices | SEO |
 |------------------------------------|:-----------:|:-------------:|:--------------:|:---:|
 | Desktop                            |             |               |                |     |
-| add_event.html                     |             |               |                |     |
-| base_layout.html                   | N/A         | N/A           | N/A            | N/A |
-| browse_events.html                 |             |               |                |     |
-| delete_event.html                  |             |               |                |     |
-| index.html                         |             |               |                |     |
-| my_events.html                     |             |               |                |     |
-| my_calendar.html                   |             |               |                |     |
-| event_detail.html                  |             |               |                |     |
-| notifications.html                 |             |               |                |     |
-| change_password.html               |             |               |                |     |
-| login.html                         |             |               |                |     |
-| logout.html                        |             |               |                |     |
-| signup.html                        |             |               |                |     |
-| manage_email_addresses.html        |             |               |                |     |
-| email_confirm.html                 |             |               |                |     |
-| email_verification_sent.html       |             |               |                |     |
-| password_change.html               |             |               |                |     |
-| password_reset_done.html           |             |               |                |     |
-| password_reset_from_key_done.html  |             |               |                |     |
-| password_reset_from_key.html       |             |               |                |     |
-| password_reset.html                |             |               |                |     |
-| signup_closed.html                 |             |               |                |     |
-| account_inactive.html              |             |               |                |     |
-| base.html                          | N/A         | N/A           | N/A            | N/A |
-| 404.html                           |             |               |                |     |
-| email.html                         |             |               |                |     |
-| confirm_delete.html                |             |               |                |     |
-| delete_comment.html                |             |               |                |     |
-| edit_comment.html                  |             |               |                |     |
-| edit_event.html                    |             |               |                |     |
-| event_confirmation.html            |             |               |                |     |
-| event_list.html                    |             |               |                |     |
-| rate_event.html                    |             |               |                |     |
-| saved_events.html                  |             |               |                |     |
+| add_event.html                     | 88          | 95            | 78             | 100 |
+| browse_events.html                 | 86          | 91            | 78             | 100 |
+| delete_event.html                  | 87          | 94            | 78             | 100 |
+| index.html                         | 88          | 96            | 78             | 100 |
+| my_events.html                     | 87          | 96            | 78             | 100 |
+| my_calendar.html                   | 77          | 94            | 78             | 100 |
+| event_detail.html                  | 78          | 96            | 78             | 100 |
+| notifications.html                 | 95          | 94            | 78             | 100 |
+| change_password.html               | 79          | 94            | 78             | 100 |
+| login.html                         | 97          | 96            | 78             | 100 |
+| logout.html                        | 89          | 94            | 78             | 100 |
+| signup.html                        | 99          | 96            | 78             | 100 |
+| manage_email_addresses.html        | 97          | 96            | 78             | 100 |
+| email_confirm.html                 | 87          | 98            | 78             | 100 |
+| email_verification_sent.html       | 96          | 98            | 74             | 100 |
+| password_change.html               | 85          | 94            | 79             | 100 |
+| password_reset_done.html           | 85          | 94            | 79             | 100 |
+| password_reset_from_key_done.html  | 87          | 96            | 79             | 100 |
+| password_reset_from_key.html       | 87          | 96            | 79             | 100 |
+| password_reset.html                | 95          | 94            | 78             | 100 |
+| signup_closed.html                 | 90          | 93            | 79             | 100 |
+| account_inactive.html              | 93          | 93            | 79             | 100 |
+| 404.html                           | 96          | 98            | 74             | 100 |
+| email.html                         | 85          | 93            | 79             | 100 |
+| confirm_delete.html                | 94          | 94            | 78             | 100 |
+| delete_comment.html                | 95          | 94            | 78             | 100 |
+| edit_comment.html                  | 86          | 94            | 79             | 100 |
+| edit_event.html                    | 81          | 95            | 79             | 100 |
+| event_confirmation.html            | 86          | 94            | 79             | 100 |
+| event_list.html                    | 85          | 93            | 79             | 100 |
+| rate_event.html                    | 96          | 94            | 78             | 100 |
+| saved_events.html                  | 77          | 96            | 78             | 100 |
 |                                    |             |               |                |     |
 | Mobile                             |             |               |                |     |
-| add_event.html                     |             |               |                |     |
-| base_layout.html                   | N/A         | N/A           | N/A            | N/A |
-| browse_events.html                 |             |               |                |     |
-| delete_event.html                  |             |               |                |     |
-| index.html                         |             |               |                |     |
-| my_events.html                     |             |               |                |     |
-| my_calendar.html                   |             |               |                |     |
-| event_detail.html                  |             |               |                |     |
-| notifications.html                 |             |               |                |     |
-| change_password.html               |             |               |                |     |
-| login.html                         |             |               |                |     |
-| logout.html                        |             |               |                |     |
-| signup.html                        |             |               |                |     |
-| manage_email_addresses.html        |             |               |                |     |
-| email_confirm.html                 |             |               |                |     |
-| email_verification_sent.html       |             |               |                |     |
-| password_change.html               |             |               |                |     |
-| password_reset_done.html           |             |               |                |     |
-| password_reset_from_key_done.html  |             |               |                |     |
-| password_reset_from_key.html       |             |               |                |     |
-| password_reset.html                |             |               |                |     |
-| signup_closed.html                 |             |               |                |     |
-| account_inactive.html              |             |               |                |     |
-| base.html                          | N/A         | N/A           | N/A            | N/A |
-| 404.html                           |             |               |                |     |
-| email.html                         |             |               |                |     |
-| confirm_delete.html                |             |               |                |     |
-| delete_comment.html                |             |               |                |     |
-| edit_comment.html                  |             |               |                |     |
-| edit_event.html                    |             |               |                |     |
-| event_confirmation.html            |             |               |                |     |
-| event_list.html                    |             |               |                |     |
-| rate_event.html                    |             |               |                |     |
-| saved_events.html                  |             |               |                |     |
+| add_event.html                     | 91          | 93            | 79             | 100 |
+| browse_events.html                 | 75          | 90            | 79             | 100 |
+| delete_event.html                  | 84          | 93            | 79             | 100 |
+| index.html                         | 75          | 96            | 79             | 100 |
+| my_events.html                     | 75          | 93            | 79             | 100 |
+| my_calendar.html                   | 75          | 93            | 79             | 100 |
+| event_detail.html                  | 75          | 95            | 79             | 100 |
+| notifications.html                 | 84          | 94            | 79             | 100 |
+| change_password.html               | 94          | 94            | 79             | 100 |
+| login.html                         | 85          | 95            | 79             | 100 |
+| logout.html                        | 90          | 93            | 79             | 100 |
+| signup.html                        | 87          | 95            | 79             | 100 |
+| manage_email_addresses.html        | 93          | 95            | 79             | 100 |
+| email_confirm.html                 | 85          | 98            | 79             | 100 |
+| email_verification_sent.html       | 91          | 98            | 79             | 100 |
+| password_change.html               | 93          | 94            | 79             | 100 |
+| password_reset_done.html           | 93          | 94            | 79             | 100 |
+| password_reset_from_key_done.html  | 91          | 96            | 79             | 100 |
+| password_reset_from_key.html       | 91          | 96            | 79             | 100 |
+| password_reset.html                | 86          | 93            | 79             | 100 |
+| signup_closed.html                 | 87          | 93            | 79             | 100 |
+| account_inactive.html              | 84          | 93            | 79             | 100 |
+| 404.html                           | 91          | 98            | 79             | 100 |
+| email.html                         | 75          | 93            | 79             | 100 |
+| confirm_delete.html                | 75          | 93            | 79             | 100 |
+| delete_comment.html                | 83          | 93            | 79             | 100 |
+| edit_comment.html                  | 85          | 93            | 79             | 100 |
+| edit_event.html                    | 72          | 93            | 79             | 100 |
+| event_confirmation.html            | 85          | 93            | 79             | 100 |
+| event_list.html                    | 84          | 93            | 79             | 100 |
+| rate_event.html                    | 84          | 94            | 79             | 100 |
+| saved_events.html                  | 72          | 93            | 79             | 100 |
 
+![Example Lighthouse Testing](docs/readme_images/lighthouse-testing.png)
+
+[Back to top](<#contents>)
+
+## Automated Testing
+
+Automated testing was implemented to validate the functionality of both the forms and views within the Donegal Explorers project. Testing focused on verifying that various forms behave as expected when submitted, with appropriate validation and error handling, while also ensuring that views rendered correctly and returned the expected HTTP responses.
+
+### Forms Testing
+For the forms,  a set of tests were created to ensure that each form correctly validated the provided input, flagged missing or invalid data, and handled the submission process effectively. Specifically:
+
+- **EventForm** was tested for valid and invalid submissions, ensuring that required fields like title, description, and dates were present and correctly formatted. Tests also verified that events with invalid date ranges or times were flagged as invalid.
+- **CommentForm** was tested to ensure that comments were correctly validated and that an empty comment field would trigger the appropriate error.
+- **NotificationPreferencesForm** and **NotificationSettingsForm** were tested to verify the proper handling of user notification preferences. Tests confirmed that the forms defaulted to sensible values and behaved correctly whether or not data was provided.
+
+#### Key Results:
+- No errors or issues were found during the form tests.
+- All forms behaved as expected, validating and submitting data correctly.
+
+### Views Testing
+Views were thoroughly tested to ensure they returned the correct templates and HTTP responses when accessed. The tests covered:
+
+- **Home Page View**, **Browse Events View**, **Event Detail View**, and other key pages, confirming they loaded successfully with the appropriate status codes (`200 OK`) and rendered the correct templates.
+- **Event Creation, Update, and Deletion Views**, ensuring the creation, editing, and deletion of events functioned properly and redirected to the appropriate pages after successful actions.
+- **Calendar Views**, such as saving and removing events from a user’s calendar, were tested to confirm the correct handling of calendar-related actions.
+- **Notification Views**, ensuring that notifications were marked as read and displayed correctly.
+
+#### Key Results:
+- All views returned the correct HTTP status codes and templates.
+- Interaction with views, such as creating events and saving to the calendar, behaved as expected with no errors.
+
+The automated tests provided comprehensive coverage of both forms and views, ensuring that the application’s core functionality was reliable and that no errors were encountered during testing.
+
+[Back to top](<#contents>)
+
+## Manual Testing
+
+
+### Site Navigation
+
+| Element               | Expected Result                                                                 | Pass/Fail |
+|-----------------------|---------------------------------------------------------------------------------|-----------|
+| NavBar                |                                                                                 |           |
+| Site Name (logo area) | Redirect to home                                                                | Pass      |
+| Home Link             | Redirect to home                                                                | Pass      |
+| Browse Events Link    | Open Browse Events page                                                         | Pass      |
+| Add Event Link        | Open Add Event form                                                             | Pass      |
+| Add Event Link        | Only visible if user is authenticated                                           | Pass      |
+| My Calendar Link      | Open My Calendar page                                                           | Pass      |
+| My Calendar Link      | Only visible if user is authenticated                                           | Pass      |
+| Account Dropdown      | Open My Account dropdown                                                        | Pass      |
+| Account Dropdown      | Text changes to username with profile icon when user is authenticated           | Pass      |
+| Sign Up Link          | Open Sign up page                                                               | Pass      |
+| Sign Up Link          | Not visible if user is authenticated                                            | Pass      |
+| Log In Link           | Open Login page                                                                 | Pass      |
+| Log In Link           | Not visible if user is authenticated                                            | Pass      |
+| Logout Link           | Open logout confirmation page                                                   | Pass      |
+| Logout Link           | Only visible if user is authenticated                                           | Pass      |
+| Nav Links Hover       | Links change color when hovered over                                            | Pass      |
+| Hamburger Menu        | Responsive, shows up on smaller screens                                         | Pass      |
+| Footer                | Links open to all social media pages in a new screen                            | Pass      |
+
+
+### Home Page
+
+| Element                  | Expected Result                                                                         | Pass/Fail |
+|--------------------------|-----------------------------------------------------------------------------------------|-----------|
+| Hero 'Sign Up' Button    | Open Sign up page                                                                       | Pass      |
+| Card 'Browse' Button     | Open browse event page                                                                  | Pass      |
+| Card 'Add Event' Button  | Open Add Event page                                                                     | Pass      |
+| Card 'Calendar' Button   | Opens calendar page                                                                     | Pass      |
+| Upcoming Events Section  | Correctly displays future events                                                        | Pass      |
+| Upcoming Events Section  | Events link to event detail page correctly                                              | Pass      |
+
+### Add Event Page
+
+| Element                           | Expected Result                                                                                     | Pass/Fail |
+|-----------------------------------|-----------------------------------------------------------------------------------------------------|-----------|
+| Add Event Form                    | Form loads with title, description, date, time, location, image, and status fields                   | Pass      |
+| Title Field                       | Display validation error if left blank or too short                                                  | Pass      |
+| Title Field                       | Accepts a valid title and form submits successfully                                                  | Pass      |
+| Description Field                 | Display validation error if left blank                                                               | Pass      |
+| Start Date Field                  | Start date cannot be after the end date, validation error displays                                   | Pass      |
+| End Date Field                    | Cannot submit without a valid end date                                                               | Pass      |
+| Time Fields                       | Both start and end times must be provided                                                            | Pass      |
+| Image Upload                      | Allows user to upload an event image if not placeholder image displays                               | Pass      |
+| Status Field                      | Displays status options (Draft, Published) correctly                                                 | Pass      |
+| Submit Button (valid form)        | Event is saved and user is redirected to confirmation page                                           | Pass      |
+| Submit Button (invalid form)      | Displays appropriate validation errors                                                               | Pass      |
+| Non-authenticated user access     | Page is not available to non-authenticated users                                                     | Pass      |
+| Form validation (cross-checking)  | Displays error if end date is earlier than start date                                                | Pass      |
+| Form validation (empty fields)    | Form won't submit if any required fields (e.g., title, description, date) are left empty             | Pass      |
+| Form validation (future dates)    | Ensures event dates cannot be in the past                                                            | Pass      |
+| Event Redirect                    | After submission redirects.                                                                          | Pass      |
+
+### Browse Events Page
+
+| Element                | Expected Result                                                                                      | Pass/Fail |
+|------------------------|------------------------------------------------------------------------------------------------------|-----------|
+| Search Functionality    | Users can search for events by title, location, or description                                       | Pass      |
+| Sort Dropdown           | Sorts events by start date, location, or title                                                       | Pass      |
+| Event Cards             | Displays correct event details (title, image, location, dates)                                       | Pass      |
+| Event Cards Button      | Redirects user to event detail page when clicked                                                     | Pass      |
+| Event Button Hover      | Add a subtle hover effect when the user hovers over event cards                                      | Pass      |
+| Future Events Only      | Only future events are displayed on the page, no past events are shown                               | Pass      |
+
+### Event Detail Page
+
+| Element                      | Expected Result                                                                                    | Pass/Fail |
+|------------------------------|----------------------------------------------------------------------------------------------------|-----------|
+| Event Details                 | Displays correct event title, location, start/end date, and time                                  | Pass      |
+| Event Image                   | Correct event image displays (or a placeholder image if none uploaded)                            | Pass      |
+| Save to Calendar Button       | Adds event to user's calendar when clicked                                                        | Pass      |
+| Save to Calendar Button       | Only visible if user is authenticated                                                             | Pass      |
+| Edit Event Button             | Only visible to the event author or admin user                                                    | Pass      |
+| Delete Event Button           | Only visible to the event author or admin user                                                    | Pass      |
+| Comments Section              | Displays user comments below the event details, ordered by newest to oldest                       | Pass      |
+| Leave a Comment Form          | Only visible to authenticated users                                                               | Pass      |
+| Leave a Comment Validation    | Form displays error message if submitted empty                                                    | Pass      |
+| Edit Comment Button           | Only visible to comment author or admin                                                           | Pass      |
+| Edit Comment Validation       | Form cannot be submitted if fields are empty                                                      | Pass      |
+| Delete Comment Button         | Only visible to comment author or admin                                                           | Pass      |
+
+### My Events Page
+
+| Element                        | Expected Result                                                                                 | Pass/Fail |
+|--------------------------------|-------------------------------------------------------------------------------------------------|-----------|
+| My Events List                 | Displays events created by authenticated user                                                   | Pass      |
+| Edit Event Button              | Redirects to Edit Event page for the selected event                                             | Pass      |
+| Delete Event Button            | Opens Delete Event confirmation page                                                            | Pass      |
+| No Events Message              | Displays message if no events are created by the user                                           | Pass      |
+| Search and sort Filters        | Filters available to search for events and sort by start date                                   | Pass      |
+
+### My Calendar
+
+| Element                        | Expected Result                                                                                      | Pass/Fail |
+|--------------------------------|------------------------------------------------------------------------------------------------------|-----------|
+| Calendar Page Access           | Redirects to login page if user is not authenticated                                                 | Pass      |
+| Calendar Page Display          | Displays all events saved by the authenticated user in a calendar view                               | Pass      |
+| Calendar Navigation            | User can navigate between months (current and future)                                                 | Pass      |
+| Calendar Event Display         | Events are displayed on the correct dates on the calendar                                             | Pass      |
+| No Events Message              | Displays a message if no events are saved for the selected month                                       | Pass      |
+| Past Events Display            | Past events are not displayed in the calendar view                                                     | Pass      |
+| Remove Event from Calendar     | User can remove events from the calendar                                                               | Pass      |
+| Event Image Display            | Event images (if available) are displayed in the calendar popup when hovering over the event            | Pass      |
+| Event Date and Time Display    | Correct start and end dates/times are displayed for the events                                         | Pass      |
+| Responsive Calendar Display    | The calendar view is responsive and adjusts for mobile/tablet screen sizes                             | Pass      |
+| Mobile View                    | On mobile view, the calendar displays events in a list format, with correct event details shown        | Pass      |
+| Calendar Filter by Month       | User can filter events by selecting a specific month from the dropdown                                 | Pass      |
+| Filter Form Submission         | After selecting a month and submitting, events for that month are displayed correctly                  | Pass      |
+| Empty Calendar Month           | If no events exist for the selected month, a message is displayed indicating no saved events           | Pass      |
+
+
+### Notifications Page
+
+| Element                            | Expected Result                                                                            | Pass/Fail |
+|------------------------------------|--------------------------------------------------------------------------------------------|-----------|
+| Notifications List                 | Displays list of user notifications                                                        | Pass      |
+| Mark as Read Button                | Marks notification as read and updates the display                                          | Pass      |
+| Notification Preferences Form      | Displays a form to manage notification preferences                                          | Pass      |
+| Update Preferences Button          | Submits the form and updates preferences                                                    | Pass      |
+
+### Email Management Page
+
+| Element                            | Expected Result                                                                            | Pass/Fail |
+|------------------------------------|--------------------------------------------------------------------------------------------|-----------|
+| Email List                         | Displays a list of user's emails with verification status                                  | Pass      |
+| Make Primary Button                | Allows user to set an email as primary                                                     | Pass      |
+| Remove Email Button                | Allows user to remove an email address (unless it's the primary email)                     | Pass      |
+| Re-send Verification Button        | Allows user to re-send a verification email for unverified addresses                        | Pass      |
+| Add Email Form                     | Allows user to add a new email address                                                     | Pass      |
+| Form Validation                    | Displays validation error if an invalid email format is entered                            | Pass      |
+
+### Password Reset Pages
+
+| Element                            | Expected Result                                                                            | Pass/Fail |
+|------------------------------------|--------------------------------------------------------------------------------------------|-----------|
+| Request Password Reset Form        | Displays email field for user to request a password reset                                  | Pass      |
+| Request Password Reset Validation  | Displays error message if email is invalid or not associated with any account              | Pass      |
+| Password Reset Email               | Sends reset link to user's email                                                           | Pass      |
+| Enter New Password Form            | Allows user to enter a new password, and submit it to reset the account password            | Pass      |
+| Enter New Password Validation      | Displays error if the passwords don't match                                                | Pass      |
+| Success Message                    | Displays success message once password reset is completed                                  | Pass      |
+
+### 404 Error Page
+
+| Element                 | Expected Result                                                                  | Pass/Fail |
+|-------------------------|----------------------------------------------------------------------------------|-----------|
+| 404 Page Display         | Displays custom 404 error message                                                | Pass      |
+| Return Home Button       | Redirects user back to the home page                                             | Pass      |
+| Custom Styling           | Ensures custom branding and colors appear on the 404 page                        | Pass      |
 
 ---

@@ -1329,3 +1329,6 @@ To fork the repository and make changes without affecting the original project:
 2. Click the "Fork" button in the top-right corner.
 3. GitHub will create a copy of the repository under your account, which you can clone and modify freely.
 
+# Testing
+
+Extensive testing was completed both during the development and post development with results available to view [here](/testing.md)
