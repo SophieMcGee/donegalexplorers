@@ -718,20 +718,31 @@ The relationships between models also allow for seamless data queries, ensuring 
 
 ## General Features
 
+### Frameworks and Tools
+
+The website uses Django to manage the core functionalities of the site such as user authentication, event management, and database handling. Using Django’s built-in tools like the admin interface and Django ORM helped to streamline development and make data handling more efficient.
+
+The frontend uses HTML, Javascript and Bootstrap for layout and design, with additional custom CSS to tailor the visual appearance of elements. The combination of Bootstrap and custom CSS ensures a responsive and user-friendly design that adapts across various devices, meeting the needs of both mobile and desktop users.
+
+For media management, Cloudinary is used to handle user-uploaded images, ensuring efficient storage and delivery of images while maintaining high performance.
+
+![Main Django View](docs/readme_images/django-home-page.png)
+
 ### Responsive Design
-The website is built using a combination of **Bootstrap** and **custom CSS** to ensure responsiveness across all devices. The design is optimised for mobile first and adapts to various screen sizes with the use of Bootstrap’s grid system and media queries.
+The website is fully responsive, using Bootstrap’s grid system and media queries to ensure a smooth user experience across devices. A mobile-first design approach was followed to prioritise accessibility on smaller screens.
 
 #### Key Breakpoints
-- **Small Devices (Max-width: 768px)**: Elements are stacked vertically to ensure accessibility and usability on mobile devices. The navbar is collapsed into a hamburger menu.
-- **Medium Devices (Max-width: 992px)**: The layout becomes wider, with form fields, buttons, and cards adjusting to medium-sized screens like tablets.
-- **Large Devices (Min-width: 992px)**: The layout expands to make use of available space on desktops, with increased spacing between elements and larger font sizes for readability.
+- **Small Devices (Max-width: 768px)**: On small devices like smartphones, content is stacked vertically. The navigation bar collapses into a hamburger menu, ensuring easy access to all links without crowding the screen.
+- **Medium Devices (Max-width: 992px)**: Layouts expand slightly, with more space between form fields, cards, and navigation elements. This ensures a clean presentation on tablets.
+- **Large Devices (Min-width: 992px)**: On larger screens, like desktops, the layout makes full use of the available space. Elements are spread out for a comfortable reading experience, and form inputs are larger for better usability.
 
 ### Navigation
-- **Navbar**: The site features a consistent navigation bar that adapts to different screen sizes. For mobile users, the navbar collapses into a dropdown menu. The menu options dynamically change based on whether the user is logged in or not.
-- **Login and Authentication**: If a user is logged in, the navbar displays options for 'My Events,' 'My Calendar,' and an area to manage their accounts. For unauthenticated users, options to 'Sign Up' and 'Login' are shown.
-- **Dropdown Menus**: As visible in the image below, dropdowns are used for event-related actions, including 'Browse Events,' 'Add Event,' and 'My Events' to ensure smooth navigation.
+- **Dynamic Navbar**: The site features a consistent navigation bar that adapts to different screen sizes. For mobile users, the navbar collapses into a dropdown menu. The navbar changes based on the user’s authentication status. Unauthenticated users see links to "Sign Up" and "Login," while authenticated users have access to personalised options relating to their account.
+- **Dropdown Menus**: The "Events" link includes a dropdown that contains options like "Browse Events" and "Add Event." This allows users to quickly navigate between different sections without needing to return to the home page.navigation.
 
 ![Logged in user](docs/readme_images/logged-in-user.png)
+
+This dynamic content helps improve navigation by ensuring users only see relevant options based on their logged-in state. User stories like "As a user, I want easy access to event management tools" directly informed the development of this feature.
 
 ### Logo and Responsive Resizing in Navbar
 
@@ -750,7 +761,7 @@ It is particularly useful when users are switching between tabs, as it provides 
 
 ### Footer
 
-The footer is a persistent element displayed across all pages of the site, designed to provide users with quick access to social media links.
+The footer is present on all pages and contains links to the site’s social media platforms, encouraging users to connect with Donegal Explorers on social platforms. The footer also ensures consistency across all pages by maintaining uniform branding and providing quick access to external resources.
 
 ![Footer](docs/readme_images/footer.png)
 
@@ -765,21 +776,21 @@ Social media icons are prominently featured in the footer, allowing users to eas
 This integration not only enhances the site's interactivity but also encourages users to become part of a wider community of explorers, connecting through platforms like Facebook, Instagram, and Twitter. These links play a key role in building the social presence of Donegal Explorers, fostering engagement beyond the website.
 
 ### Accessibility
-The project is designed to be accessible to all users by:
-- **Semantic HTML**: Elements such as `<header>`, `<nav>`, and `<footer>` help assistive technologies navigate the page.
-- **ARIA Labels**: Interactive elements, such as buttons, form inputs, and links, use `aria-label` to provide clear descriptions for users relying on screen readers.
-- **Keyboard Navigation**: Interactive components (forms, buttons, and dropdowns) can be navigated using only the keyboard.
+Ensuring accessibility was a key goal throughout development. The project adheres to WCAG standards to make the platform usable by a wide range of users, including those with disabilities. Key features include: 
+
+- **Semantic HTML**: Elements such as `<header>`, `<nav>`, and `<footer>` were used to structure content logically, improving navigation for users relying on screen readers.
+- **ARIA Labels**: Interactive components, such as buttons and links, are accompanied by descriptive ARIA labels to ensure users with assistive technologies can easily interact with the platform.
+- **Keyboard Navigation**: The site is fully navigable via keyboard, allowing users to tab through forms, buttons, and links without needing a mouse.
 
 ## Page-Specific Features
 
 ### Home Page Features
 
-- **Hero Section**: The hero section greets users with a large banner image showcasing the beauty of Donegal and a prominent call-to-action message encouraging users to explore family adventures. A clear and accessible "Sign Up" button immediately directs users to create an account and start participating in events. This section is designed to be fully responsive, adapting to different screen sizes using Bootstrap's responsive classes and custom CSS, ensuring the layout remains visually appealing and easy to interact with on all devices.
+- **Hero Section**: The hero section greets users with a large banner image showcasing the beauty of Donegal and a prominent call-to-action message encouraging users to explore family adventures. A clear and accessible "Sign Up" button immediately directs users to create an account and start participating in events. This section is designed to be fully responsive, adapting to different screen sizes using Bootstrap's responsive classes and custom CSS, ensuring the layout remains visually appealing and easy to interact with on all devices. User stories, like "As a new user, I want to quickly understand what Donegal Explorers offers," were used to inform this design.
 
 ![Hero Section](docs/readme_images/hero-section.png)
 
-- **Welcome Section**: The welcome section introduces Donegal Explorers to users, providing an overview of what the platform offers, including event browsing, saving events, and family activities in Donegal. The layout uses Bootstrap to ensure proper spacing and alignment, with text centered for optimal readability on both small and large screens.
-
+- **Welcome Section**: The welcome section introduces Donegal Explorers to users, providing an overview of what the platform offers, including event browsing, saving events, and family activities in Donegal. It uses Bootstrap’s grid system to align text centrally, making it visually appealing and easy to read on all screen sizes. This section acts as a key narrative element, guiding new users through the site’s purpose and encouraging further exploration.
 
 - **Features Section: Event Interactions**: Below the welcome section, users are presented with three interactive cards that serve as quick links to the main features of the website:
 
@@ -789,29 +800,425 @@ The project is designed to be accessible to all users by:
 
 3. **View Calendar**: The third card directs users to their personal calendar, where they can view saved events in a convenient month-by-month format. The calendar helps users keep track of events they've registered for or marked as favorites.
 
-Each card is styled using Bootstrap’s card components, combined with custom CSS for hover effects and shadows to give them a modern, clickable feel. The cards are displayed in a responsive grid, ensuring they remain proportionate and aligned on different screen sizes, from mobile to desktop.
+Each card is styled using Bootstrap’s card components, combined with custom CSS for hover effects and shadows to give them a modern, clickable feel. The cards are displayed in a responsive grid, ensuring they remain proportionate and aligned on different screen sizes, from mobile to desktop. 
 
 ![Features Section](docs/readme_images/features-sections.png)
 
-- **Upcoming Events**: The home page also displays the next three upcoming events in a carousel format, pulling from the database and ensuring users are always aware of what's happening next.
+- **Upcoming Events**: The Upcoming Events section on the home page pulls data from the database and displays the next three events, allowing users to quickly see what’s happening in Donegal. This is a dynamic feature that updates based on the events stored in the database, ensuring the site remains current.
+
+The events are displayed in a grid format, with each event showing a thumbnail image, the event title, and its start date. This section encourages users to engage with the platform by showing relevant and timely information.
+
 
 ![Upcoming Events](docs/readme_images/upcoming-events.png)
 
-### Event Browsing Features
 
-The **Browse Events** page provides users with a list of all upcoming events. Key features include:
+### Event Management Features
+
+#### Event Model and Event Form
+
+The Event model stores all the information related to an event, including its title, description, start date, end date, location, and an image. The model is the backbone for all event-related functionalities, from displaying events to allowing users to create new ones.
+
+The EventForm allows users to submit new events. It’s built using Django’s ModelForm class, which automatically generates the form fields based on the Event model’s attributes. This ensures consistency between the data model and the user interface.
+
+Form validation, such as ensuring the end date is not earlier than the start date, is handled by custom logic in the form’s clean method. This prevents users from submitting incorrect data, improving overall data integrity.
+
+#### Browse Events
+
+The Browse Events page allows users to search for and explore events in Donegal. Events can be sorted by date, location, or title, providing flexibility for users to find what they’re looking for. The filtering options align with user needs ensuring that they can easily navigate through the available options.
+
+This page pulls data from the Event model and uses Django’s ORM to filter and sort events based on user input. The search functionality is powered by a basic text filter that checks the event title and description for matches, while the sorting options allow users to sort by various attributes.
+
+The key features include:
 
 - **Search and Sorting**: Users can search for events by keywords and sort them by date, title, or location, using form controls at the top of the page. The search bar dynamically filters events based on the user's input, and sorting options allow users to quickly find events that match their preferences.
+
 - **Event Cards**: Each event is displayed in a Bootstrap card, featuring the event title, location, date, and a short description. Cards include a “Read More” button that directs users to the detailed event page.
 
 ![Browse Events Page](docs/readme_images/browse-events-page.png)
 
+#### Event Detail Pages
+
 The individual **Event Detail** pages provide comprehensive information about each event. Features include:
 
 - **Detailed Event Information**: Users can see the full event details, including location, start/end date and time, and a more detailed description. Event images (if available) are displayed in a responsive format at the top of the page. If no image has been added a placeholder image is shown.
-- **Comments and Ratings**: Logged-in users can leave comments about the event or add a rating. Comments are displayed in a section below the event details, with the most recent comments displayed first. A user can comment multiple times on an event, however each user can only rate an event once and the average rating is calculated and displayed. Comments can only be edited or deleted by an admin account holder or by the user who made the comment.
+
+- **Comments and Ratings**: Logged-in users can leave comments about the event or add a rating. Comments are displayed in a section below the event details, with the most recent comments displayed first. The CommentForm uses the Comment model, which includes fields such as content, user, and event. Users must be logged in to see the comment form, which is validated to ensure that no blank comments are submitted. When a user submits a comment, the system validates the form and associates the comment with the logged-in user and the event.
+
+Users can edit their comments after submitting them, allowing for corrections or updates to their content. Next to each comment that a user has posted, there is an Edit button (visible only to the comment author and admins). When clicked, the button redirects the user to the edit comment page, where they can update their comment. The form for editing comments includes the same validation as the initial comment form, ensuring that the updated content is valid before being saved. Users can also delete comments they’ve submitted, providing them control over their content.
+
 - **Save to Calendar**: Logged-in users can save the event to their personal calendar with a single click. A button labeled “Save to My Calendar” is available for quick access. Once an event is saved to the users calendar, a button is available to 'remove from calendar'.
+
 - **Edit and Delete Event**: If an event has been added by a user, it is possible for them to edit or delete the event via buttons within the individual event detail page for ease of management.
 
+- **Ratings**: The Ratings system allows authenticated users to rate events. This feature provides valuable feedback to event organizers and helps other users gauge the popularity or quality of an event. Users can only rate each event once, this is enforced through a unique constraint in the Rating model, which ties the rating to the user and the event. Each event page displays the average rating based on all user submissions. This is calculated dynamically using the Rating model, which stores individual ratings for each user and event. Once a user selects their rating and submits it, the form is validated to ensure that the rating is within the acceptable range (e.g., between 1 and 5 stars). The rating is then saved to the database and associated with both the user and the event.
+
 ![Event Detail Page](docs/readme_images/event-detail-page.png)
+
+#### My Events
+
+The My Events page is designed specifically for authenticated users to manage the events they have created. This page allows users to view quick details, edit, and delete their events, and it also displays detailed information about each event in a card format, making it easy for users to interact with and manage their submissions.
+
+This page is linked directly to the Event model, which stores all of the event data, and the backend filters the events so that each user only sees events they have created. The filtering is implemented by querying the Event model for the currently logged-in user's author field, ensuring that no other user's events appear in this view. 
+
+![My Events Page](docs/readme_images/my-events-page.png)
+
+- **Event Card Display**: Each event the user has created is displayed in a Bootstrap card format, which presents key details in a concise and visually appealing way. The card includes:
+
+Event Title: Displayed prominently at the top of the card to allow quick identification of each event.
+Event Location: The location where the event will take place, so users can verify or update this if necessary.
+Event Date and Time:
+Start Date & Time: Displays when the event will begin.
+End Date & Time: Displays when the event will end.
+
+These cards ensure that users can quickly get an overview of the events they have created, while also providing an intuitive interface for managing them.
+
+- **Edit and Delete Buttons**: For each event, two buttons are displayed in the card’s footer to allow users to manage their event: Edit and Delete.
+
+Edit Button:
+
+Clicking this button takes the user to the edit event form, where they can modify details about their event, such as the title, description, dates, and times. This functionality is directly tied to the EventForm, and the fields displayed for editing are the same fields used when initially creating the event. The user can update any aspect of the event, and the form validation ensures that the new data is correct, displaying helpful error messages if needed (e.g., if the end date is before the start date).
+The form is styled using crispy forms to ensure consistent and user-friendly layouts.
+
+![Edit Event Form](docs/readme_images/edit-event.png)
+
+Delete Button:
+
+Clicking the delete button will trigger a confirmation modal or redirect the user to a confirmation page that asks the user to confirm whether they truly want to delete the event. This ensures that events are not accidentally deleted without confirmation.
+The confirmation page contains a message "Are you sure you want to delete this event?" with a confirmation button, giving the user a final opportunity to reconsider their action.
+
+![Event Deletion](docs/readme_images/event-deletion.png)
+
+
+For admin users, they also have access to the same buttons for any event on the platform, not just their own. This means an admin can edit or delete any event, which is useful for platform management. Admin privileges are enforced using Django’s built-in permission system, ensuring only users with appropriate roles have access to all events.
+
+#### Add an Event
+
+The Add Event page allows authenticated users to create new events that will be displayed on the platform. This page plays a crucial role in the site's functionality, as it enables event organisers to contribute by adding events, which can then be browsed by other users. The form on this page is directly tied to the Event model and uses the EventForm to collect the necessary information. The Add Event form is built using Django’s ModelForm, specifically the EventForm, which automatically generates fields based on the fields specified in the Event model. This ensures that the form remains consistent with the data structure and that any changes to the model are reflected in the form.
+
+![Add Event Form](docs/readme_images/add-event.png)
+
+The fields required for creating an event include:
+
+Title: A text input for the event’s title. This field is required and is limited in length to ensure titles are concise and meaningful. Placeholder text "Event Title" helps guide users in filling out this field.
+
+Description: A multi-line text area for event details. This field is also required and gives the user the opportunity to describe the event in depth.
+
+Location: A text input for the event’s location, where users can specify where the event will take place. It includes a placeholder of "Event Location" to guide the user.
+
+Start Date and End Date: Date pickers allow users to select the event’s start and end dates. The date fields are integrated with a calendar picker for ease of use, minimising errors with date formats.
+
+Start Time and End Time: Time pickers allow users to select the start and end times for their event. The form ensures that end times cannot precede start times, which is validated in the form logic.
+
+Image: An optional file upload field where users can upload an image representing the event. This adds visual appeal to the event when displayed on the site. If no image is uploaded, a default placeholder image is used when displaying the event in lists and details.
+
+Status: A dropdown menu that lets users specify whether the event is currently Published or a Draft. This allows users to work on an event without making it public until it’s ready.
+
+The Submit button is located at the bottom of the form and styled using a Bootstrap button class for consistency with the rest of the site's design. When the form is successfully submitted, the event is saved to the database, and the user is redirected to a confirmation page or to the event detail page where they can review the event they just created.
+
+Only authenticated users can access the Add Event page. If an unauthenticated user tries to access this page, they are redirected to the login page, and a message is displayed encouraging them to log in or sign up before adding an event.
+
+This is enforced through Django’s login_required decorator, which ensures that non-authenticated users are redirected to the login page when attempting to access the page.
+
+- **Form Validation and Error Handling**: The EventForm includes built-in validation to ensure that the data submitted by users is correct and logical. Validation checks include:
+
+Required Fields: Fields such as Title, Description, Location, Start Date, and Start Time are mandatory, ensuring that the event has all the necessary information.
+
+Date Validation: The form checks that the End Date is not before the Start Date, and if the event starts and ends on the same day, the End Time must be after the Start Time. This logic is handled within the clean method of the form.
+
+If validation fails, error messages are displayed at the top of the form and inline with the fields that caused the error. These error messages help guide users in correcting their input. For example, if the user tries to submit an event with an end date earlier than the start date, the message "End date must be after the start date" will be displayed.
+
+- **User Feedback and Confirmation**:
+
+Upon successful submission of the event, the user is shown a success message that confirms their event has been added, as shown in the image below. All error messages are prominently positioned both at the top of the form and next to the specific fields that need correction, making it clear what needs to be fixed before the form can be resubmitted.
+
+![Confirmation Message](docs/readme_images/add-event.png)
+
+#### My Calendar
+
+The My Calendar page is a key feature for registered users, enabling them to manage and view events they have saved to their personal calendar. This feature focuses on user engagement, allowing users to track upcoming events and visualise their schedule in an intuitive and organied manner. The page directly ties into the Calendar and Event models and aligns with several user stories. Only authenticated users can access the My Calendar page. This is enforced using Django's LoginRequiredMixin, ensuring that non-logged-in users are redirected to the login page.
+
+The My Calendar page is structured to show events saved by the user in a monthly format, offering a clear view of upcoming events. The layout allows users to see events organised by date, making it easy to navigate through their saved events for the current month, while also giving them control to browse future months. The page is highly responsive and designed to adapt to various screen sizes for both mobile and desktop users.
+
+![Calendar Page](docs/readme_images/calendar-page.png)
+
+These events are shown as cards that contain the following information:
+
+Event Image: If the event has an associated image, it is displayed as a thumbnail at the top of the card.
+Event Title: The title of the event is presented prominently at the top of the card.
+Event Date and Time: The date range and time of the event are clearly displayed.
+Location: The event location is included.
+View Event Button: A link to view the event detai page is available in each card, which provides options to remove the event from the calendar.
+
+The Calendar model acts as an intermediary between the Event model and the user. When a user saves an event, an entry is created in the Calendar model with references to both the user and the event. This relationship ensures that users only see events they have personally saved, and each user’s calendar is entirely unique to them.
+
+When a user adds or removes events from their calendar, feedback is provided in the form of the available buttons on the page, which change dynamically to 'Remove from Calendar' or 'Save to Calendar'.
+
+### User Account Features
+
+The User Account Features are key components for managing user interactions and preferences within the Donegal Explorers platform. These features are accessible through a dropdown menu in the navbar, which becomes visible when a user is authenticated. This section focuses on the user account management options available to registered users, detailing the features for managing email addresses, changing passwords, notifications, and logging out.
+
+These features are not just functional but are also designed to offer users a seamless experience in managing their accounts. The dropdown interface is consistent across all devices and is designed with accessibility in mind.
+
+- **Dropdown Menu for User Account Management**: 
+
+Once a user logs in, the navbar automatically updates to display the username with a dropdown arrow. This dropdown provides easy access to several account management features. The user account dropdown includes the following options:
+
+Manage Email Addresses
+Change Password
+Notifications
+Logout
+
+These features are connected to the Django authentication system and integrated with custom templates and views to enhance the user experience.
+
+![User Dropdown Menu](docs/readme_images/admin-dropdown.png)
+
+- **Manage Email Addresses**:
+
+![Manage Email Addresses](docs/readme_images/manage-email-addresses.png)
+
+The Manage Email Addresses feature allows users to manage the email addresses associated with their account. This page gives users the ability to add, remove, or change the primary email address used for notifications, account recovery, and communications.
+
+This feature directly ties into the allauth email management system, which handles email verifications and updates. The templates and views used for email management include:
+
+Email Management Template (email.html): This template is where users can view their current email addresses and take actions like adding a new one, verifying an unverified email, or setting an email as primary.
+
+Email Verification Templates: The following templates are used to handle the verification process:
+
+email_confirm.html: This template is used when users need to confirm a newly added email address. A verification link is sent to the user's new email, and they are redirected here to complete the process.
+
+email_verification_sent.html: This confirmation page informs users that a verification email has been sent and they must check their inbox to complete the verification.
+
+- **Change Password**:
+
+The Change Password option allows users to change their current password securely. This is essential for account security and aligns with best practices for password management. When users select this option, they are taken to a custom template where they can enter their current password and set a new one.
+
+The relevant templates and flows are as follows:
+
+Change Password Template (password_change.html): This template provides a form for users to input their current password and choose a new one. It's styled with Bootstrap to ensure a user-friendly experience. The form includes fields for:
+
+Current Password: Users must confirm their identity by entering their current password.
+New Password: The password must meet security criteria, such as minimum length and character variety.
+Confirm New Password: Users re-enter the new password to ensure it matches.
+Validation errors, such as mismatched passwords or incorrect current passwords, are displayed with custom error messages using Django’s built-in form validation.
+
+Success Message: Upon successfully changing the password, users are shown a custom success message, confirming the update. This success message is handled using Django’s messages framework and appears on the same page to inform the user that the password has been successfully changed.
+
+![Change Password](docs/readme_images/change-password.png)
+
+- **Notifications**:
+
+The Notifications page allows users to manage how they receive alerts and notifications related to events and account updates. This feature provides a centralised way for users to adjust their preferences for receiving email notifications about new events, updates, or reminders. In addition, 
+
+The notifications.html template provides users with a form to manage these preferences, linking to the NotificationPreferencesForm and allowing users to opt in or out of notifications.
+
+![Notifications](docs/readme_images/notifications.png)
+
+The UserProfile model extends the default Django User model to include additional features specific to Donegal Explorers. This model plays a critical role in managing user-related data beyond the basic authentication details provided by Django’s default user model. The UserProfile model includes fields that allow users to manage their notification preferences. This is particularly useful for event-related updates, such as reminders for saved events or notifications when events they are interested in are updated or cancelled, which could be useful for developing future features. 
+
+- **Signup**:
+
+The Signup page is the entry point for new users to create an account on Donegal Explorers. The design and development of this page are carefully crafted to ensure a smooth registration process, with a focus on clarity, simplicity, and responsiveness. The page leverages Bootstrap for styling and layout, ensuring that it is mobile-friendly and accessible on all devices.
+
+Key Features:
+Form Structure: The signup form includes fields for email, username, and password, all of which are validated to ensure the correct format and security standards are followed. The form fields are rendered using the crispy-forms package for enhanced styling and responsiveness.
+
+Email Verification: After successful registration, users are required to verify their email address before gaining access to key site features. This process is integrated into Django's allauth email confirmation workflow. When a user submits the signup form, an email with a confirmation link is automatically sent to the provided email address. The template for this email is located in templates/account/email_confirm.html, which was customised for branding consistency and user-friendly messaging.
+
+Email Verification Template: This email includes a clear, branded message informing users of the next steps in the verification process, along with a prominent verification link. The content ensures the user experience is smooth, avoiding any confusion during account activation.
+
+Error Handling:
+Validation Errors: If any form fields are left incomplete or do not meet the specified criteria (e.g., an invalid email format or weak password), Django’s form validation automatically provides error messages directly on the signup form. These are displayed in a consistent, user-friendly format that aligns with the overall design of the platform.
+
+Non-Field Errors: If there are any additional issues during registration (such as a duplicate username or email), these errors are displayed at the top of the form, ensuring users can quickly resolve any issues preventing them from signing up.
+
+![Sign-up](docs/readme_images/sign-up.png)
+
+- **Login and Logout**:
+
+The Logout option allows users to securely log out of their account, ensuring that their session is closed and no one else can access their account if they leave their device unattended. This functionality is handled by Django’s built-in logout view, but it’s seamlessly integrated into the user experience with custom messaging and redirection. Upon logging out, users are redirected to the homepage and shown a success message confirming they’ve logged out.
+
+![Logout](docs/readme_images/sign-out.png)
+
+The Login page allows existing users to access their Donegal Explorers account securely. Like the signup page, it is built using Django allauth and Bootstrap to ensure a seamless, user-friendly interface.
+
+Key Features:
+Form Layout: The login form includes fields for email/username and password. The form fields are also styled using crispy-forms, maintaining design consistency across the platform.
+
+Error Handling: If incorrect login credentials are entered, the user is shown a clear error message indicating that the credentials are invalid. This message is displayed in an alert at the top of the form, guiding the user to recheck their details.
+
+![Login](docs/readme_images/login.png)
+
+- **Email Management**:
+
+TXT files play a crucial role in managing the content of emails sent to users during various stages of the user lifecycle, such as account creation, password resets, and email verification. These templates were customised to align with the Donegal Explorers brand, ensuring consistent communication across all touchpoints.
+
+Email Templates for User Account Management:
+The following TXT files were customised for Donegal Explorers and are located in the templates/account/ directory:
+
+email_confirmation_message.txt: This file contains the content that is sent to users when they sign up and need to confirm their email address. The content includes a greeting, a message thanking the user for joining Donegal Explorers, and a confirmation link that the user must click to activate their account. It also contains a fallback message in case the link doesn’t work, instructing the user on how to manually activate their account.
+
+password_reset_key_message.txt: This file manages the content sent to users when they request a password reset. It includes a reset link, which when clicked, takes users to the password reset page where they can create a new password. The email is structured to be clear and user-friendly, with instructions on what to do if the user didn’t request a password reset, ensuring security.
+
+email_verification_sent.html: After a user submits their email for verification, they are redirected to a confirmation page. This page is styled to reflect the Donegal Explorers brand, reinforcing the email verification process and providing users with an easy-to-follow process for verifying their email.
+
+How These Files Tie into User Actions:
+Signup Process: Once a user signs up, Django’s allauth system automatically uses the email_confirmation_message.txt file to send an email to the user, containing a confirmation link. The system looks for this file in the account templates directory and sends it as part of the account verification process.
+
+Password Reset: If a user forgets their password, they can use the Forgot Password feature on the login page. Once they submit their email, Django’s allauth uses the password_reset_key_message.txt to send an email with instructions and a reset link. This ensures that the user can securely reset their password without any involvement from the admin side.
+
+Account Verification: The email_verification_sent.html file is rendered after users submit their email for verification. It contains a branded message letting users know that they will receive an email with a verification link. This page is essential for ensuring users understand the next steps and helps guide them through the final stages of account setup.
+
+- **Account Recovery**:
+
+Password Reset: If a user forgets their password, they can easily reset it by clicking the "Forgot Password?" link on the login page. This link directs them to a password recovery page, where they can enter their email address to receive a password reset link. The password reset email is managed by Django allauth, and the email template is located at templates/account/password_reset.html. This email includes a clear link for resetting the password, ensuring that the user can regain access quickly and securely.
+
+Password Reset Template: The password reset email template has been customised to match the branding of the platform and provide clear instructions. The link within the email takes the user to a secure password reset form where they can enter a new password.
+
+![Password Reset](docs/readme_images/reset-password.png)
+
+- **Security Features**:
+
+Email Confirmation: Users cannot access certain areas of the site (e.g., adding events, managing the calendar) until their email address is verified. This ensures that only legitimate users can access restricted features, safeguarding the platform against unauthorized use.
+
+Password Security: Django's built-in password hashing ensures that user passwords are securely stored. Additionally, the allauth package enforces strong password policies, requiring users to create secure passwords that include a mix of characters.
+
+### 404 Page
+
+The 404 page is a custom error page designed to provide a user-friendly experience when users attempt to visit a broken or non-existent URL on the Donegal Explorers platform.
+
+Key Features:
+Custom Message: When users attempt to visit a URL that doesn’t exist, the platform displays a custom error message, informing them that the page they are looking for can’t be found.
+Consistent Design: The page maintains the visual identity of the site by using the same layout, color scheme, and typography. This ensures that even in error states, users feel like they are still on the Donegal Explorers platform.
+Call to Action: A clear button is presented to redirect users back to the homepage. This helps guide users back to a useful part of the site, reducing frustration.
+Site Navigation: The standard navigation bar and footer are still present on the 404 page, ensuring users can easily navigate to other sections of the site if needed.
+
+### Authentication
+
+Authentication is handled using Django’s allauth package, which simplifies the login, signup, and password management process. The system is fully integrated with Django’s user model, allowing for a seamless experience when signing up or logging in.
+
+When users log in, they gain access to features like My Events and My Calendar, and the navigation bar dynamically updates to reflect their authenticated state.
+
+### Future Features
+
+While the current implementation of Donegal Explorers offers a robust platform for users to explore, manage, and participate in events across Donegal, there are several future features and enhancements planned to further improve the functionality, user experience, and scalability of the platform.
+
+1. Enhanced User Profiles
+User Badges and Achievements: Introducing a badge system that rewards users for certain actions, such as attending a specific number of events, adding events, or consistently providing feedback. This gamification element will encourage more engagement from users.
+Profile Customisation: Expanding user profile options to include profile pictures, bios, and the ability to mark favorite events and categories.
+Event History and Analytics: Users will be able to view their event history, track how many events they’ve attended or added, and analyze their event preferences based on data.
+
+2. Event Recommendations
+Personalised Event Suggestions: Building a recommendation engine that suggests events based on a user’s event attendance history, preferences, and ratings. The algorithm will leverage user ratings, interests, and geographic location to provide a tailored list of upcoming events.
+Collaborative Filtering: Implementing machine learning models that allow users to see events popular with users who have similar interests or event preferences.
+
+3. Social Features and Community Building
+Friendships and Event Sharing: Users will be able to add friends, share events directly with them, and collaborate on planning event attendance.
+Community Chat and Forums: Creating forums and chat features where users can discuss upcoming events, share tips about Donegal, and connect with other users. This will foster a greater sense of community around family-friendly activities in Donegal.
+Public Event Reviews and Comments: Expanding the comments system to allow for public reviews that other users can upvote or mark as helpful. These reviews will offer a more detailed insight into the event experience.
+
+4. Advanced Notifications System
+Push Notifications: Adding browser and mobile push notifications for users to receive updates about upcoming events they’ve saved, reminders for events they plan to attend, or new event categories they may be interested in.
+Advanced Notification Preferences: Enabling users to customise their notification preferences even further, allowing for options like daily summaries of upcoming events or instant notifications for new event postings in their area.
+
+5. Event Ticketing and Payment Integration
+Ticket Sales: Allowing event organisers to sell tickets directly through the platform. Users will be able to purchase tickets securely through integrated payment gateways like Stripe or PayPal.
+
+6. Event Categories and Filtering
+Advanced Filters: Adding more detailed filtering options, such as event price range, event age suitability, or accessibility features.
+Event Categories Expansion: Further expanding the event categories and tags, allowing users to quickly find niche events that suit their needs, such as eco-friendly events, educational workshops, or outdoor activities.
+Saved Filters: Users will be able to save their filter preferences for quick access in future searches, streamlining the browsing experience.
+
+7. Organiser Tools and Event Analytics
+Event Performance Dashboard: Offering event organizers advanced analytics on their event pages, including the number of views, the number of users saving their events, and geographical data of attendees.
+Email Campaigns: Integrating email marketing tools that allow event organizers to send email reminders or newsletters directly to users who have saved or attended their past events.
+Custom Event Pages: Allowing event organisers to create more detailed, branded event pages with additional media like videos, galleries, and downloadable brochures.
+
+8. Enhanced Search Functionality
+Fuzzy Search: Improving the search bar to handle typos or approximate queries, so users can still find events even if they don’t have the exact title or keyword.
+Search by Date and Location: Implementing an advanced search filter to allow users to search for events happening on specific dates or within specific regions of Donegal.
+
+9. Admin Dashboard Enhancements
+User Management Tools: Expanding the tools available for site admins to manage users, including the ability to view user activity logs, suspend or block accounts, and manage event approvals in bulk.
+Event Approval Workflow: Streamlining the event approval process for admins, including notifications when new events are submitted and one-click approval or rejection.
+
+[Back to top](<#contents>)
+
+# Technologies Used
+
+Donegal Explorers was built using a range of modern technologies and tools to ensure the application is robust, scalable, and user-friendly. Below is a breakdown of the primary technologies and how they have been applied throughout the project.
+
+## 1. **Django (Python Framework)**
+   - **Django** is the core backend framework used to build Donegal Explorers. Its powerful features for rapid development and clean design made it an ideal choice for this project.
+   - The **Django ORM (Object Relational Mapping)** was used to manage the database, allowing for efficient handling of models like `Event`, `Calendar`, `Rating`, and `UserProfile`.
+   - **Django’s URL routing** was employed to manage page navigation and ensure RESTful patterns across the application.
+   - **Django’s form handling** was essential in building and validating forms for user authentication, event creation, and profile management.
+
+## 2. **Python**
+   - As the programming language used to build Django applications, **Python** was integral to Donegal Explorers. Its simplicity and readability ensured clean code structure, especially when working with Django's built-in functionality and custom logic for event management and user authentication.
+
+## 3. **PostgreSQL (Database)**
+   - **PostgreSQL** was chosen as the primary relational database management system (RDBMS) for storing data. It offers a powerful and reliable database system, handling all the necessary data such as user accounts, events, and calendar data with ease.
+   - With **Django ORM**, interactions between the application and PostgreSQL were simplified, allowing complex queries to be written in Python instead of raw SQL.
+
+## 4. **HTML5**
+   - **HTML5** was used for structuring the web pages across the site. Semantic HTML was a priority to ensure accessibility and improve SEO. Key elements such as the `<nav>`, `<header>`, and `<section>` tags were employed to create a well-structured, readable codebase.
+
+## 5. **Bootstrap (CSS Framework)**
+   - **Bootstrap** was implemented as the primary front-end framework for responsive design. The grid system, form controls, buttons, and navigation bar components helped speed up the development process, ensuring that the site adapts to different screen sizes efficiently.
+   - Custom Bootstrap classes, such as `btn`, `card`, and `form-control`, were integrated with custom CSS to ensure the design remains visually consistent across devices.
+   - **Breakpoints** from Bootstrap were used to tailor the layout for mobile, tablet, and desktop views, ensuring a mobile-first approach.
+
+## 6. **CSS (Cascading Style Sheets)**
+   - **CSS** was used alongside Bootstrap to further customise the site's styling. Custom styles were applied to various elements like cards, buttons, and forms to maintain a consistent look and feel that aligns with the Donegal Explorers brand.
+   - CSS was crucial in ensuring responsiveness, including custom media queries to further refine styles beyond Bootstrap's defaults.
+   - Custom hover effects, shadows, and animations were added using CSS to enhance user interactivity.
+
+## 7. **JavaScript (Client-Side Interactivity)**
+   - **JavaScript** was employed to handle client-side functionality such as form validation and interactive components like modals, popups, and dynamic filtering of events.
+   - Libraries such as **jQuery** were used to simplify DOM manipulation, making it easier to handle user input and create smooth, interactive features.
+   - **AJAX** was used in some places to improve the user experience by allowing page elements to update asynchronously without needing a full page reload.
+
+## 8. **Crispy Forms (Django)**
+   - **Crispy Forms** was used in conjunction with Django forms to ensure that all forms were rendered with Bootstrap styling by default. This significantly enhanced the appearance of the forms, making them more user-friendly and responsive.
+
+## 9. **Font Awesome**
+   - **Font Awesome** was used to incorporate iconography into the design, specifically for the navigation bar, social media icons, and various buttons throughout the site. This helped improve the visual experience and user interaction by providing familiar visual cues.
+
+## 10. **Heroku (Deployment)**
+   - **Heroku** was the platform used to deploy Donegal Explorers. Its seamless integration with Django and PostgreSQL allowed for smooth deployment and scalability.
+   - Heroku's **Pipelines** feature was used to manage development and production environments, while **Heroku Postgres** was utilized as the primary database during production.
+
+## 11. **Git and GitHub (Version Control)**
+   - **Git** was used for version control, allowing tracking of changes and collaborative development
+   - **GitHub** served as the central repository for the project, hosting the codebase, issues, and user stories, as well as providing visibility into the agile development process.
+
+## 12. **Gunicorn (WSGI Server)**
+   - **Gunicorn** was used as the application server for running Django on Heroku. It helps handle requests and ensures that the application runs efficiently in a production environment.
+
+## 13. **Cloudinary (Media Storage)**
+   - **Cloudinary** was used to manage media storage, particularly for handling user-uploaded images such as event photos. This allowed for seamless image uploading, resizing, and management across the application.
+
+## 14. **Django-Allauth**
+   - **Django-Allauth** was used to manage user authentication, including registration, login, logout, email verification, and social authentication. This package provided a reliable and secure way to handle user accounts.
+
+## 15. **Django Messages Framework**
+   - The **Django Messages Framework** was used to provide user feedback through alerts and notifications, such as when users successfully submit a form or encounter an error. These messages were displayed on the front end using Bootstrap’s alert component.
+
+## 16. **Figma**
+   - **Figma** was used during the design phase for wireframing and prototyping. It allowed for quick iterations on the design and layout, ensuring that all stakeholders had a clear vision of how the finished product would look.
+
+## 17. **Canva**
+   - **Canva** is a design tool that was used to design the website logo, to source images, and to compare and find the font and to choose colours for the overall colour scheme.
+
+## 17. **Favicon.io**
+   - **Favicon** provided a platform for generating the favicon used within the browser tabs.
+
+## 18. **Tinypng**
+   - **Tinypng** was used to reduce file size through compression for images throughout the website to improve performance.
+---
+
+Each of these technologies contributed to the successful development of Donegal Explorers, ensuring that the platform is both functional and scalable, while offering a seamless user experience. The careful selection of these tools aligns with the project goals, ensuring high performance, security, and ease of use.
+
+[Back to top](<#contents>)
+
 
